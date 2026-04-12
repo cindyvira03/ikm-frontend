@@ -1,4 +1,3 @@
-import axiosInstance from "@/lib/axios"
 import { Product } from "@/types/product"
 
 export interface Kategori {
@@ -18,17 +17,35 @@ export interface ProdukKategoriResponse extends ProdukResponse {
 }
 
 export const getProducts = async (): Promise<ProdukResponse> => {
-  const response = await axiosInstance.get("/produk-ikm")
-  return response.data
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm`,
+    {
+      next: { revalidate: 60 },
+    }
+  )
+
+  if (!res.ok) {
+    throw new Error("Gagal mengambil data produk")
+  }
+
+  return res.json()
 }
 
 export const getProductsByCategory = async (
   slug: string
 ): Promise<ProdukKategoriResponse> => {
-  const response = await axiosInstance.get(
-    `/produk-ikm/kategori/${slug}`
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm/kategori/${slug}`,
+    {
+      next: { revalidate: 60 },
+    }
   )
-  return response.data
+
+  if (!res.ok) {
+    throw new Error("Gagal mengambil data kategori produk")
+  }
+
+  return res.json()
 }
 
 export interface ProdukDetailResponse {
@@ -39,6 +56,16 @@ export interface ProdukDetailResponse {
 export const getProductById = async (
   id: string
 ): Promise<ProdukDetailResponse> => {
-  const response = await axiosInstance.get(`/produk-ikm/${id}`)
-  return response.data
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm/${id}`,
+    {
+      next: { revalidate: 60 },
+    }
+  )
+
+  if (!res.ok) {
+    throw new Error("Gagal mengambil detail produk")
+  }
+
+  return res.json()
 }
