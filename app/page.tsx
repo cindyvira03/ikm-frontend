@@ -8,6 +8,7 @@ import { FaShoppingCart } from "react-icons/fa"
 import Image from "next/image"
 import ProductSection from "@/components/ProductSection"
 
+export const dynamic = "force-dynamic"
 
 // ✅ SSR METADATA (SEO UTAMA)
 export async function generateMetadata() {
