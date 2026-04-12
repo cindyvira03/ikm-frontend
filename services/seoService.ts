@@ -2,7 +2,7 @@ export async function getSeo(page: string) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/seo?page=${page}`,
     {
-      cache: "no-store",
+        next: { revalidate: 60 },
     }
   )
 
