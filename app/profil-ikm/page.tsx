@@ -4,6 +4,8 @@ import { ProfilIkm } from "@/types/profilIkm"
 import { generateSeoMetadata } from "@/lib/seo"
 import { getSeo } from "@/services/seoService"
 
+export const dynamic = "force-dynamic"
+
 // =========================
 // SEO menggunakan modul lib/seo
 // =========================

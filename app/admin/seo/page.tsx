@@ -1,6 +1,5 @@
 "use client"
 
-export const dynamic = "force-dynamic"
 import { useEffect, useState } from "react"
 import { getSeo, updateSeo } from "@/services/adminService"
 import { toast } from "react-toastify"
