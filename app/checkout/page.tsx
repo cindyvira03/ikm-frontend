@@ -18,8 +18,12 @@ import { useCartStore } from "@/stores/cartStore"
 export default function CheckoutPage() {
 
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const metode = searchParams.get("metode")
+  const [metode, setMetode] = useState("")
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    setMetode(params.get("metode") || "")
+  }, [])
 
   const [data, setData] = useState<any>(null)
   const [items, setItems] = useState<any[]>([])
