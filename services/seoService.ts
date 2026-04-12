@@ -1,4 +1,4 @@
-const API_URL = "https://ikmprobolinggo.com"
+const API_URL = "https://ikmprobolinggo.com/api"
 
 export async function getSeo(page: string) {
   const res = await fetch(
