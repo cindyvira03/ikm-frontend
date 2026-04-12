@@ -1,15 +1,15 @@
-const API_URL = "https://ikmprobolinggo.com/api"
+export async function getSeo(page: String) {
+  const API_URL = "https://ikmprobolinggo.com/api" // 🔥 sementara hardcode dulu
 
-export async function getSeo(page: string) {
   const res = await fetch(
-    `${API_URL}/seo?page=${page}`, {
-  next: { revalidate: 60 }
+    `${API_URL}/seo?page=${page}`,
+    {
+      next: { revalidate: 60 }, // ✅ bukan no-store
     }
   )
 
   if (!res.ok) return null
 
   const json = await res.json()
-
-  return json.data // 🔥 AMBIL DATA NYA SAJA
+  return json.data
 }

@@ -13,7 +13,7 @@ interface ProfilIkmDetailResponse {
 export async function getProfilIkm(): Promise<{ ikm: ProfilIkm[] }> {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/profil-ikm`,
-    { cache: "no-store" }
+    { next: { revalidate: 60 }, }
   )
 
   if (!res.ok) {
@@ -30,7 +30,7 @@ export async function getProfilIkmDetail(
 ): Promise<{ ikm: ProfilIkm }> {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/profil-ikm/${id}`,
-    { cache: "no-store" }
+    { next: { revalidate: 60 }, }
   )
 
   if (!res.ok) {

@@ -1,6 +1,6 @@
 export async function getOutlet() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/outlet-ikm`, {
-    cache: "no-store",
+    next: { revalidate: 60 },
   })
 
   if (!res.ok) {
