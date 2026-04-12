@@ -1,8 +1,9 @@
+const API_URL = "https://ikmprobolinggo.com"
+
 export async function getSeo(page: string) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/seo?page=${page}`,
-    {
-        next: { revalidate: 60 },
+    `${API_URL}/seo?page=${page}`, {
+  next: { revalidate: 60 }
     }
   )
 
