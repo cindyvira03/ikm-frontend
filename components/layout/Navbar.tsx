@@ -232,7 +232,7 @@ export default function Navbar() {
           {user ? (
             <>
               <div className="fw-semibold">{user.name}</div>
-              <Link href="/profil" className="nav-link" onClick={() => setIsOpen(false)}>Profil</Link>
+              <Link href="/profile" className="nav-link" onClick={() => setIsOpen(false)}>Profil Saya</Link>
               <button className="btn btn-danger mt-2" onClick={handleLogout}>Logout</button>
             </>
           ) : (

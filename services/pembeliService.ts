@@ -231,9 +231,14 @@ export async function getPesananPembeli() {
 }
 
 export const selesaiPesanan = async (id: number) => {
+  const token = localStorage.getItem("token")
   try {
     const res = await fetch(`${API_URL}/pembeli/pesanan/${id}/selesai`, {
       method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     })
 
     const data = await res.json()
