@@ -36,7 +36,7 @@ export default function ArtikelSection({
                 <Image
                   src={
                     item.gambar
-                      ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.gambar}`
+                      ? `https://ikmprobolinggo.com/storage/artikel/1776142627_pengembangan-produk-unggulan-daerah-untuk-mendukung-sentra-ikm-di-kota-probolinggo.jpeg`
                       : "/no-image.jpg"
                   }
                   alt={item.judul}
