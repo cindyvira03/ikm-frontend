@@ -65,15 +65,19 @@ export default function ArtikelClient({ slug }: { slug: string }) {
             </div>
 
             <Image
-              src={
+            src={
                 artikel.gambar
-                  ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${artikel.gambar}`
-                  : "/no-image.jpg"
-              }
-              alt={artikel.judul}
-              width={900}
-              height={500}
-              className="img-fluid rounded shadow-sm mb-4"
+                ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${artikel.gambar}`
+                : "/no-image.jpg"
+            }
+            alt={artikel.judul}
+            width={900}
+            height={500}
+            sizes="(max-width: 768px) 100vw, 900px"
+            className="rounded shadow-sm mb-4 w-100 h-auto"
+            style={{
+                objectFit: "cover",
+            }}
             />
 
             {/* ISI RAPI (ENTER JADI PARAGRAF) */}
@@ -123,6 +127,7 @@ export default function ArtikelClient({ slug }: { slug: string }) {
                             height: "120px",
                             objectFit: "cover"
                             }}
+                            unoptimized
                         />
 
                         <div className="p-2">

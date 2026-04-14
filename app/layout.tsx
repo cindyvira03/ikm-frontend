@@ -8,8 +8,9 @@ import Navbar from '../components/layout/Navbar'
 import AdminNavbar from '../components/layout/AdminNavbar'
 import AuthLayout from '../components/AuthLayout'
 // import Footer from '../components/layout/Footer'
-import { ToastContainer } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
+// import { ToastContainer } from "react-toastify"
+// import "react-toastify/dist/ReactToastify.css"
+import ToastProvider from "../components/ToastProvider"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,7 +43,7 @@ export default function RootLayout({
           {/* <div className="container-fluid px-2"> */}
             {children}
           {/* </div> */}
-          <ToastContainer position="top-right" autoClose={3000} />
+          <ToastProvider />
         </AuthLayout>
         <Script
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

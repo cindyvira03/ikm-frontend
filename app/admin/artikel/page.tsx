@@ -96,7 +96,7 @@ export default function AdminArtikelPage() {
                     src={
                       item.gambar
                         ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.gambar}`
-                        : "/no-image.png"
+                        : "/no-image.jpg"
                     }
                     className="img-thumbnail"
                     style={{ width: "100%", height: "100px", objectFit: "cover" }}

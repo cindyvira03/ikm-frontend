@@ -37,6 +37,9 @@ export default function ProductSection({ limitedProducts }: any) {
                         alt={product.nama_produk}
                         width={300}
                         height={200}
+                        style={{
+                            objectFit: "cover",
+                        }}
                         unoptimized
                       />
 
