@@ -36,7 +36,7 @@ export default function ArtikelSection({
                 <Image
                   src={
                     item.gambar
-                      ? `https://ikmprobolinggo.com/storage/artikel/1776142627_pengembangan-produk-unggulan-daerah-untuk-mendukung-sentra-ikm-di-kota-probolinggo.jpeg`
+                      ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.gambar}`
                       : "/no-image.jpg"
                   }
                   alt={item.judul}
@@ -44,6 +44,7 @@ export default function ArtikelSection({
                   height={250}
                   className="card-img-top"
                   style={{ objectFit: "cover", height: "220px" }}
+                  unoptimized
                 />
 
                 {/* ✅ FLEX biar button selalu di bawah */}

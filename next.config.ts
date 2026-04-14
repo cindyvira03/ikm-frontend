@@ -3,8 +3,14 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
     images: {
-    domains: ["ikmprobolinggo.com"], // ✅ tambahkan ini
-  },
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ikmprobolinggo.com",
+        pathname: "/storage/**",
+      },
+    ],
+  }
 };
 
 export default nextConfig;
