@@ -74,7 +74,7 @@ export default function ProdukDetailPage() {
                 src={
                   produk.foto
                     ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${produk.foto}`
-                    : "/no-image.png"
+                    : "/no-image.webp"
                 }
                 alt={produk.nama_produk}
                 className="img-fluid rounded"

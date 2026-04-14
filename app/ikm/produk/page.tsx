@@ -151,7 +151,7 @@ export default function ProdukIKMPage() {
                         src={
                           item.foto
                             ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto}`
-                            : "/no-image.jpg"
+                            : "/no-image.webp"
                         }
                         className="img-thumbnail"
                         style={{

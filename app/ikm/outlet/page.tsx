@@ -158,7 +158,7 @@ export default function OutletPage() {
                     src={
                       item.foto_lokasi_tampak_depan
                         ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto_lokasi_tampak_depan}`
-                        : "/no-image.jpg"
+                        : "/no-image.webp"
                     }
                     className="img-thumbnail"
                     style={{

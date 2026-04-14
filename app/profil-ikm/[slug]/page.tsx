@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { getProfilIkmDetail } from "@/services/profilIkmService"
 import { ProfilIkm } from "@/types/profilIkm"
+import Image from "next/image";
 
 export default async function ProfilIkmDetailPage({
   params,
@@ -51,16 +52,24 @@ export default async function ProfilIkmDetailPage({
             
             {/* Gambar */}
             <div className="col-md-2">
-              <img
-                src={
-                  ikm.gambar
-                    ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${ikm.gambar}`
-                    : "/no-image.png"
-                }
-                alt={ikm.nama_usaha}
-                className="img-thumbnail"
-                style={{ width: "100%", objectFit: "cover" }}
-              />
+              <Image
+              src={
+                ikm.gambar
+                  ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${ikm.gambar}`
+                  : "/no-image.webp"
+              }
+              alt={ikm.nama_usaha}
+              width={200}
+              height={200}
+              sizes="(max-width: 768px) 100vw, 200px"
+              className="img-thumbnail"
+              style={{
+                width: "100%",
+                height: "200px",
+                objectFit: "cover",
+              }}
+              unoptimized
+            />
             </div>
 
             {/* Detail */}
@@ -134,16 +143,24 @@ export default async function ProfilIkmDetailPage({
                 <div className="card-body row align-items-center g-2 g-md-5">
 
                   <div className="col-3 col-md-2">
-                    <img
-                      src={
-                        item.foto_lokasi_tampak_depan
-                          ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto_lokasi_tampak_depan}`
-                          : "/no-image.png"
-                      }
-                      alt={item.alamat}
-                      className="img-thumbnail rounded-3"
-                      style={{ width: "100%" }}
-                    />
+                    <Image
+                    src={
+                      item.foto_lokasi_tampak_depan
+                        ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto_lokasi_tampak_depan}`
+                        : "/no-image.webp"
+                    }
+                    alt={item.alamat}
+                    width={200}
+                    height={150}
+                    sizes="(max-width: 768px) 100vw, 200px"
+                    className="img-thumbnail rounded-3"
+                    style={{
+                      width: "100%",
+                      height: "150px",
+                      objectFit: "cover",
+                    }}
+                    unoptimized
+                  />
                   </div>
 
                   <div className="col-7 col-md-6">
@@ -200,15 +217,24 @@ export default async function ProfilIkmDetailPage({
                 <div className="card-body row align-items-center g-2 g-md-5">
 
                   <div className="col-2 col-md-1">
-                    <img
-                      src={
-                        item.foto
-                          ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto}`
-                          : "/no-image.png"
-                      }
-                      alt="No Image"
-                      className="img-thumbnail rounded-3"
-                    />
+                    <Image
+                    src={
+                      item.foto
+                        ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto}`
+                        : "/no-image.webp"
+                    }
+                    alt={`Produk ${item.nama_produk}`}
+                    width={100}
+                    height={100}
+                    sizes="100px"
+                    className="img-thumbnail rounded-3"
+                    style={{
+                      width: "100%",
+                      height: "100px",
+                      objectFit: "cover",
+                    }}
+                    unoptimized
+                  />
                   </div>
 
                   <div className="col-6 col-md-5">

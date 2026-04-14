@@ -3,6 +3,7 @@ import { getOutlet } from "@/services/outletService"
 import { Outlet } from "@/types/outlet"
 import { generateSeoMetadata } from "@/lib/seo"
 import { getSeo } from "@/services/seoService"
+import Image from "next/image";
 
 export const dynamic = "force-dynamic"
 // =========================
@@ -54,16 +55,23 @@ export default async function OutletIKMPage() {
 
                 <div className="card-body p-2">
                   {/* Gambar outlet */}
-                  <img
-                    src={
-                      item.foto_lokasi_tampak_depan
-                        ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto_lokasi_tampak_depan}`
-                        : "/no-image.jpg"
-                    }
-                    alt={item.profilIkm?.nama_usaha || "Outlet IKM"}
-                    className="img-thumbnail mb-3 rounded-3 w-100"
-                    style={{ height: "240px", objectFit: "cover" }}
-                  />
+                  <Image
+                  src={
+                    item.foto_lokasi_tampak_depan
+                      ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto_lokasi_tampak_depan}`
+                      : "/no-image.webp"
+                  }
+                  alt={item.profilIkm?.nama_usaha || "Outlet IKM"}
+                  width={400}
+                  height={240}
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  className="img-thumbnail mb-3 rounded-3 w-100"
+                  style={{
+                    height: "240px",
+                    objectFit: "cover",
+                  }}
+                  unoptimized
+                />
 
                   <div className="px-2 pb-2">
                     <p className="fw-semibold mb-0">

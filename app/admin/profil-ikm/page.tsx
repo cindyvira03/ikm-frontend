@@ -68,7 +68,7 @@ export default function ProfilIkmPage() {
                     src={
                       item.profilIkm?.gambar
                         ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${item.profilIkm.gambar}`
-                        : "/no-image.png"
+                        : "/no-image.webp"
                     }
                     className="img-thumbnail"
                     style={{ width: "100%", height: "100px", objectFit: "cover" }}

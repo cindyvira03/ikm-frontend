@@ -37,11 +37,12 @@ export default function ArtikelSection({
                   src={
                     item.gambar
                       ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.gambar}`
-                      : "/no-image.jpg"
+                      : "/no-image.webp"
                   }
                   alt={item.judul}
                   width={400}
                   height={250}
+                  sizes="(max-width: 768px) 100vw, 400px"
                   className="card-img-top"
                   style={{ objectFit: "cover", height: "220px" }}
                   unoptimized

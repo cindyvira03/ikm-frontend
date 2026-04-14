@@ -7,6 +7,7 @@ import { getProductBySlug } from "@/services/productService"
 import { addToKeranjang } from "@/services/pembeliService"
 import { useCartStore } from "@/stores/cartStore"
 import { toast } from "react-toastify"
+import Image from "next/image";
 
 export default function ProdukDetailPage() {
   const params = useParams()
@@ -121,15 +122,23 @@ export default function ProdukDetailPage() {
 
         {/* Gambar */}
         <div className="col-md-4">
-          <img
-            src={
-              produk.foto
-                ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${produk.foto}`
-                : "/no-image.png"
-            }
-            alt={produk.nama_produk}
-            className="img-thumbnail rounded-3 img-product"
-          />
+          <Image
+          src={
+            produk.foto
+              ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${produk.foto}`
+              : "/no-image.webp"
+          }
+          alt={`Produk ${produk.nama_produk}`}
+          width={300}
+          height={300}
+          sizes="(max-width: 768px) 100vw, 500px"
+          className="img-thumbnail rounded-3 w-100"
+          style={{
+            height: "300px",
+            objectFit: "cover",
+          }}
+          unoptimized
+        />
         </div>
 
         {/* Detail */}

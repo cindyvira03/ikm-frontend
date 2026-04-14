@@ -149,7 +149,7 @@ const handleCheckout = () => {
                     src={
                       item.produk.foto
                         ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.produk.foto}`
-                        : "/no-image.png"
+                        : "/no-image.webp"
                     }
                     alt={item.produk.nama_produk}
                     width={80}

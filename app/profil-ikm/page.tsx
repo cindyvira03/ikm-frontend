@@ -3,6 +3,7 @@ import { getProfilIkm } from "@/services/profilIkmService"
 import { ProfilIkm } from "@/types/profilIkm"
 import { generateSeoMetadata } from "@/lib/seo"
 import { getSeo } from "@/services/seoService"
+import Image from "next/image";
 
 export const dynamic = "force-dynamic"
 
@@ -59,15 +60,22 @@ export default async function ProfilIkmPage() {
                 </span>
 
                 <div className="card-body p-2">
-                  <img
-                    src={
-                      item.gambar
-                        ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${item.gambar}`
-                        : "/no-image.jpg"
-                    }
-                    alt={item.nama_usaha || "Profil IKM"}
-                    className="img-thumbnail mb-3 rounded-3 w-100"
-                    style={{ height: "240px", objectFit: "cover" }}
+                  <Image
+                  src={
+                    item.gambar
+                      ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${item.gambar}`
+                      : "/no-image.webp"
+                  }
+                  alt={item.nama_usaha || "Profil IKM"}
+                  width={400}
+                  height={240}
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  className="img-thumbnail mb-3 rounded-3 w-100"
+                  style={{
+                    height: "240px",
+                    objectFit: "cover",
+                  }}
+                  unoptimized
                   />
 
                   <div className="px-2 pb-2">

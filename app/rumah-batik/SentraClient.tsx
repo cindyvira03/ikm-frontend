@@ -1,6 +1,7 @@
 "use client"
 
 import { MapPin, Coffee, Palette, BookOpen } from "lucide-react"
+import Image from "next/image";
 
 export default function SentraClient({ seo }: any) {
   return (
@@ -8,15 +9,19 @@ export default function SentraClient({ seo }: any) {
 
       {/* HERO */}
       <section className="relative h-[80vh] flex items-center justify-center text-white">
-        <img
-          src={
-                  seo?.hero_image
-                    ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${seo.hero_image}`
-                    : "/no-image.jpg"
-                }
-          alt={seo?.image_alt || "Rumah Sentra Batik Kota Probolinggo"} // ✅ SEO ALT
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        <Image
+        src={
+          seo?.hero_image
+            ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${seo.hero_image}`
+            : "/no-image.webp"
+        }
+        alt={seo?.image_alt || "Rumah Sentra Batik Kota Probolinggo"}
+        fill
+        sizes="100vw"
+        className="object-cover"
+        priority
+        unoptimized
+      />
         <div className="absolute inset-0 bg-black/60" />
 
         <div className="relative z-10 text-center px-6">

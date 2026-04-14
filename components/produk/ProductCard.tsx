@@ -8,6 +8,7 @@ import { useState } from "react"
 import { FaShoppingCart } from "react-icons/fa"
 import { toast } from "react-toastify"
 import { useCartStore } from "@/stores/cartStore"
+import Image from "next/image";
 
 export default function ProductCard({ product }: { product: Product }) {
   const router = useRouter()
@@ -84,19 +85,23 @@ export default function ProductCard({ product }: { product: Product }) {
         <div className="card-body p-2 d-flex flex-column">
 
           {/* Gambar */}
-          <img
-            src={
-              product.foto
-                ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${product.foto}`
-                : "/no-image.jpg"
-            }
-            alt={`Produk ${product.nama_produk} dari ${product.ikm?.nama_usaha}`} // ✅ SEO ALT
-            className="img-fluid rounded mb-2"
-            style={{
-              aspectRatio: "1/1",
-              objectFit: "cover",
-            }}
-          />
+          <Image
+          src={
+            product.foto
+              ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${product.foto}`
+              : "/no-image.webp"
+          }
+          alt={`Produk ${product.nama_produk} dari ${product.ikm?.nama_usaha}`}
+          width={300}
+          height={300}
+          sizes="(max-width: 768px) 50vw, 220px"
+          className="rounded mb-2 w-100"
+          style={{
+            aspectRatio: "1/1",
+            objectFit: "cover",
+          }}
+          unoptimized
+        />
 
           {/* Info */}
           <div className="grow">

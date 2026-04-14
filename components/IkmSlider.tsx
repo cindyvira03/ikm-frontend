@@ -99,14 +99,13 @@ export default function IkmSlider({ ikm }: any) {
                     src={
                       item.gambar
                         ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${item.gambar}`
-                        : "/no-image.jpg"
+                        : "/no-image.webp"
                     }
                     alt={`Logo ${item.nama_usaha} - Batik Khas Probolinggo`} // ✅ SEO ALT
                     width={60}
                     height={60}
+                    sizes="60px"
                     style={{
-                      width: "100%",
-                      height: "100%",
                       objectFit: "cover"
                     }}
                     unoptimized // ✅ karena masih localhost

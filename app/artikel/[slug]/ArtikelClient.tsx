@@ -68,7 +68,7 @@ export default function ArtikelClient({ slug }: { slug: string }) {
             src={
                 artikel.gambar
                 ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${artikel.gambar}`
-                : "/no-image.jpg"
+                : "/no-image.webp"
             }
             alt={artikel.judul}
             width={900}
@@ -78,6 +78,7 @@ export default function ArtikelClient({ slug }: { slug: string }) {
             style={{
                 objectFit: "cover",
             }}
+            unoptimized
             />
 
             {/* ISI RAPI (ENTER JADI PARAGRAF) */}

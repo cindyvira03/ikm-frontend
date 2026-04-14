@@ -89,7 +89,7 @@ export default function DetailProfilIkmPage() {
                 src={
                   ikm?.gambar
                     ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${ikm.gambar}`
-                    : "/no-image.png"
+                    : "/no-image.webp"
                 }
                 className="img-thumbnail"
               />
@@ -177,7 +177,7 @@ export default function DetailProfilIkmPage() {
                       src={
                         item.foto_lokasi_tampak_depan
                           ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto_lokasi_tampak_depan}`
-                          : "/no-image.png"
+                          : "/no-image.webp"
                       }
                       className="img-thumbnail"
                     />
@@ -217,7 +217,7 @@ export default function DetailProfilIkmPage() {
                       src={
                         item.foto
                           ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto}`
-                          : "/no-image.png"
+                          : "/no-image.webp"
                       }
                       className="img-thumbnail"
                     />

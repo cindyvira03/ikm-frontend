@@ -97,6 +97,7 @@ export default async function Home() {
                 alt={seo?.image_alt || "IKM Kota Probolinggo"}
                 width={400}
                 height={320}
+                sizes="(max-width: 768px) 100vw, 400px"
                 className="img-fluid rounded shadow"
                 style={{
                   height: "auto", // ✅ FIX

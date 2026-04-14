@@ -91,7 +91,7 @@ export default function ArtikelDetailPage() {
                 src={
                   artikel.gambar
                     ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${artikel.gambar}`
-                    : "/no-image.jpg"
+                    : "/no-image.webp"
                 }
                 alt={artikel.judul}
                 className="img-fluid rounded"

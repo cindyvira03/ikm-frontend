@@ -32,11 +32,12 @@ export default function ProductSection({ limitedProducts }: any) {
                         src={
                           product.foto
                             ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${product.foto}`
-                            : "/no-image.png"
+                            : "/no-image.webp"
                         }
                         alt={product.nama_produk}
                         width={300}
                         height={200}
+                        sizes="(max-width: 768px) 100vw, 300px"
                         style={{
                             objectFit: "cover",
                         }}
