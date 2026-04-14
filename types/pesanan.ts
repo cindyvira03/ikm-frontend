@@ -48,6 +48,12 @@ export interface Pesanan {
     kecamatan: string
     lokasi_googlemap?: string
   }
+
+  ikm?: {
+    id: number
+    no_telp: string
+  }
+  
 }
 
 export interface PesananResponse {

@@ -245,7 +245,7 @@ export default function CheckoutPage() {
             <option value="pos">POS</option>
             <option value="tiki">TIKI</option>
           </select>
-
+            
           <button
             className="btn btn-outline-primary w-100"
             onClick={handleCekOngkir}
@@ -283,6 +283,15 @@ export default function CheckoutPage() {
           <div className="d-flex justify-content-between">
             <span>Ongkir</span>
             <span>Rp {data.ongkir.toLocaleString()}</span>
+          </div>
+
+          <div className="d-flex justify-content-between">
+            <span>Berat Total</span>
+            <span>
+              {data?.berat_total !== undefined
+                ? `${data.berat_total} gr`
+                : "-"}
+            </span>
           </div>
 
           <div className="d-flex justify-content-between fw-bold mt-2">

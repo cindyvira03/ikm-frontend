@@ -5,12 +5,12 @@ import { ProfilIkm } from "@/types/profilIkm"
 export default async function ProfilIkmDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>
+  params: Promise<{ slug: string }>
 }) {
-  const { id } = await params
+  const { slug } = await params
 
   const { ikm }: { ikm: ProfilIkm } =
-    await getProfilIkmDetail(id)
+    await getProfilIkmDetail(slug)
 
   return (
     <div className="container-fluid px-5 py-4">
@@ -194,7 +194,7 @@ export default async function ProfilIkmDetailPage({
             ikm.produk.map((item) => (
               <Link
                 key={item.id}
-                href={`/produk-ikm/${item.id}`}
+                href={`/produk-ikm/${item.slug}`}
                 className="card border mb-1 text-decoration-none text-dark"
               >
                 <div className="card-body row align-items-center g-2 g-md-5">

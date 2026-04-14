@@ -26,10 +26,10 @@ export async function getProfilIkm(): Promise<{ ikm: ProfilIkm[] }> {
 }
 
 export async function getProfilIkmDetail(
-  id: string
+  slug: string
 ): Promise<{ ikm: ProfilIkm }> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/profil-ikm/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/profil-ikm/${slug}`,
     { next: { revalidate: 60 }, }
   )
 

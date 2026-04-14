@@ -53,11 +53,11 @@ export interface ProdukDetailResponse {
   produk: Product
 }
 
-export const getProductById = async (
-  id: string
+export const getProductBySlug = async (
+  slug: string
 ): Promise<ProdukDetailResponse> => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm/${slug}`,
     {
       next: { revalidate: 60 },
     }

@@ -1,5 +1,6 @@
 import { Kategori } from "@/types/kategori"
 import { SeoSetting, SeoResponse } from "@/types/seo"
+import { Artikel, KategoriArtikel } from "@/types/artikel"
 
 const API = process.env.NEXT_PUBLIC_API_URL
 
@@ -176,6 +177,107 @@ export async function updateCms(
   if (!res.ok) {
     throw new Error("Gagal memperbarui CMS")
   }
+
+  return res.json()
+}
+
+/* =========================
+   KATEGORI ARTIKEL
+========================= */
+
+export async function getKategoriArtikel(): Promise<KategoriArtikel[]> {
+  const res = await fetch(`${API}/admin/kategori-artikel`, {
+    headers: authHeader(),
+  })
+
+  const json = await res.json()
+  return json.data ?? json
+}
+
+export async function createKategoriArtikel(nama: string) {
+  const res = await fetch(`${API}/admin/kategori-artikel`, {
+    method: "POST",
+    headers: authHeader(),
+    body: JSON.stringify({ nama }),
+  })
+
+  return res.json()
+}
+
+export async function updateKategoriArtikel(id: number, nama: string) {
+  const res = await fetch(`${API}/admin/kategori-artikel/${id}`, {
+    method: "PUT",
+    headers: authHeader(),
+    body: JSON.stringify({ nama }),
+  })
+
+  return res.json()
+}
+
+export async function deleteKategoriArtikel(id: number) {
+  const res = await fetch(`${API}/admin/kategori-artikel/${id}`, {
+    method: "DELETE",
+    headers: authHeader(),
+  })
+
+  return res.json()
+}
+
+/* =========================
+   ARTIKEL
+========================= */
+
+export async function getArtikel(): Promise<Artikel[]> {
+  const res = await fetch(`${API}/admin/artikel`, {
+    headers: authHeader(),
+  })
+
+  const json = await res.json()
+  return json.data ?? json
+}
+
+export async function getArtikelDetail(id: number): Promise<Artikel> {
+  const res = await fetch(`${API}/admin/artikel/${id}`, {
+    headers: authHeader(),
+  })
+
+  const json = await res.json()
+  return json.data ?? json
+}
+
+export async function createArtikel(formData: FormData) {
+  const res = await fetch(`${API}/admin/artikel`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Accept: "application/json"
+      // ❌ JANGAN pakai Content-Type
+    },
+    body: formData,
+  })
+
+  return res.json()
+}
+
+export async function updateArtikel(id: number, formData: FormData) {
+  formData.append("_method", "PUT")
+  const res = await fetch(`${API}/admin/artikel/${id}`, {
+    method: "POST", // ⚠️ penting (bukan PUT)
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Accept: "application/json",
+    },
+    body: formData,
+  })
+
+  return res.json()
+}
+
+export async function deleteArtikel(id: number) {
+  const res = await fetch(`${API}/admin/artikel/${id}`, {
+    method: "DELETE",
+    headers: authHeader(),
+  })
 
   return res.json()
 }

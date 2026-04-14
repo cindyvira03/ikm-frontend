@@ -202,3 +202,48 @@ body {
     padding: 6px 12px;
   }
 }
+
+.home-page .artikel-card {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.home-page .artikel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.artikel-content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+}
+
+.artikel-content p {
+  margin-bottom: 16px;
+}
+
+.artikel-content img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.artikel-side-card {
+  transition: all 0.2s ease;
+}
+
+.artikel-side-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.artikel-mini-card {
+  transition: all 0.2s ease;
+}
+
+.artikel-mini-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}

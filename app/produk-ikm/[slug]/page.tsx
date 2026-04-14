@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useParams, useRouter } from "next/navigation"
-import { getProductById } from "@/services/productService"
+import { getProductBySlug } from "@/services/productService"
 import { addToKeranjang } from "@/services/pembeliService"
 import { useCartStore } from "@/stores/cartStore"
 import { toast } from "react-toastify"
 
 export default function ProdukDetailPage() {
-  const { id } = useParams()
+  const params = useParams()
+  const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug
   const router = useRouter()
 
   const [produk, setProduk] = useState<any>(null)
@@ -21,13 +22,18 @@ export default function ProdukDetailPage() {
   // FETCH DATA
   // =========================
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await getProductById(id as string)
+  const fetchData = async () => {
+    try {
+      const res = await getProductBySlug(slug as string)
       setProduk(res.produk)
+    } catch (err) {
+      toast.error("Produk tidak ditemukan")
+      router.push("/produk-ikm")
     }
+  }
 
-    if (id) fetchData()
-  }, [id])
+  if (slug) fetchData()
+}, [slug])
 
   // =========================
   // HANDLE ADD TO CART
@@ -144,7 +150,7 @@ export default function ProdukDetailPage() {
 
           {/* Nama usaha */}
           <Link
-            href={`/profil-ikm/${produk.ikm?.id}`}
+            href={`/profil-ikm/${produk.ikm?.slug}`}
             className="text-secondary fs-7 text-decoration-none"
           >
             {produk.ikm?.nama_usaha}

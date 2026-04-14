@@ -16,6 +16,7 @@ export default function SeoSettingsPage() {
     { key: "produk_ikm", label: "Produk IKM" },
     { key: "outlet_ikm", label: "Outlet IKM" },
     { key: "profil_ikm", label: "Profil IKM" },
+    { key: "artikel", label: "Artikel" },
   ]
 
   const [form, setForm] = useState({

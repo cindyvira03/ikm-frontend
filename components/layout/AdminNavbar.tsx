@@ -31,7 +31,7 @@ export default function AdminNavbar() {
 
   const isActive = (path: string) => {
     if (path === "/admin") return pathname === "/admin"
-    return pathname.startsWith(path)
+    return pathname === path || pathname.startsWith(path + "/")
   }
 
   return (
@@ -73,6 +73,33 @@ export default function AdminNavbar() {
                 <Link className={`nav-link ${isActive("/admin/kategori") ? "active" : ""}`} href="/admin/kategori">
                   <i className="bi bi-list me-1"></i> Kategori
                 </Link>
+              </li>
+
+              <li className="nav-item dropdown">
+                <button
+                  className={`nav-link dropdown-toggle btn btn-link ${
+                    isActive("/admin/kategori-artikel") || isActive("/admin/artikel") ? "active" : ""
+                  }`}
+                  data-bs-toggle="dropdown"
+                >
+                  <i className="bi bi-journal-text me-1"></i> Artikel
+                </button>
+
+                <div className="dropdown-menu">
+                  <Link
+                    className="dropdown-item"
+                    href="/admin/kategori-artikel"
+                  >
+                    Kategori Artikel
+                  </Link>
+
+                  <Link
+                    className="dropdown-item"
+                    href="/admin/artikel"
+                  >
+                    Artikel
+                  </Link>
+                </div>
               </li>
 
               <li className="nav-item">
@@ -177,13 +204,32 @@ export default function AdminNavbar() {
 
           <Link href="/admin" className="nav-link" onClick={() => setIsOpen(false)}>Dashboard</Link>
           <Link href="/admin/kategori" className="nav-link" onClick={() => setIsOpen(false)}>Kategori</Link>
+          <div className="mt-2">
+            <div className="fw-semibold text-muted small">Artikel</div>
+
+            <Link
+              href="/admin/kategori-artikel"
+              className="nav-link ps-3"
+              onClick={() => setIsOpen(false)}
+            >
+              Kategori Artikel
+            </Link>
+
+            <Link
+              href="/admin/artikel"
+              className="nav-link ps-3"
+              onClick={() => setIsOpen(false)}
+            >
+              Artikel
+            </Link>
+          </div>
           <Link href="/admin/profil-ikm" className="nav-link" onClick={() => setIsOpen(false)}>Profil IKM</Link>
           {/* <Link href="/admin/cms" className="nav-link" onClick={() => setIsOpen(false)}>
             CMS - Konten Halaman
           </Link> */}
 
           <Link href="/admin/seo" className="nav-link" onClick={() => setIsOpen(false)}>
-            CMS - Pengaturan SEO
+            SEO Settings
           </Link>
 
           <hr />

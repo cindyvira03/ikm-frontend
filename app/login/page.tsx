@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { login } from "@/services/authService"
 import Link from "next/link"
+import { toast } from "react-toastify"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -26,16 +27,20 @@ export default function LoginPage() {
       localStorage.setItem("user", JSON.stringify(data.user))
 
       if (data.user.role === "admin") {
+        toast.success("Login Berhasil!")
         router.push("/admin")
       } else if (data.user.role === "ikm") {
+        toast.success("Login Berhasil!")
         router.push("/ikm")
       } else if (data.user.role === "pembeli") {
+        toast.success("Login Berhasil!")
         router.push("/")
       } else {
         router.push("/")
       }
     } catch (err: any) {
       setError(err.message)
+      toast.error(err.message || "Login gagal")
     } finally {
       setLoading(false)
     }

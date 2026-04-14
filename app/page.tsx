@@ -2,11 +2,13 @@ import { getProducts } from "@/services/productService"
 import { getProfilIkm } from "@/services/profilIkmService"
 import { getSeo } from "@/services/seoService"
 import { generateSeoMetadata } from "@/lib/seo"
+import { getArtikel } from "@/services/artikelService"
 
 import IkmSlider from "@/components/IkmSlider"
 import { FaShoppingCart } from "react-icons/fa"
 import Image from "next/image"
 import ProductSection from "@/components/ProductSection"
+import ArtikelSection from "@/components/ArtikelSection"
 
 export const dynamic = "force-dynamic"
 
@@ -23,7 +25,20 @@ export default async function Home() {
   // ✅ ambil SEO untuk H1 & image alt
   const seo = await getSeo("home")
 
-  const limitedProducts = productsRes.produk.slice(0, 4)
+  // ✅ AMANKAN PRODUK
+  const products = productsRes?.produk ?? []
+  const limitedProducts = products.slice(0, 4)
+
+  // ✅ AMANKAN ARTIKEL (INI KUNCI!)
+  let artikel: any[] = []
+
+  try {
+    const artikelRes = await getArtikel()
+    // ✅ hanya ambil 3 untuk homepage
+    artikel = artikelRes?.artikel?.slice(0, 3) ?? []
+  } catch (error) {
+    console.error("Artikel error:", error)
+  }
 
   return (
     <main className="home-page" style={{ background: "#f8fafc" }}>
@@ -191,6 +206,12 @@ export default async function Home() {
       <section className="py-4">
         <ProductSection limitedProducts={limitedProducts} />
       </section>
+
+      {artikel.length > 0 && (
+        <section className="py-4">
+          <ArtikelSection artikel={artikel} />
+        </section>
+      )}
 
       {/* FOOTER */}
       <footer className="mt-5 pb-3">

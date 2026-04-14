@@ -103,6 +103,19 @@ export default function PesananPage() {
     }
   }
 
+  const handleHubungi = (phone: string) => {
+  if (!phone) return alert("Nomor penjual tidak tersedia")
+
+  // format ke 62
+  let wa = phone.replace(/^0/, "62")
+
+  const text = encodeURIComponent(
+    `Halo, saya ingin bertanya terkait pesanan ${selected?.no_pesanan}`
+  )
+
+  window.open(`https://wa.me/${wa}?text=${text}`, "_blank")
+}
+
   // =========================
   return (
     <div className="container py-4">
@@ -348,8 +361,19 @@ export default function PesananPage() {
                     </div>
                   )}
 
+                  {selected?.ikm?.no_telp && (
+                    <button
+                      className="btn btn-outline-success"
+                      onClick={() => handleHubungi(selected?.ikm?.no_telp || "")}
+                    >
+                      <i className="bi bi-whatsapp me-2"></i> Hubungi Penjual
+                    </button>
+                  )}
+
                   {/* 🔥 PINDAH KE PALING BAWAH */}
-                  {selected.status_pesanan === "dikirim" && (
+                  {(selected.status_pesanan === "dikirim" ||
+                    (selected.metode_pengiriman === "diambil" && selected.status_pesanan === "diproses")
+                    ) && (
                     <div className="mt-4 pt-3 border-top text-center">
                       <div className="mb-2 fw-semibold">
                         Apakah pesanan sudah diterima?

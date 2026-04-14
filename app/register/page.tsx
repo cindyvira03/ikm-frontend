@@ -8,6 +8,7 @@ import {
 } from "@/services/authService"
 import Link from "next/link"
 import { getProducts, Kategori } from "@/services/productService"
+import { toast } from "react-toastify"
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -34,9 +35,11 @@ export default function RegisterPage() {
         } as any)
       }
 
+      toast.success("Register Berhasil! Silahkan Login")
       router.push("/login")
     } catch (err: any) {
       setError(err.message)
+      toast.error(err.message || "Register gagal")
     } finally {
       setLoading(false)
     }

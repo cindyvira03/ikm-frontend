@@ -16,11 +16,13 @@ export interface Produk {
   jenis_produk?: string | null
   harga: number
   foto?: string | null
+  slug: string
 }
 
 export interface ProfilIkm {
   id: number
   nama_usaha: string
+  slug: string
   gambar: string | null
   deskripsi?: string | null
   deskripsi_singkat?: string | null

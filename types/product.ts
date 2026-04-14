@@ -23,4 +23,5 @@ export interface Product {
   ukuran: string
   deskripsi: string
   berat: number
+  slug: string
 }

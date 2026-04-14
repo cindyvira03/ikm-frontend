@@ -22,7 +22,7 @@ export default function ProductSection({ limitedProducts }: any) {
 
                 {/* ✅ TAMBAHAN LINK (TIDAK MENGUBAH STRUKTUR DALAM) */}
                 <Link 
-                  href={`/produk-ikm/${product.id}`}
+                  href={`/produk-ikm/${product.slug}`}
                   className="text-decoration-none text-dark"
                 >
                   <div className="home-product-card">

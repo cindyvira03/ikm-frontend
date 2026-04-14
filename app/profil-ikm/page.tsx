@@ -46,7 +46,7 @@ export default async function ProfilIkmPage() {
           {ikm.map((item: ProfilIkm) => (
             <div className="col" key={item.id}>
               <Link
-                href={`/profil-ikm/${item.id}`}
+                href={`/profil-ikm/${item.slug}`}
                 className="card border position-relative text-decoration-none text-dark h-100"
               >
 

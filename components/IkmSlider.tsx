@@ -80,7 +80,7 @@ export default function IkmSlider({ ikm }: any) {
         {visibleIkm.map((item: any) => (
           <div className="col-md-4" key={item.id}>
             <Link 
-              href={`/profil-ikm/${item.id}`} 
+              href={`/profil-ikm/${item.slug}`} 
               className="text-decoration-none text-dark"
             >
             {/* ✅ SEMANTIC CONTENT */}

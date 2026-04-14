@@ -60,7 +60,7 @@ export default function ProductCard({ product }: { product: Product }) {
     // ✅ SEMANTIC ARTICLE
     <article>
       <Link
-        href={`/produk-ikm/${product.id}`}
+        href={`/produk-ikm/${product.slug}`}
         title={`Lihat detail ${product.nama_produk}`} // ✅ SEO
         className="card border position-relative text-dark shadow-sm h-100 text-decoration-none"
         style={{
