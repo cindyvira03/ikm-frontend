@@ -1,42 +1,68 @@
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_BASE_URL ||
-    "https://jelajah.ikmprobolinggo.com"; // ✅ fallback aman
+  const baseUrl ="https://jelajah.ikmprobolinggo.com";
+
+  // ✅ HALAMAN UTAMA
+  const staticPages: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/sentra-batik`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/artikel`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/produk-ikm`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/profil-ikm`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/outlet-ikm`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+  ];
 
   try {
+    // ✅ AMBIL DATA ARTIKEL
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/seo`,
-      {
-        cache: "no-store",
-      }
+      `${process.env.NEXT_PUBLIC_API_URL}/artikel`,
+      { cache: "no-store" }
     );
 
-    const seoPages = await res.json();
+    const data = await res.json();
 
-    return seoPages
-      .filter((page: any) => page.enable_sitemap)
-      .map((page: any) => ({
-        url:
-          page.canonical_url && page.canonical_url !== ""
-            ? page.canonical_url
-            : `${baseUrl}/${page.page}`,
-        lastModified: page.updated_at
-          ? new Date(page.updated_at)
-          : new Date(),
-        changeFrequency: "weekly" as const,
-        priority: page.page === "home" ? 1 : 0.8,
-      }));
+    const articlePages = data.map((item: any) => ({
+      url: `${baseUrl}/artikel/${item.slug}`,
+      lastModified: item.updated_at
+        ? new Date(item.updated_at)
+        : new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    }));
+
+    return [...staticPages, ...articlePages];
   } catch (error) {
-    // ✅ fallback kalau API error (BIAR BUILD GA GAGAL)
-    return [
-      {
-        url: baseUrl,
-        lastModified: new Date(),
-        changeFrequency: "weekly",
-        priority: 1,
-      },
-    ];
+    return staticPages;
   }
 }
