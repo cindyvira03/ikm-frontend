@@ -160,9 +160,9 @@ export default function TambahProdukPage() {
                     </div>
                   </div>
                   <div className="col-md-4">
-                    <label className="form-label">Stok</label>
+                    <label className="form-label">Stok <span className="text-danger">*</span></label>
                     <input
-                      type="text"
+                      type="number"
                       className="form-control"
                       name="stok"
                       value={form.stok}
@@ -170,17 +170,18 @@ export default function TambahProdukPage() {
                         let value = e.target.value.replace(/[^0-9]/g, "")
                         setForm({ ...form, stok: value })
                       }}
-                      placeholder="Masukkan jumlah stok"
+                      required
                     />
                   </div>
                   <div className="col-md-4">
-                    <label className="form-label">Varian</label>
+                    <label className="form-label">Berat (gram) <span className="text-danger">*</span></label>
                     <input
-                      type="text"
+                      type="number"
                       className="form-control"
-                      name="varian"
-                      value={form.varian}
-                      onChange={handleChange}
+                      name="berat"
+                      value={form.berat}
+                      onChange={handleBeratChange}
+                      required
                     />
                   </div>
                   <div className="col-md-4">
@@ -194,13 +195,13 @@ export default function TambahProdukPage() {
                     />
                   </div>
                   <div className="col-md-4">
-                    <label className="form-label">Berat (gram)</label>
+                    <label className="form-label">Varian</label>
                     <input
                       type="text"
                       className="form-control"
-                      name="berat"
-                      value={form.berat}
-                      onChange={handleBeratChange}
+                      name="varian"
+                      value={form.varian}
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="col-12">

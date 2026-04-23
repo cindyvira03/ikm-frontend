@@ -30,7 +30,7 @@ export default function IkmDashboard() {
       setData(res)
       setLoading(false)
     }
-
+    
     fetchData()
 
   }, [bulan, tahun])
@@ -114,8 +114,24 @@ export default function IkmDashboard() {
               </div>
 
               <div>
-                <h4 className="fw-semibold mb-0">{data?.totalOutlet ?? 0}</h4>
-                <p className="text-secondary mb-0">Total Outlet</p>
+                <h6 className="fw-semibold mb-1">
+                  Status Outlet
+                </h6>
+
+                <p className="text-secondary mb-0">
+                  {data?.hasOutlet ?  (
+                  <span className="text-success small">
+                      <i className="bi bi-check-circle me-1"></i>
+                      Sudah tersedia
+                  </span>
+                  ) : (
+                  <span className="text-warning small">
+                      <i className="bi bi-exclamation-triangle me-1"></i>
+                      Belum tersedia, tambahkan outlet sekarang!
+                  </span>
+                  )}
+                </p>
+
               </div>
 
             </div>

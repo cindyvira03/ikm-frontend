@@ -29,6 +29,15 @@ export const metadata: Metadata = {
   },
   description:
     "Jelajahi batik Probolinggo dan berbagai produk unggulan dari Industri Kecil dan Menengah (IKM) Kota Probolinggo dengan kualitas terbaik dari pelaku usaha lokal.",
+  
+     icons: {
+    icon: [
+      { url: "/prob.ico" },
+      { url: "/prob-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/prob-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon-prob.png",
+  },
 };
 
 export default function RootLayout({

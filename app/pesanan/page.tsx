@@ -346,7 +346,7 @@ export default function PesananPage() {
                         <div>{selected.outlet.provinsi}</div>
                       </div>
 
-                      {selected.outlet.lokasi_googlemap && (
+                      {/* {selected.outlet.lokasi_googlemap && (
                         <div className="mt-3">
                           <a
                             href={selected.outlet.lokasi_googlemap}
@@ -357,18 +357,48 @@ export default function PesananPage() {
                             📍 Lihat di Google Maps
                           </a>
                         </div>
-                      )}
+                      )} */}
                     </div>
                   )}
 
-                  {selected?.ikm?.no_telp && (
+                  {/* {selected?.ikm?.no_telp && (
                     <button
                       className="btn btn-outline-success"
                       onClick={() => handleHubungi(selected?.ikm?.no_telp || "")}
                     >
                       <i className="bi bi-whatsapp me-2"></i> Hubungi Penjual
                     </button>
-                  )}
+                  )} */}
+
+                  <div className="mt-4 text-center">
+
+                    <div className="d-flex justify-content-center gap-2 flex-wrap">
+
+                      {/* 📍 BUTTON LOKASI (HANYA DIAMBIL) */}
+                      {selected.metode_pengiriman === "diambil" && selected.outlet?.lokasi_googlemap && (
+                        <a
+                          href={selected.outlet.lokasi_googlemap}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-outline-primary"
+                        >
+                          📍 Lihat Lokasi
+                        </a>
+                      )}
+
+                      {/* 💬 BUTTON WA */}
+                      {selected?.ikm?.no_telp && (
+                        <button
+                          className="btn btn-outline-success"
+                          onClick={() => handleHubungi(selected?.ikm?.no_telp || "")}
+                        >
+                          <i className="bi bi-whatsapp me-2"></i> Hubungi Penjual
+                        </button>
+                      )}
+
+                    </div>
+
+                  </div>
 
                   {/* 🔥 PINDAH KE PALING BAWAH */}
                   {(selected.status_pesanan === "dikirim" ||

@@ -89,14 +89,24 @@ export default function PembayaranPage() {
       <h4 className="mb-4 fw-semibold">Pembayaran</h4>
 
       {/* CARD REKENING */}
-      {ikmRekening && (
-        <div className="card p-4 mb-4 rounded-4 shadow-sm border-0">
-          <h6 className="fw-bold mb-3">Informasi Rekening IKM</h6>
-          <p><strong>Nama Rekening:</strong> {ikmRekening.nama_rekening}</p>
-          <p><strong>No. Rekening:</strong> {ikmRekening.no_rekening}</p>
-          <p><strong>Jenis Rekening:</strong> {ikmRekening.jenis_rekening}</p>
-        </div>
-      )}
+
+      <div className="card p-4 mb-4 rounded-4 shadow-sm border-0">
+        <h6 className="fw-bold mb-3">Informasi Rekening IKM</h6>
+
+        {ikmRekening &&
+        ikmRekening.nama_rekening &&
+        ikmRekening.no_rekening ? (
+          <>
+            <p><strong>Nama Rekening:</strong> {ikmRekening.nama_rekening}</p>
+            <p><strong>No. Rekening:</strong> {ikmRekening.no_rekening}</p>
+            <p><strong>Jenis Rekening:</strong> {ikmRekening.jenis_rekening}</p>
+          </>
+        ) : (
+          <div className="text-center text-muted">
+            Data rekening belum tersedia, silakan hubungi penjual
+          </div>
+        )}
+      </div>
 
       {/* CARD UPLOAD */}
       <div className="card p-4 rounded-4 shadow-sm border-0">

@@ -43,6 +43,7 @@ export interface Pesanan {
 }
 
  outlet?: {
+    alamat: string
     provinsi: string
     kota_kab: string
     kecamatan: string
@@ -82,6 +83,7 @@ export interface CheckoutData {
     provinsi: string
     kota_kab: string
     kecamatan: string
+    alamat: string
     lokasi_googlemap?: string
   }[]
 }

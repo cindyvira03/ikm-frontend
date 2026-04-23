@@ -73,11 +73,6 @@ export default function LoginPage() {
 
           <form onSubmit={handleLogin}>
 
-            {error && (
-              <div className="alert alert-danger py-2">
-                {error}
-              </div>
-            )}
 
             <div className="mb-3">
               <label className="form-label">

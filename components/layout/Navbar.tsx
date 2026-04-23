@@ -139,7 +139,7 @@ export default function Navbar() {
             <ul className="navbar-nav gap-3 align-items-center">
               {user && (
                 <li className="nav-item position-relative">
-                  <Link href="/keranjang" className="nav-link">
+                  <Link href="/keranjang" className={`nav-link ${isActive("/keranjang") ? "active" : ""}`}>
                     <FaShoppingCart size={20} />
                     {cartCount > 0 && (
                       <span className="position-absolute bg-danger text-white rounded-pill"

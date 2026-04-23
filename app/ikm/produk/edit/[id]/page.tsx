@@ -233,7 +233,7 @@ export default function EditProdukPage() {
                   <label>Stok</label>
                   <input
                     name="stok"
-                    type="text"
+                    type="number"
                     className="form-control"
                     value={form.stok}
                     onChange={(e) => {

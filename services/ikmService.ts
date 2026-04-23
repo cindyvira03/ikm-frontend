@@ -28,7 +28,7 @@ export async function getDashboardIkm(bulan?: number, tahun?: number) {
 
   return {
     totalProduk: data.total_produk ?? 0,
-    totalOutlet: data.total_outlet ?? 0,
+    hasOutlet: data.has_outlet ?? false,
     pesananHariIni: data.pesanan_hari_ini ?? 0,
     pesananPending: data.pesanan_pending ?? 0,
     produkTerlaris: data.produk_terlaris ?? null,

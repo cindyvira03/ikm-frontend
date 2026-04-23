@@ -126,7 +126,7 @@ const deleteKeranjang = async (id: number) => {
 
 export async function getProvinces() {
 
-  const res = await fetch(`${API_URL}/pembeli/rajaongkir/provinces`, {
+  const res = await fetch(`${API_URL}/raja-ongkir/provinces`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
       Accept: "application/json"
@@ -142,7 +142,7 @@ export async function getProvinces() {
 
 export async function getCities(provinceId: number) {
 
-  const res = await fetch(`${API_URL}/pembeli/rajaongkir/cities/${provinceId}`, {
+  const res = await fetch(`${API_URL}/raja-ongkir/cities/${provinceId}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
       Accept: "application/json"
@@ -156,7 +156,7 @@ export async function getCities(provinceId: number) {
 
 export async function getDistricts(cityId: number) {
 
-  const res = await fetch(`${API_URL}/pembeli/rajaongkir/districts/${cityId}`, {
+  const res = await fetch(`${API_URL}/raja-ongkir/districts/${cityId}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
       Accept: "application/json"
@@ -181,7 +181,14 @@ export const checkoutPage = async (payload: any) => {
     body: JSON.stringify(payload),
   })
 
-  return res.json()
+ const data = await res.json()
+
+  // 🔥 HANDLE ERROR BACKEND
+  if (!res.ok) {
+  throw new Error(data.message || "Gagal memuat CO page")
+}
+
+  return data
 }
 
 export const checkout = async (payload: any) => {
@@ -305,5 +312,86 @@ export async function updateProfilePembeli(payload: {
   })
 
   const json = await res.json()
+  return json
+}
+
+import { AlamatPembeli } from "@/types/alamat"
+
+export async function getAlamatPembeli(): Promise<AlamatPembeli[]> {
+
+  const res = await fetch(`${API_URL}/pembeli/alamat`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Accept: "application/json"
+    },
+  })
+
+  const json = await res.json()
+
+  if (!res.ok) {
+    throw new Error(json.message || "Gagal mengambil alamat")
+  }
+
+  return json.data ?? []
+}
+
+export async function createAlamatPembeli(payload: Partial<AlamatPembeli>) {
+
+  const res = await fetch(`${API_URL}/pembeli/alamat`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify(payload),
+  })
+
+  const json = await res.json()
+
+  if (!res.ok) {
+    throw new Error(json.message || "Gagal menambahkan alamat")
+  }
+
+  return json
+}
+
+export async function updateAlamatPembeli(id: number, payload: Partial<AlamatPembeli>) {
+
+  const res = await fetch(`${API_URL}/pembeli/alamat/${id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify(payload),
+  })
+
+  const json = await res.json()
+
+  if (!res.ok) {
+    throw new Error(json.message || "Gagal update alamat")
+  }
+
+  return json
+}
+
+export async function deleteAlamatPembeli(id: number) {
+
+  const res = await fetch(`${API_URL}/pembeli/alamat/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Accept: "application/json"
+    },
+  })
+
+  const json = await res.json()
+
+  if (!res.ok) {
+    throw new Error(json.message || "Gagal menghapus alamat")
+  }
+
   return json
 }

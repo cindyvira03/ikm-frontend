@@ -103,11 +103,6 @@ useEffect(() => {
               </button>
             </div>
 
-            {error && (
-              <div className="alert alert-danger py-1 small">
-                {error}
-              </div>
-            )}
 
             <form onSubmit={handleSubmit}>
               <div className="row g-2">
