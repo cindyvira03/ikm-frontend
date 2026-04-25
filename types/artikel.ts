@@ -24,3 +24,9 @@ export interface Artikel {
   // relasi
   kategori?: KategoriArtikel
 }
+
+type PageProps = {
+  params: {
+    slug: string
+  }
+}

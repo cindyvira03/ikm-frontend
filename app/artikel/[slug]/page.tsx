@@ -1,14 +1,18 @@
-import { getArtikelDetail } from "@/services/artikelService"
+import { getArtikelDetail, getArtikel } from "@/services/artikelService"
 import ArtikelClient from "./ArtikelClient"
 
 export const dynamic = "force-dynamic"
 
+type PageProps = {
+  params: Promise<{
+    slug: string
+  }>
+}
+
 // ===============================
-// 🔥 SSR SEO (NEXT.JS 15 FIX)
+// 🔥 SEO METADATA (SUDAH BENAR)
 // ===============================
-export async function generateMetadata(
-  { params }: { params: Promise<{ slug: string }> }
-) {
+export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params
 
   const res = await getArtikelDetail(slug)
@@ -34,7 +38,6 @@ export async function generateMetadata(
       artikel.isi?.replace(/<[^>]*>/g, "").slice(0, 160),
 
     keywords: artikel.keywords || "",
-
     robots: "index, follow",
 
     authors: artikel.sumber ? [{ name: artikel.sumber }] : [],
@@ -43,19 +46,14 @@ export async function generateMetadata(
       canonical: url,
     },
 
-    // ================= OPEN GRAPH =================
     openGraph: {
       title: artikel.meta_title || artikel.judul,
       description:
         artikel.meta_description ||
         artikel.isi?.replace(/<[^>]*>/g, "").slice(0, 160),
-
       url,
-
       siteName: "Jelajah Probolinggo",
-
       type: "article",
-
       images: [
         {
           url: imageUrl,
@@ -64,14 +62,11 @@ export async function generateMetadata(
           alt: artikel.judul,
         },
       ],
-
       locale: "id_ID",
-
       publishedTime: artikel.created_at,
       modifiedTime: artikel.updated_at,
     },
 
-    // ================= TWITTER =================
     twitter: {
       card: "summary_large_image",
       title: artikel.meta_title || artikel.judul,
@@ -84,12 +79,18 @@ export async function generateMetadata(
 }
 
 // ===============================
-// PAGE SSR (CLIENT COMPONENT)
+// 🔥 PAGE SSR (FIX TOTAL)
 // ===============================
-export default async function Page(
-  { params }: { params: Promise<{ slug: string }> }
-) {
-  const { slug } = await params   // 🔥 INI WAJIB
+export default async function Page({ params }: PageProps) {
+  const { slug } = await params
 
-  return <ArtikelClient slug={slug} />
+  const res = await getArtikelDetail(slug)
+
+  const artikel = res?.artikel
+
+  const all = await getArtikel()
+  const list =
+    all.artikel?.filter((a: any) => a.slug !== slug).slice(0, 5) || []
+
+  return <ArtikelClient artikel={artikel} list={list} />
 }

@@ -75,7 +75,6 @@ export default async function ProfilIkmPage() {
                     height: "240px",
                     objectFit: "cover",
                   }}
-                  unoptimized
                   />
 
                   <div className="px-2 pb-2">
