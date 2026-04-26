@@ -8,8 +8,24 @@ import {
 } from "@/services/adminService"
 import { KategoriArtikel } from "@/types/artikel"
 import { toast } from "react-toastify"
+import dynamic from "next/dynamic"
+import "react-quill-new/dist/quill.snow.css"
+
+const ReactQuill = dynamic(() => import("react-quill-new"), {
+  ssr: false,
+})
 
 export default function TambahArtikelPage() {
+
+  const modules = {
+  toolbar: [
+    [{ header: [1, 2, 3, false] }],
+    ["bold", "italic", "underline"],
+    [{ list: "ordered" }, { list: "bullet" }],
+    ["link"],
+    ["clean"],
+  ],
+}
 
   const router = useRouter()
 
@@ -177,14 +193,12 @@ export default function TambahArtikelPage() {
                   {/* Isi */}
                   <div className="col-12">
                     <label className="form-label">Isi Artikel <span className="text-danger">*</span></label>
-                    <textarea
-                      className="form-control"
-                      rows={6}
-                      name="isi"
+                    <ReactQuill
+                      theme="snow"
                       value={form.isi}
-                      onChange={handleChange}
-                      required
-                    ></textarea>
+                      onChange={(value) => setForm({ ...form, isi: value })}
+                      modules={modules}
+                    />
                   </div>
 
                   {/* Sumber */}

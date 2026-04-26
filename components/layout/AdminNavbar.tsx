@@ -202,14 +202,14 @@ export default function AdminNavbar() {
 
         <ul className="nav flex-column gap-2">
 
-          <Link href="/admin" className="nav-link" onClick={() => setIsOpen(false)}>Dashboard</Link>
-          <Link href="/admin/kategori" className="nav-link" onClick={() => setIsOpen(false)}>Kategori</Link>
+          <Link href="/admin" className={`nav-link ${isActive("/admin") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Dashboard</Link>
+          <Link href="/admin/kategori" className={`nav-link ${isActive("/admin/kategori") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Kategori</Link>
           <div className="mt-2">
             <div className="fw-semibold text-muted small">Artikel</div>
 
             <Link
               href="/admin/kategori-artikel"
-              className="nav-link ps-3"
+              className={`nav-link ps-3 ${isActive("/admin/kategori-artikel") ? "active" : ""}`}
               onClick={() => setIsOpen(false)}
             >
               Kategori Artikel
@@ -217,18 +217,18 @@ export default function AdminNavbar() {
 
             <Link
               href="/admin/artikel"
-              className="nav-link ps-3"
+              className={`nav-link ps-3 ${isActive("/admin/artikel") ? "active" : ""}`}
               onClick={() => setIsOpen(false)}
             >
               Artikel
             </Link>
           </div>
-          <Link href="/admin/profil-ikm" className="nav-link" onClick={() => setIsOpen(false)}>Profil IKM</Link>
+          <Link href="/admin/profil-ikm" className={`nav-link ${isActive("/admin/profil-ikm") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Profil IKM</Link>
           {/* <Link href="/admin/cms" className="nav-link" onClick={() => setIsOpen(false)}>
             CMS - Konten Halaman
           </Link> */}
 
-          <Link href="/admin/seo" className="nav-link" onClick={() => setIsOpen(false)}>
+          <Link href="/admin/seo" className={`nav-link ${isActive("/admin/seo") ? "active" : ""}`} onClick={() => setIsOpen(false)}>
             SEO Settings
           </Link>
 

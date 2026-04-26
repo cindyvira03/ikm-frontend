@@ -22,7 +22,7 @@ export default async function ProfilIkmPage() {
   const seo = await getSeo("profil_ikm")
 
   return (
-    <div className="container-fluid px-5 py-4">
+    <div className="container py-4">
 
       {/* Breadcrumb */}
       <nav aria-label="breadcrumb">

@@ -137,7 +137,7 @@ export default function ProdukDetailPage() {
             height: "300px",
             objectFit: "cover",
           }}
-          unoptimized
+          
         />
         </div>
 
@@ -186,7 +186,7 @@ export default function ProdukDetailPage() {
               </p>
             )}
 
-            <p className="mb-0">
+            <p className="mb-0" style={{ whiteSpace: "pre-line" }}>
               {produk.deskripsi}
             </p>
           </div>

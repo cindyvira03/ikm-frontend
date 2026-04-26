@@ -41,7 +41,7 @@ export default function ProductSection({ limitedProducts }: any) {
                         style={{
                             objectFit: "cover",
                         }}
-                        unoptimized
+                        
                       />
 
                       <div className="home-product-overlay" />

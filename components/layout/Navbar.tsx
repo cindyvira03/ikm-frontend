@@ -212,16 +212,16 @@ export default function Navbar() {
 
         <ul className="nav flex-column gap-2">
 
-          <Link href="/" className="nav-link" onClick={() => setIsOpen(false)}>Beranda</Link>
-          <Link href="/rumah-batik" className="nav-link" onClick={() => setIsOpen(false)}>Rumah Sentra Batik</Link>
-          <Link href="/produk-ikm" className="nav-link" onClick={() => setIsOpen(false)}>Produk IKM</Link>
-          <Link href="/outlet-ikm" className="nav-link" onClick={() => setIsOpen(false)}>Outlet IKM</Link>
-          <Link href="/profil-ikm" className="nav-link" onClick={() => setIsOpen(false)}>Profil IKM</Link>
+          <Link href="/" className={`nav-link ${isActive("/") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Beranda</Link>
+          <Link href="/rumah-batik" className={`nav-link ${isActive("/rumah-batik") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Rumah Sentra Batik</Link>
+          <Link href="/produk-ikm" className={`nav-link ${isActive("/produk-ikm") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Produk IKM</Link>
+          <Link href="/outlet-ikm" className={`nav-link ${isActive("/outlet-ikm") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Outlet IKM</Link>
+          <Link href="/profil-ikm" className={`nav-link ${isActive("/profil-ikm") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Profil IKM</Link>
 
           {user && (
             <>
-              <Link href="/pesanan" className="nav-link" onClick={() => setIsOpen(false)}>Pesanan Saya</Link>
-              <Link href="/keranjang" className="nav-link" onClick={() => setIsOpen(false)}>
+              <Link href="/pesanan" className={`nav-link ${isActive("/pesanan") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Pesanan Saya</Link>
+              <Link href="/keranjang" className={`nav-link ${isActive("/keranjang") ? "active" : ""}`} onClick={() => setIsOpen(false)}>
                 Keranjang ({cartCount})
               </Link>
             </>
@@ -237,8 +237,8 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link href="/login" className="nav-link" onClick={() => setIsOpen(false)}>Login</Link>
-              <Link href="/register" className="nav-link" onClick={() => setIsOpen(false)}>Register</Link>
+              <Link href="/login" className={`nav-link ${isActive("/login") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Login</Link>
+              <Link href="/register" className={`nav-link ${isActive("/register") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Register</Link>
             </>
           )}
         </ul>

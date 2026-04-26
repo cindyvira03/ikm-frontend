@@ -106,7 +106,7 @@ export default async function Home() {
                   zIndex: 1
                 }}
                 priority
-                unoptimized
+                
               />
             </div>
 

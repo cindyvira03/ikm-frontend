@@ -9,8 +9,24 @@ import {
   getKategoriArtikel
 } from "@/services/adminService"
 import { toast } from "react-toastify"
+import dynamic from "next/dynamic"
+import "react-quill-new/dist/quill.snow.css"
+
+const ReactQuill = dynamic(() => import("react-quill-new"), {
+  ssr: false,
+})
 
 export default function EditArtikelPage() {
+  const modules = {
+  toolbar: [
+    [{ header: [1, 2, 3, false] }],
+    ["bold", "italic", "underline"],
+    [{ list: "ordered" }, { list: "bullet" }],
+    ["link"],
+    ["clean"],
+  ],
+}
+
   const router = useRouter()
   const params = useParams()
   const id = Number(params.id)
@@ -204,13 +220,11 @@ export default function EditArtikelPage() {
 
                   <div className="col-12">
                     <label>Isi Artikel</label>
-                    <textarea
-                      name="isi"
-                      rows={6}
-                      className="form-control"
+                    <ReactQuill
+                      theme="snow"
                       value={form.isi}
-                      onChange={handleChange}
-                      required
+                      onChange={(value) => setForm({ ...form, isi: value })}
+                      modules={modules}
                     />
                   </div>
 

@@ -149,11 +149,11 @@ export default function IkmNavbar() {
 
         <ul className="nav flex-column gap-2">
 
-          <Link href="/ikm" className="nav-link" onClick={() => setIsOpen(false)}>Dashboard</Link>
-          <Link href="/ikm/pesanan" className="nav-link" onClick={() => setIsOpen(false)}>Pesanan</Link>
-          <Link href="/ikm/produk" className="nav-link" onClick={() => setIsOpen(false)}>Produk</Link>
-          <Link href="/ikm/outlet" className="nav-link" onClick={() => setIsOpen(false)}>Outlet</Link>
-          <Link href="/ikm/profil" className="nav-link" onClick={() => setIsOpen(false)}>Profil</Link>
+          <Link href="/ikm" className={`nav-link ${isActive("/ikm") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Dashboard</Link>
+          <Link href="/ikm/pesanan" className={`nav-link ${isActive("/ikm/pesanan") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Pesanan</Link>
+          <Link href="/ikm/produk" className={`nav-link ${isActive("/ikm/produk") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Produk</Link>
+          <Link href="/ikm/outlet" className={`nav-link ${isActive("/ikm/outlet") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Outlet</Link>
+          <Link href="/ikm/profil" className={`nav-link ${isActive("/ikm/profil") ? "active" : ""}`} onClick={() => setIsOpen(false)}>Profil</Link>
 
           <hr />
 

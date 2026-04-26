@@ -43,6 +43,24 @@ body {
   border-radius: 10px;
 }
 
+/* MOBILE SIDEBAR - samakan dengan desktop */
+.nav.flex-column .nav-link {
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+/* Hover */
+.nav.flex-column .nav-link:hover {
+  background-color: rgba(103, 151, 223, 0.12) !important;
+  color: #2563eb !important;
+}
+
+/* Active */
+.nav.flex-column .nav-link.active {
+  background-color: rgba(103, 151, 223, 0.12) !important;
+  color: #2563eb !important;
+}
+
 .title {
   font-size: 20px;
 }

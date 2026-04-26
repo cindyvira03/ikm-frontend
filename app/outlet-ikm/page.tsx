@@ -21,7 +21,7 @@ export default async function OutletIKMPage() {
   const seo = await getSeo("outlet_ikm")
 
   return (
-    <div className="container-fluid px-5 py-4">
+    <div className="container py-4">
       {/* Breadcrumb */}
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
@@ -70,7 +70,7 @@ export default async function OutletIKMPage() {
                     height: "240px",
                     objectFit: "cover",
                   }}
-                  unoptimized
+                  
                 />
 
                   <div className="px-2 pb-2">

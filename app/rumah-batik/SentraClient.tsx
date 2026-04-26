@@ -20,7 +20,7 @@ export default function SentraClient({ seo }: any) {
         sizes="100vw"
         className="object-cover"
         priority
-        unoptimized
+        
       />
         <div className="absolute inset-0 bg-black/60" />
 

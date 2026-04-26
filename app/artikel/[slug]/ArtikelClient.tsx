@@ -38,6 +38,12 @@ export default function ArtikelClient({ artikel, list }: Props) {
       .map((line, i) => <p key={i} className="mb-3">{line}</p>)
   }
 
+  const cleanHtml = (html: string) => {
+  return html
+    .replace(/&nbsp;/g, " ") // 🔥 ini kunci utama
+    .replace(/\s+/g, " ")   // rapihin spasi
+}
+
   return (
     <main className="py-5 bg-light">
       <div className="container">
@@ -67,12 +73,24 @@ export default function ArtikelClient({ artikel, list }: Props) {
               style={{
                 objectFit: "cover",
               }}
-              unoptimized
+              
             />
 
             {/* ISI */}
-            <div className="fs-6 text-dark lh-lg">
-              {formatIsi(artikel.isi)}
+            <div
+              className="fs-6 text-dark lh-lg"
+              style={{
+                maxWidth: "100%",
+                overflow: "hidden"
+              }}
+            >
+              <div
+                style={{
+                  wordBreak: "normal",
+                  overflowWrap: "break-word"
+                }}
+                dangerouslySetInnerHTML={{ __html: cleanHtml(artikel.isi) }}
+              />
             </div>
 
           </div>
@@ -116,7 +134,7 @@ export default function ArtikelClient({ artikel, list }: Props) {
                             height: "120px",
                             objectFit: "cover"
                           }}
-                          unoptimized
+                          
                         />
 
                         <div className="p-2">

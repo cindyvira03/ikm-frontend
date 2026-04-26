@@ -14,7 +14,7 @@ export default async function ProfilIkmDetailPage({
     await getProfilIkmDetail(slug)
 
   return (
-    <div className="container-fluid px-5 py-4">
+    <div className="container py-4">
 
       {/* Breadcrumb */}
       <nav aria-label="breadcrumb">
@@ -68,7 +68,6 @@ export default async function ProfilIkmDetailPage({
                 height: "200px",
                 objectFit: "cover",
               }}
-              unoptimized
             />
             </div>
 
@@ -151,15 +150,15 @@ export default async function ProfilIkmDetailPage({
                     }
                     alt={item.alamat}
                     width={200}
-                    height={150}
+                    height={200}
                     sizes="(max-width: 768px) 100vw, 200px"
                     className="img-thumbnail rounded-3"
                     style={{
-                      width: "100%",
-                      height: "150px",
+                      // width: "100%",
+                      // height: "auto",
                       objectFit: "cover",
                     }}
-                    unoptimized
+                    
                   />
                   </div>
 
@@ -224,16 +223,16 @@ export default async function ProfilIkmDetailPage({
                         : "/no-image.webp"
                     }
                     alt={`Produk ${item.nama_produk}`}
-                    width={100}
-                    height={100}
+                    width={200}
+                    height={200}
                     sizes="100px"
                     className="img-thumbnail rounded-3"
                     style={{
-                      width: "100%",
-                      height: "100px",
+                      // width: "100%",
+                      // height: "auto",
                       objectFit: "cover",
                     }}
-                    unoptimized
+                    
                   />
                   </div>
 

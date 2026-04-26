@@ -4,6 +4,12 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 
+// 🔥 TARUH DI SINI (di atas component)
+// function truncate(text: string, max = 80) {
+//   if (!text) return ""
+//   return text.length > max ? text.slice(0, max) + "..." : text
+// }
+
 export default function IkmSlider({ ikm }: any) {
   const [startIndex, setStartIndex] = useState(0)
 
@@ -106,9 +112,9 @@ export default function IkmSlider({ ikm }: any) {
                     height={60}
                     sizes="60px"
                     style={{
-                      objectFit: "cover"
+                      objectFit: "contain"
                     }}
-                    unoptimized // ✅ karena masih localhost
+                    
                   />
                 </div>
 
@@ -120,9 +126,27 @@ export default function IkmSlider({ ikm }: any) {
                     {item.nama_usaha}
                   </h3>
 
-                  <p className="text-muted small mb-0">
+                  <p className="text-muted small mb-0"
+                  style={{
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2, // maksimal 2 baris
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden"
+                  }}>
                     {item.deskripsi_singkat || "IKM Kota Probolinggo"}
+            
                   </p>
+                   <div className="text-end">
+                    <span
+                      className="text-primary"
+                      style={{
+                        fontSize: "12px",
+                        fontWeight: 500
+                      }}
+                    >
+                      selengkapnya →
+                    </span>
+                  </div>
 
                 </div>
 

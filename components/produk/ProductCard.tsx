@@ -100,7 +100,6 @@ export default function ProductCard({ product }: { product: Product }) {
             aspectRatio: "1/1",
             objectFit: "cover",
           }}
-          unoptimized
         />
 
           {/* Info */}

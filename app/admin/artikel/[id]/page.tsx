@@ -17,6 +17,11 @@ type Artikel = {
 }
 
 export default function ArtikelDetailPage() {
+  const cleanHtml = (html: string) => {
+  return html
+    .replace(/&nbsp;/g, " ") // 🔥 ini kunci utama
+    .replace(/\s+/g, " ")   // rapihin spasi
+}
   const { id } = useParams()
   const router = useRouter()
 
@@ -142,10 +147,12 @@ export default function ArtikelDetailPage() {
               <h5>Isi Artikel</h5>
               <div
                 className="border rounded p-3 bg-light"
-                style={{ whiteSpace: "pre-line" }}
-              >
-                {artikel.isi}
-              </div>
+                style={{
+                  lineHeight: "1.8",
+                  letterSpacing: "0.2px",
+                }}
+                dangerouslySetInnerHTML={{ __html: cleanHtml(artikel.isi) }}
+              />
             </div>
           </div>
         </div>

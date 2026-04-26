@@ -8,6 +8,20 @@ export default function ArtikelSection({
   artikel: any[]
   showHeader?: boolean
 }) {
+  const getPreview = (html: string, limit = 100) => {
+  if (!html) return ""
+
+  // 🔥 hapus semua tag HTML
+  const text = html.replace(/<[^>]+>/g, "")
+
+  // 🔥 hapus &nbsp;
+  const clean = text.replace(/&nbsp;/g, " ").trim()
+
+  // 🔥 potong + ...
+  return clean.length > limit
+    ? clean.slice(0, limit) + "..."
+    : clean
+}
   return (
     <section className="py-5 bg-white">
       <div className="container">
@@ -45,7 +59,7 @@ export default function ArtikelSection({
                   sizes="(max-width: 768px) 100vw, 400px"
                   className="card-img-top"
                   style={{ objectFit: "cover", height: "220px" }}
-                  unoptimized
+                  
                 />
 
                 {/* ✅ FLEX biar button selalu di bawah */}
@@ -56,7 +70,7 @@ export default function ArtikelSection({
                   </h6>
 
                   <p className="text-muted small mt-2">
-                    {item.isi?.slice(0, 100)}...
+                    {getPreview(item.isi, 100)}
                   </p>
 
                   <small className="text-muted">
