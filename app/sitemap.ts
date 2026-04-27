@@ -45,6 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
    let articlePages: MetadataRoute.Sitemap = [];
   let productPages: MetadataRoute.Sitemap = [];
+  let profilPages: MetadataRoute.Sitemap = [];
 
   // =========================
   // 🔥 FETCH ARTIKEL
@@ -100,5 +101,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.log("SITEMAP PRODUK ERROR:", error);
   }
 
-  return [...staticPages, ...articlePages, ...productPages];
+ // =========================
+  // 🔥 FETCH PROFIL IKM
+  // =========================
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/profil-ikm`,
+      {
+        next: { revalidate: 3600 },
+      }
+    );
+
+    const data = await res.json();
+    const profilList = data?.ikm || [];
+
+    profilPages = profilList.map((item: any) => ({
+      url: `${baseUrl}/profil-ikm/${item.slug}`,
+      lastModified: item.updated_at
+        ? new Date(item.updated_at)
+        : new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    }));
+  } catch (error) {
+    console.log("SITEMAP PROFIL ERROR:", error);
+  }
+
+  return [
+    ...staticPages,
+    ...articlePages,
+    ...productPages,
+    ...profilPages, // 🔥 TAMBAHKAN DI RETURN
+  ];
 }
