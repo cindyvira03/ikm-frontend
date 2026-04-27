@@ -40,6 +40,38 @@ export default async function OutletIKMPage() {
         Daftar Outlet IKM
       </h1>
 
+      <section className="mb-4">
+        <div
+          className="p-4 rounded-4"
+          style={{
+            background: "linear-gradient(135deg, #f8f9ff, #eef3ff)",
+            border: "1px solid #e0e7ff",
+          }}
+        >
+          {/* HEADER */}
+          <div className="d-flex align-items-center gap-2 mb-2">
+            <span style={{ fontSize: "18px" }}>📍</span>
+            <span className="fw-semibold text-dark">
+              Outlet IKM Probolinggo
+            </span>
+          </div>
+
+          {/* CONTENT */}
+          <p className="text-secondary mb-2">
+            Temukan berbagai outlet IKM (Industri Kecil dan Menengah) di Kota Probolinggo
+            yang menyediakan beragam produk lokal seperti batik khas Probolinggo,
+            kerajinan tangan, dan produk unggulan lainnya.
+          </p>
+
+          <p className="text-secondary mb-2">
+            Dengan mengunjungi langsung outlet IKM, Anda dapat melihat kualitas produk,
+            berinteraksi dengan pelaku usaha, serta mendukung perkembangan industri kecil
+            dan menengah di daerah.
+          </p>
+
+        </div>
+      </section>
+
       {outlet.length > 0 ? (
         <div className="row row-cols-1 row-cols-md-3 row-cols-lg-3 g-3">
           {outlet.map((item: Outlet) => (

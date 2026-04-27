@@ -43,16 +43,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+   let articlePages: MetadataRoute.Sitemap = [];
+  let productPages: MetadataRoute.Sitemap = [];
+
+  // =========================
+  // 🔥 FETCH ARTIKEL
+  // =========================
   try {
-    // ✅ AMBIL DATA ARTIKEL
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/artikel`,
-      { cache: "no-store" }
+      {
+        next: { revalidate: 3600 }, // ⚠️ JANGAN no-store
+      }
     );
 
     const data = await res.json();
 
-    const articlePages = data.map((item: any) => ({
+    const artikelList = data?.artikel || [];
+
+    articlePages = artikelList.map((item: any) => ({
       url: `${baseUrl}/artikel/${item.slug}`,
       lastModified: item.updated_at
         ? new Date(item.updated_at)
@@ -60,9 +69,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: 0.8,
     }));
-
-    return [...staticPages, ...articlePages];
   } catch (error) {
-    return staticPages;
+    console.log("SITEMAP ARTIKEL ERROR:", error);
   }
+
+  // =========================
+  // 🔥 FETCH PRODUK
+  // =========================
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm`,
+      {
+        next: { revalidate: 3600 },
+      }
+    );
+
+    const data = await res.json();
+
+    const produkList = data?.produk || [];
+
+    productPages = produkList.map((item: any) => ({
+      url: `${baseUrl}/produk-ikm/${item.slug}`,
+      lastModified: item.updated_at
+        ? new Date(item.updated_at)
+        : new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    }));
+  } catch (error) {
+    console.log("SITEMAP PRODUK ERROR:", error);
+  }
+
+  return [...staticPages, ...articlePages, ...productPages];
 }

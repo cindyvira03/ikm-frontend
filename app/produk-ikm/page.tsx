@@ -39,6 +39,50 @@ export default async function ProdukIKMPage() {
         Daftar Produk IKM
       </h1>
 
+      {/* SEO CONTENT */}
+      <section className="mb-4">
+        <div
+          className="p-4 rounded-4"
+          style={{
+            background: "linear-gradient(135deg, #f8f9ff, #eef3ff)",
+            border: "1px solid #e0e7ff",
+          }}
+        >
+          {/* HEADER INFO */}
+          <div className="d-flex align-items-center gap-2 mb-2">
+            <span style={{ fontSize: "18px" }}>ℹ️</span>
+            <span className="fw-semibold text-dark">
+              Informasi Produk IKM Kota Probolinggo
+            </span>
+          </div>
+
+          {/* CONTENT */}
+          <p className="text-secondary mb-2">
+            Jelajahi berbagai produk IKM (Industri Kecil dan Menengah) di Kota Probolinggo,
+            mulai dari kerajinan tangan, kuliner, hingga batik khas Probolinggo.
+          </p>
+
+          <p className="text-secondary mb-0">
+            Salah satu produk unggulan adalah <strong>batik Probolinggo </strong>
+            dengan berbagai <strong>motif khas Probolinggo</strong> yang bernilai budaya.
+          </p>
+          <p
+            className="mt-3 d-inline-flex align-items-center gap-2 fw-semibold"
+            style={{
+              color: "#2563eb",
+              background: "#eff6ff",
+              padding: "8px 14px",
+              borderRadius: "999px",
+              fontSize: "14px",
+              width: "fit-content",
+            }}
+          >
+            🚀 Dukung produk lokal sekarang
+          </p>
+          
+        </div>
+      </section>
+
       {/* KATEGORI */}
       <section>
         <div className="d-flex flex-wrap gap-2 mb-4">

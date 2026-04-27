@@ -36,7 +36,7 @@ export default function IkmNavbar() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-md navbar-light bg-white py-3 border-bottom">
+      <nav className="navbar navbar-expand-md navbar-light bg-white py-3 border-bottom sticky-top">
         <div className="container-fluid">
 
           {/* BRAND */}
@@ -130,7 +130,7 @@ export default function IkmNavbar() {
       <div
         style={{
           position: "fixed",
-          top: 0,
+          top: 55,
           right: 0,
           height: "100vh",
           width: "260px",

@@ -2,6 +2,7 @@
 
 import { MapPin, Coffee, Palette, BookOpen } from "lucide-react"
 import Image from "next/image";
+import Link from "next/link"
 
 export default function SentraClient({ seo }: any) {
   return (
@@ -48,6 +49,28 @@ export default function SentraClient({ seo }: any) {
           berfungsi sebagai pusat produksi, tetapi juga sebagai sarana edukasi, promosi, dan 
           pelestarian warisan budaya batik lokal kepada masyarakat dan generasi muda.
         </p>
+         <p className="text-gray-600 mb-3">
+        Selain Rumah Sentra Batik sebagai pusat pengembangan produk IKM, setiap pelaku IKM juga memiliki outlet atau lokasi usaha masing-masing di Kota Probolinggo, sehingga masyarakat dapat melihat dan membeli produk secara langsung.
+      </p>
+
+      {/* CTA LINK */}
+      <div className="text-center">
+        <Link
+          href="/outlet-ikm"
+          className="inline-flex align-items-center gap-2 fw-semibold text-decoration-none"
+          style={{
+            color: "#2563eb",
+            background: "#eff6ff",
+            padding: "10px 16px",
+            borderRadius: "999px",
+            fontSize: "14px",
+            transition: "0.2s ease",
+          }}
+        >
+          📍 Lihat Lokasi Outlet IKM →
+        </Link>
+      </div>
+
       </section>
 
       {/* FITUR */}

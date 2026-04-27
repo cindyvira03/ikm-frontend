@@ -42,6 +42,53 @@ export default async function ProfilIkmPage() {
         Daftar Profil IKM
       </h2>
 
+      {/* SEO CONTENT PROFIL IKM */}
+      <section className="mb-4">
+        <div
+          className="p-4 rounded-4"
+          style={{
+            background: "linear-gradient(135deg, #f8f9ff, #eef3ff)",
+            border: "1px solid #e0e7ff",
+          }}
+        >
+          {/* HEADER */}
+          <div className="d-flex align-items-center gap-2 mb-2">
+            <span style={{ fontSize: "18px" }}>🏪</span>
+            <span className="fw-semibold text-dark">
+              Profil IKM Kota Probolinggo
+            </span>
+          </div>
+
+          {/* DESKRIPSI */}
+          <p className="text-secondary mb-2">
+            Halaman ini menampilkan profil usaha IKM (Industri Kecil dan Menengah) di Kota Probolinggo.
+            Anda dapat menemukan informasi lengkap mengenai pelaku usaha lokal,
+            mulai dari produk yang ditawarkan, kategori usaha, hingga kontak yang tersedia.
+          </p>
+
+          <p className="text-secondary mb-0">
+            IKM di Probolinggo dikenal memiliki beragam produk unggulan seperti
+            <strong> batik khas Probolinggo</strong>, kerajinan tangan, hingga produk kuliner lokal
+            yang mencerminkan kekayaan budaya daerah.
+          </p>
+
+          {/* CTA */}
+          <p
+            className="mt-3 d-inline-flex align-items-center gap-2 fw-semibold"
+            style={{
+              color: "#2563eb",
+              background: "#eff6ff",
+              padding: "8px 14px",
+              borderRadius: "999px",
+              fontSize: "14px",
+              width: "fit-content",
+            }}
+          >
+            🔎 Jelajahi usaha lokal & dukung IKM sekarang
+          </p>
+        </div>
+      </section>
+
       {ikm.length > 0 ? (
         <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-3">
           {ikm.map((item: ProfilIkm) => (

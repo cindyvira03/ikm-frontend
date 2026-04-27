@@ -53,19 +53,23 @@ export interface ProdukDetailResponse {
   produk: Product
 }
 
-export const getProductBySlug = async (
-  slug: string
-): Promise<ProdukDetailResponse> => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm/${slug}`,
-    {
-      next: { revalidate: 60 },
+export const getProductBySlug = async (slug: string) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm/${slug}`,
+      {
+        next: { revalidate: 60 },
+      }
+    )
+
+    if (!res.ok) {
+      console.log("STATUS ERROR:", res.status)
+      return null
     }
-  )
 
-  if (!res.ok) {
-    throw new Error("Gagal mengambil detail produk")
+    return await res.json()
+  } catch (err) {
+    console.log("FETCH ERROR:", err)
+    return null
   }
-
-  return res.json()
 }

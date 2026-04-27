@@ -1,272 +1,68 @@
-import Link from "next/link"
 import { getProfilIkmDetail } from "@/services/profilIkmService"
-import { ProfilIkm } from "@/types/profilIkm"
-import Image from "next/image";
+import ProfilIkmClient from "./ProfilIkmClient"
+import { notFound } from "next/navigation"
 
-export default async function ProfilIkmDetailPage({
-  params,
-}: {
+export const dynamic = "force-dynamic"
+
+type PageProps = {
   params: Promise<{ slug: string }>
-}) {
+}
+
+// ===============================
+// 🔥 SEO METADATA
+// ===============================
+export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params
 
-  const { ikm }: { ikm: ProfilIkm } =
-    await getProfilIkmDetail(slug)
+  const res = await getProfilIkmDetail(slug)
+  const ikm = res?.ikm
 
-  return (
-    <div className="container py-4">
+  if (!ikm) {
+    return {
+      title: "Profil IKM tidak ditemukan",
+      description: "Data tidak tersedia",
+    }
+  }
 
-      {/* Breadcrumb */}
-      <nav aria-label="breadcrumb">
-        <ol className="breadcrumb">
-          <li className="breadcrumb-item fs-5">
-            <Link href="/" className="text-decoration-none">
-              Home
-            </Link>
-          </li>
-          <li className="breadcrumb-item fs-5">
-            <Link href="/profil-ikm" className="text-decoration-none">
-              Daftar Profil IKM
-            </Link>
-          </li>
-          <li className="breadcrumb-item active fs-5">
-            {ikm.nama_usaha}
-          </li>
-        </ol>
-      </nav>
+  const imageUrl = ikm.gambar
+    ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${ikm.gambar}`
+    : "/no-image.webp"
 
-      <h2 className="text-dark fw-semibold mb-4 fs-1">
-        {ikm.nama_usaha}
-      </h2>
+  const url = `https://jelajah.ikmprobolinggo.com/profil-ikm/${slug}`
 
-      {/* ===================== */}
-      {/* INFORMASI IKM */}
-      {/* ===================== */}
-      <div className="card border mb-3">
-        <div className="card-header bg-white py-3">
-          <p className="mb-0 fw-semibold">Informasi IKM</p>
-        </div>
+  return {
+    title: ikm.nama_usaha,
+    description: ikm.deskripsi_singkat || "Profil usaha IKM",
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: ikm.nama_usaha,
+      description: ikm.deskripsi_singkat || "",
+      url,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+  }
+}
 
-        <div className="card-body">
-          <div className="row g-3">
-            
-            {/* Gambar */}
-            <div className="col-md-2">
-              <Image
-              src={
-                ikm.gambar
-                  ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${ikm.gambar}`
-                  : "/no-image.webp"
-              }
-              alt={ikm.nama_usaha}
-              width={200}
-              height={200}
-              sizes="(max-width: 768px) 100vw, 200px"
-              className="img-thumbnail"
-              style={{
-                width: "100%",
-                height: "200px",
-                objectFit: "cover",
-              }}
-            />
-            </div>
+// ===============================
+// 🔥 SSR PAGE
+// ===============================
+export default async function Page({ params }: PageProps) {
+  const { slug } = await params
 
-            {/* Detail */}
-            <div className="col-md-10">
-              <div className="row g-3">
+  const res = await getProfilIkmDetail(slug)
+  const ikm = res?.ikm
 
-                <div className="col-md-6">
-                  <p className="mb-0 small text-secondary">
-                    Nama Usaha
-                  </p>
-                  <p className="mb-0 fw-semibold">
-                    {ikm.nama_usaha}
-                  </p>
-                </div>
+  if (!ikm) {
+    notFound()
+  }
 
-                <div className="col-md-6">
-                  <p className="mb-0 small text-secondary">
-                    No Telp
-                  </p>
-                  <p className="mb-0 fw-semibold">
-                    {ikm.no_telp || "-"}
-                  </p>
-                </div>
-
-                <div className="col-md-6">
-                  <p className="mb-0 small text-secondary">
-                    Kategori
-                  </p>
-                  <p className="mb-0 fw-semibold">
-                    {ikm.kategori?.nama_kategori}
-                  </p>
-                </div>
-
-                <div className="col-md-6">
-                  <p className="mb-0 small text-secondary">
-                    Merek
-                  </p>
-                  <p className="mb-0 fw-semibold">
-                    {ikm.merek || "-"}
-                  </p>
-                </div>
-
-                <div className="col-12">
-                  <p className="mb-0 small text-secondary">
-                    Deskripsi Singkat
-                  </p>
-                  <p className="mb-0 fw-semibold">
-                    {ikm.deskripsi_singkat || "-"}
-                  </p>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      {/* ===================== */}
-      {/* OUTLET */}
-      {/* ===================== */}
-      <div className="card border mb-3">
-        <div className="card-header bg-white py-3">
-          <p className="mb-0 fw-semibold">Outlet</p>
-        </div>
-
-        <div className="card-body">
-          {ikm.outlets && ikm.outlets.length > 0 ? (
-            ikm.outlets.map((item) => (
-              <div key={item.id} className="card border mb-1">
-                <div className="card-body row align-items-center g-2 g-md-5">
-
-                  <div className="col-3 col-md-2">
-                    <Image
-                    src={
-                      item.foto_lokasi_tampak_depan
-                        ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto_lokasi_tampak_depan}`
-                        : "/no-image.webp"
-                    }
-                    alt={item.alamat}
-                    width={200}
-                    height={200}
-                    sizes="(max-width: 768px) 100vw, 200px"
-                    className="img-thumbnail rounded-3"
-                    style={{
-                      // width: "100%",
-                      // height: "auto",
-                      objectFit: "cover",
-                    }}
-                    
-                  />
-                  </div>
-
-                  <div className="col-7 col-md-6">
-                    <p className="fw-semibold mb-0">
-                      {item.alamat}
-                    </p>
-                    <p className="small text-secondary mb-0 d-none d-md-block">
-                      {item.lokasi_googlemap}
-                    </p>
-                  </div>
-
-                  <div className="col-12 col-md-2">
-                    <a
-                      href={item.lokasi_googlemap}
-                      target="_blank"
-                      className="btn btn-success btn-sm mt-3 w-100 rounded-3"
-                    >
-                      Google Maps
-                    </a>
-                  </div>
-
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="text-center py-5">
-              <h5 className="text-muted mb-0">
-                Belum ada data outlet
-              </h5>
-              <p className="text-muted">
-                Belum ada outlet yang ditambahkan.
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* ===================== */}
-      {/* PRODUK */}
-      {/* ===================== */}
-      <div className="card border">
-        <div className="card-header bg-white py-3">
-          <p className="mb-0 fw-semibold">Produk</p>
-        </div>
-
-        <div className="card-body">
-          {ikm.produk && ikm.produk.length > 0 ? (
-            ikm.produk.map((item) => (
-              <Link
-                key={item.id}
-                href={`/produk-ikm/${item.slug}`}
-                className="card border mb-1 text-decoration-none text-dark"
-              >
-                <div className="card-body row align-items-center g-2 g-md-5">
-
-                  <div className="col-2 col-md-1">
-                    <Image
-                    src={
-                      item.foto
-                        ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto}`
-                        : "/no-image.webp"
-                    }
-                    alt={`Produk ${item.nama_produk}`}
-                    width={200}
-                    height={200}
-                    sizes="100px"
-                    className="img-thumbnail rounded-3"
-                    style={{
-                      // width: "100%",
-                      // height: "auto",
-                      objectFit: "cover",
-                    }}
-                    
-                  />
-                  </div>
-
-                  <div className="col-6 col-md-5">
-                    <p className="fw-semibold mb-0 fs-5">
-                      {item.nama_produk}
-                    </p>
-                    <p className="text-secondary small mb-0">
-                      {item.jenis_produk}
-                    </p>
-                  </div>
-
-                  <div className="col-4">
-                    <p className="fw-semibold mb-0">
-                      Rp {Number(item.harga).toLocaleString("id-ID")}
-                    </p>
-                  </div>
-
-                </div>
-              </Link>
-            ))
-          ) : (
-            <div className="text-center py-5">
-              <h5 className="text-muted mb-0">
-                Belum ada data produk
-              </h5>
-              <p className="text-muted">
-                Belum ada produk yang ditambahkan.
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
-
-    </div>
-  )
+  return <ProfilIkmClient ikm={ikm} />
 }

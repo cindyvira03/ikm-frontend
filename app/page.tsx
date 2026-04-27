@@ -9,6 +9,8 @@ import { FaShoppingCart } from "react-icons/fa"
 import Image from "next/image"
 import ProductSection from "@/components/ProductSection"
 import ArtikelSection from "@/components/ArtikelSection"
+import AboutPlatform from "@/components/AboutPlatform"
+import HeroCTA from "@/components/HeroCTA"
 
 export const dynamic = "force-dynamic"
 
@@ -64,10 +66,11 @@ export default async function Home() {
                 beragam motif unik yang dapat dibeli secara online dengan mudah dan terpercaya.
               </p>
 
-              <a href="/produk-ikm" className="btn btn-primary mt-3">
+              <HeroCTA />
+              {/* <a href="/produk-ikm" className="btn btn-primary mt-3">
                 Jelajahi IKM
                 <span style={{ fontSize: "18px" }}> →</span>
-              </a>
+              </a> */}
             </div>
 
             <div className="col-md-6 position-relative text-center px-5 py-5">
@@ -83,7 +86,8 @@ export default async function Home() {
                   transform: "translate(-50%, -50%)",
                   filter: "blur(60px)",
                   opacity: 0.6,
-                  zIndex: 0
+                  zIndex: 0,
+                   pointerEvents: "none",
                 }}
               />
 
@@ -122,6 +126,9 @@ export default async function Home() {
           </svg>
         </div>
       </section>
+
+      {/* ABOUT PLATFORM */}
+      <AboutPlatform />
 
       {/* ABOUT + IKM */}
       <section className="py-5 bg-white position-relative overflow-hidden home-ikm-section">
