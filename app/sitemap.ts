@@ -48,19 +48,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let profilPages: MetadataRoute.Sitemap = [];
 
   // =========================
-  // 🔥 FETCH ARTIKEL
+  // 🔥 FETCH ARTIKEL (FIX)
   // =========================
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/artikel`,
-      {
-        next: { revalidate: 3600 }, // ⚠️ JANGAN no-store
-      }
+      `${process.env.NEXT_PUBLIC_API_URL}/artikel?limit=100`,
+      { next: { revalidate: 3600 } }
     );
 
-    const data = await res.json();
+    if (!res.ok) throw new Error("Artikel fetch gagal");
 
-    const artikelList = data?.artikel || [];
+    const data = await res.json();
+    const artikelList = data?.artikel || data?.data || [];
 
     articlePages = artikelList.map((item: any) => ({
       url: `${baseUrl}/artikel/${item.slug}`,
@@ -75,19 +74,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // =========================
-  // 🔥 FETCH PRODUK
+  // 🔥 FETCH PRODUK (FIX)
   // =========================
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm`,
-      {
-        next: { revalidate: 3600 },
-      }
+      `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm?limit=100`,
+      { next: { revalidate: 3600 } }
     );
 
-    const data = await res.json();
+    if (!res.ok) throw new Error("Produk fetch gagal");
 
-    const produkList = data?.produk || [];
+    const data = await res.json();
+    const produkList = data?.produk || data?.data || [];
 
     productPages = produkList.map((item: any) => ({
       url: `${baseUrl}/produk-ikm/${item.slug}`,
@@ -101,19 +99,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.log("SITEMAP PRODUK ERROR:", error);
   }
 
- // =========================
-  // 🔥 FETCH PROFIL IKM
+  // =========================
+  // 🔥 FETCH PROFIL IKM (FIX)
   // =========================
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/profil-ikm`,
-      {
-        next: { revalidate: 3600 },
-      }
+      `${process.env.NEXT_PUBLIC_API_URL}/profil-ikm?limit=100`,
+      { next: { revalidate: 3600 } }
     );
 
+    if (!res.ok) throw new Error("Profil fetch gagal");
+
     const data = await res.json();
-    const profilList = data?.ikm || [];
+    const profilList = data?.ikm || data?.data || [];
 
     profilPages = profilList.map((item: any) => ({
       url: `${baseUrl}/profil-ikm/${item.slug}`,
@@ -131,6 +129,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticPages,
     ...articlePages,
     ...productPages,
-    ...profilPages, // 🔥 TAMBAHKAN DI RETURN
+    ...profilPages,
   ];
 }
