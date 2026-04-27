@@ -52,7 +52,7 @@ export default function AboutPlatform({
 
           {/* KIRI - GAMBAR */}
           <div className="col-md-6 d-flex justify-content-center align-items-center" style={{
-              overflow: "hidden", // 🔥 penting biar nggak keluar
+              overflow: "hidden", 
             }}>
             <Image
               src="/platform.webp"
