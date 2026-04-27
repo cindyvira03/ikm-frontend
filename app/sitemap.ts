@@ -52,14 +52,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // =========================
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/artikel?limit=100`,
+      `${process.env.NEXT_PUBLIC_API_URL}/sitemap/artikel`,
       { next: { revalidate: 3600 } }
-    );
+    )
 
-    if (!res.ok) throw new Error("Artikel fetch gagal");
-
-    const data = await res.json();
-    const artikelList = data?.artikel || data?.data || [];
+    const artikelList = await res.json()
 
     articlePages = artikelList.map((item: any) => ({
       url: `${baseUrl}/artikel/${item.slug}`,
@@ -77,15 +74,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 🔥 FETCH PRODUK (FIX)
   // =========================
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm?limit=100`,
+      const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/sitemap/produk`,
       { next: { revalidate: 3600 } }
-    );
+    )
 
-    if (!res.ok) throw new Error("Produk fetch gagal");
-
-    const data = await res.json();
-    const produkList = data?.produk || data?.data || [];
+    const produkList = await res.json()
 
     productPages = produkList.map((item: any) => ({
       url: `${baseUrl}/produk-ikm/${item.slug}`,
@@ -104,14 +98,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // =========================
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/profil-ikm?limit=100`,
+      `${process.env.NEXT_PUBLIC_API_URL}/sitemap/profil`,
       { next: { revalidate: 3600 } }
-    );
+    )
 
-    if (!res.ok) throw new Error("Profil fetch gagal");
-
-    const data = await res.json();
-    const profilList = data?.ikm || data?.data || [];
+    const profilList = await res.json()
 
     profilPages = profilList.map((item: any) => ({
       url: `${baseUrl}/profil-ikm/${item.slug}`,
