@@ -11,6 +11,7 @@ import ProductSection from "@/components/ProductSection"
 import ArtikelSection from "@/components/ArtikelSection"
 import AboutPlatform from "@/components/AboutPlatform"
 import HeroCTA from "@/components/HeroCTA"
+import Footer from "@/components/layout/Footer";
 
 export const dynamic = "force-dynamic"
 
@@ -216,21 +217,13 @@ export default async function Home() {
       </section>
 
       {artikel.length > 0 && (
-        <section className="py-4">
+        <section className="pt-4 pb-0">
           <ArtikelSection artikel={artikel} />
         </section>
       )}
 
       {/* FOOTER */}
-      <footer className="mt-5 pb-3">
-        <div className="container">
-          <hr className="border-secondary-subtle mb-3" />
-
-          <p className="text-center small text-secondary mb-0">
-            © {new Date().getFullYear()} {process.env.NEXT_PUBLIC_APP_NAME || "IKM Kota Probolinggo"}. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
 
     </main>
   )

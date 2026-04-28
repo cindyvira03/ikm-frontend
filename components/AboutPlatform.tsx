@@ -13,7 +13,7 @@ export default function AboutPlatform({
       <div className="container">
 
         {/* HEADER */}
-          <div className="text-center mb-2">
+          <div className="text-center mb-3">
 
             {/* BADGE */}
             <div

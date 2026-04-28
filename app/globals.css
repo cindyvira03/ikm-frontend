@@ -226,6 +226,64 @@ body {
   }
 }
 
+/* BACKGROUND FOOTER */
+.home-page .footer-custom {
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%) !important;
+  margin-top: -5px;
+}
+
+/* AKSEN GARIS */
+.home-page .footer-accent {
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #0d6efd, #00c6ff) !important;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+/* LINK STYLE */
+.home-page .footer-link {
+   color: #6c757d !important;
+  text-decoration: none !important;
+
+  display: flex;
+  align-items: center;   /* 🔥 INI KUNCI */
+  gap: 8px;
+
+  transition: all 0.25s ease;
+}
+
+/* HOVER EFFECT */
+.home-page .footer-link:hover {
+  color: #0d6efd !important;
+  transform: translateX(4px);
+}
+
+.home-page .footer-btn {
+  background: linear-gradient(90deg, #0d6efd, #00c6ff);
+  color: white !important;
+
+  padding: 8px 14px;
+  border-radius: 8px;
+
+  display: inline-flex;     /* 🔥 penting */
+  align-items: center;      /* 🔥 penting */
+  gap: 6px;
+
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+}
+
+/* FIX GAP ANTAR SECTION */
+.home-page footer.footer-custom {
+  padding-top: 1.5rem;
+}
+
+/* OPTIONAL: smooth look */
+.home-page footer.footer-custom hr {
+  opacity: 0.2;
+}
+
 .home-page .artikel-card {
   transition: all 0.3s ease;
   border-radius: 12px;
@@ -269,4 +327,139 @@ body {
 .artikel-mini-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+
+  border-radius: 16px;
+  border: 1px solid #e9ecef;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+
+  transition: all 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+}
+
+.policy-card {
+  background: white !important;
+  padding: 28px !important;
+  border-radius: 16px !important;
+
+  max-width: 800px;
+  margin: 0 auto;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
+}
+
+/* CARD */
+.contact-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+
+  border: 1px solid #eee;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+/* ITEM */
+.contact-item {
+  display: flex;
+  gap: 12px;
+  align-items: center; /* 🔥 ini bikin sejajar */
+
+  padding: 10px 12px;
+  border-radius: 10px;
+
+  transition: all 0.2s ease;
+}
+
+.contact-item:hover {
+  background: #f8fafc;
+}
+
+/* ICON */
+.contact-item .icon {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eef4ff;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.contact-item svg {
+  font-size: 14px;
+  color: #0d6efd;
+}
+
+/* CONTENT */
+.contact-item .content {
+  flex: 1;
+}
+
+/* TITLE + DESC SEJAJAR */
+.contact-item .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 4px;
+}
+
+.contact-item .title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.contact-item .desc {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+/* BUTTON */
+.btn-contact {
+  display: inline-block;
+  font-size: 11px;
+
+  background: #0d6efd;
+  color: white;
+
+  padding: 4px 10px;
+  border-radius: 6px;
+
+  text-decoration: none !important; /* 🔥 HAPUS GARIS */
+  transition: all 0.2s ease;
+}
+
+.btn-contact:hover {
+  background: #0b5ed7;
+  color: white;
+}
+
+/* OUTLINE BUTTON */
+.btn-contact-outline {
+  display: inline-block;
+  font-size: 11px;
+
+  border: 1px solid #0d6efd;
+  color: #0d6efd;
+
+  padding: 4px 10px;
+  border-radius: 6px;
+
+  text-decoration: none !important; /* 🔥 HAPUS GARIS */
+}
+
+.btn-contact-outline:hover {
+  background: #0d6efd;
+  color: white;
 }

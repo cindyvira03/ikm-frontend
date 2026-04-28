@@ -42,6 +42,31 @@ export async function GET() {
       changeFrequency: "weekly",
       priority: 0.9,
     },
+    // 🔥 TAMBAHAN BARU (SEO PENTING)
+    {
+        url: `${baseUrl}/tentang-kami`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.7,
+    },
+    {
+        url: `${baseUrl}/kontak`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.7,
+    },
+    {
+        url: `${baseUrl}/kebijakan-privasi`,
+        lastModified: new Date(),
+        changeFrequency: "yearly",
+        priority: 0.5,
+    },
+    {
+        url: `${baseUrl}/syarat-ketentuan`,
+        lastModified: new Date(),
+        changeFrequency: "yearly",
+        priority: 0.5,
+    },
   ];
 
   // 🔥 FETCH (optional dynamic)
