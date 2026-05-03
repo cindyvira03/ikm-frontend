@@ -475,7 +475,34 @@ const closeModal = () => {
                         kecamatan: a.kecamatan,
                         is_default: a.is_default,
                       })
+
+                      // cari ID dari nama (karena yg disimpan name, bukan id)
+                      const prov = provinces.find((p: any) => p.name === a.provinsi)
+                      if (prov) {
+                        setProvModal(prov.id.toString())
+
+                        // load kota
+                        getCities(prov.id).then((res) => {
+                          setCitiesModal(res)
+
+                          const city = res.find((c: any) => c.name === a.kota_kab)
+                          if (city) {
+                            setCityModal(city.id.toString())
+
+                            // load kecamatan
+                            getDistricts(city.id).then((resDist) => {
+                              setDistrictsModal(resDist)
+
+                              const dist = resDist.find((d: any) => d.name === a.kecamatan)
+                              if (dist) {
+                                setDistrictModal(dist.id.toString())
+                              }
+                            })
+                          }
+                        })
+                      }
                     }}
+
                     >
                       Edit
                     </button>
@@ -627,7 +654,7 @@ const closeModal = () => {
           />
 
           {/* PROVINSI */}
-          <select className="form-control mb-2" onChange={(e) => handleProvinceModal(e.target.value)}>
+          <select className="form-control mb-2" value={provModal} onChange={(e) => handleProvinceModal(e.target.value)}>
             <option value="">Pilih Provinsi</option>
             {provinces.map((p: any) => (
               <option key={p.id} value={p.id}>{p.name}</option>
@@ -635,7 +662,7 @@ const closeModal = () => {
           </select>
 
           {/* KOTA */}
-          <select className="form-control mb-2" onChange={(e) => handleCityModal(e.target.value)}>
+          <select className="form-control mb-2" value={cityModal} onChange={(e) => handleCityModal(e.target.value)}>
             <option value="">Pilih Kota</option>
             {citiesModal.map((c: any) => (
               <option key={c.id} value={c.id}>{c.name}</option>
@@ -643,7 +670,7 @@ const closeModal = () => {
           </select>
 
           {/* KECAMATAN */}
-          <select className="form-control mb-2" onChange={(e) => setDistrictModal(e.target.value)}>
+          <select className="form-control mb-2" value={districtModal} onChange={(e) => setDistrictModal(e.target.value)}>
             <option value="">Pilih Kecamatan</option>
             {districtsModal.map((d: any) => (
               <option key={d.id} value={d.id}>{d.name}</option>
