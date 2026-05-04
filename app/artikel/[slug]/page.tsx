@@ -1,5 +1,6 @@
 import { getArtikelDetail, getArtikel } from "@/services/artikelService"
 import ArtikelClient from "./ArtikelClient"
+import { notFound } from "next/navigation"
 
 export const dynamic = "force-dynamic"
 
@@ -18,11 +19,8 @@ export async function generateMetadata({ params }: PageProps) {
   const res = await getArtikelDetail(slug)
   const artikel = res?.artikel
 
-  if (!artikel) {
-    return {
-      title: "Artikel tidak ditemukan",
-      description: "Artikel tidak tersedia",
-    }
+   if (!artikel) {
+    notFound() // 🔥 WAJIB
   }
 
   const imageUrl = artikel.gambar
@@ -87,6 +85,11 @@ export default async function Page({ params }: PageProps) {
   const res = await getArtikelDetail(slug)
 
   const artikel = res?.artikel
+
+  // 🔥 INI WAJIB
+  if (!artikel) {
+    notFound()
+  }
 
   const all = await getArtikel()
   const list =

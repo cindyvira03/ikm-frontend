@@ -18,11 +18,9 @@ export async function generateMetadata({ params }: PageProps) {
   const ikm = res?.ikm
 
   if (!ikm) {
-    return {
-      title: "Profil IKM tidak ditemukan",
-      description: "Data tidak tersedia",
-    }
+    notFound() // 🔥 INI YANG BENAR
   }
+
 
   const imageUrl = ikm.gambar
     ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${ikm.gambar}`

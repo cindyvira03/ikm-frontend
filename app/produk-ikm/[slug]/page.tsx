@@ -1,5 +1,7 @@
 import { getProductBySlug, getProducts } from "@/services/productService"
 import ProdukDetailClient from "./ProdukDetailClient"
+import { notFound, redirect } from "next/navigation"
+
 
 export const dynamic = "force-dynamic"
 
@@ -18,11 +20,9 @@ export async function generateMetadata({ params }: PageProps) {
   const produk = res?.produk
 
   if (!produk) {
-    return {
-      title: "Produk tidak ditemukan",
-      description: "Produk tidak tersedia",
-    }
+    notFound() // 🔥 penting
   }
+
 
   const imageUrl = produk.foto
     ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${produk.foto}`
@@ -58,6 +58,17 @@ export default async function Page({ params }: PageProps) {
   const { slug } = await params
   const res = await getProductBySlug(slug)
   const produk = res?.produk
+
+   // 🚨 INI FIX UTAMA
+  if (!produk) {
+    // 🔥 PILIH SALAH SATU:
+
+    // OPSI 1 (disarankan)
+    redirect("/produk-ikm")
+
+    // OPSI 2:
+    // notFound()
+  }
 
   const all = await getProducts()
   const list =
