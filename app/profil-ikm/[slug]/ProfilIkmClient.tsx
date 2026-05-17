@@ -49,23 +49,22 @@ export default function ProfilIkmClient({
             
             {/* Gambar */}
             <div className="col-md-2">
-              <Image
-              src={
-                ikm.gambar
-                  ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${ikm.gambar}`
-                  : "/no-image.webp"
-              }
-              alt={ikm.nama_usaha}
-              width={200}
-              height={200}
-              sizes="(max-width: 768px) 100vw, 200px"
-              className="img-thumbnail"
-              style={{
-                width: "100%",
-                height: "200px",
-                objectFit: "cover",
-              }}
-            />
+              <div style={{ position: "relative", aspectRatio: "1/1" }}>
+                <Image
+                src={
+                  ikm.gambar
+                    ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${ikm.gambar}`
+                    : "/no-image.webp"
+                }
+                alt={ikm.nama_usaha}
+                fill
+                sizes="(max-width: 768px) 100vw, 200px"
+                className="img-thumbnail"
+                style={{
+                  objectFit: "cover",
+                }}
+              />
+              </div>
             </div>
 
             {/* Detail */}
@@ -139,24 +138,25 @@ export default function ProfilIkmClient({
                 <div className="card-body row align-items-center g-2 g-md-5">
 
                   <div className="col-3 col-md-2">
-                    <Image
-                    src={
-                      item.foto_lokasi_tampak_depan
-                        ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto_lokasi_tampak_depan}`
-                        : "/no-image.webp"
-                    }
-                    alt={item.alamat}
-                    width={200}
-                    height={200}
-                    sizes="(max-width: 768px) 100vw, 200px"
-                    className="img-thumbnail rounded-3"
-                    style={{
-                      // width: "100%",
-                      // height: "auto",
-                      objectFit: "cover",
-                    }}
-                    
-                  />
+                    <div style={{ position: "relative", aspectRatio: "1/1" }}>
+                      <Image
+                      src={
+                        item.foto_lokasi_tampak_depan
+                          ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto_lokasi_tampak_depan}`
+                          : "/no-image.webp"
+                      }
+                      alt={item.alamat}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 200px"
+                      className="img-thumbnail rounded-3"
+                      style={{
+                        // width: "100%",
+                        // height: "auto",
+                        objectFit: "cover",
+                      }}
+                      
+                    />
+                    </div>
                   </div>
 
                   <div className="col-7 col-md-6">
@@ -213,24 +213,25 @@ export default function ProfilIkmClient({
                 <div className="card-body row align-items-center g-2 g-md-5">
 
                   <div className="col-2 col-md-1">
-                    <Image
-                    src={
-                      item.foto
-                        ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto}`
-                        : "/no-image.webp"
-                    }
-                    alt={`Produk ${item.nama_produk}`}
-                    width={200}
-                    height={200}
-                    sizes="100px"
-                    className="img-thumbnail rounded-3"
-                    style={{
-                      // width: "100%",
-                      // height: "auto",
-                      objectFit: "cover",
-                    }}
-                    
-                  />
+                    <div style={{ position: "relative", aspectRatio: "1/1" }}>
+                      <Image
+                      src={
+                        item.foto
+                          ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto}`
+                          : "/no-image.webp"
+                      }
+                      alt={`Produk ${item.nama_produk}`}
+                      fill
+                      sizes="100px"
+                      className="img-thumbnail rounded-3"
+                      style={{
+                        // width: "100%",
+                        // height: "auto",
+                        objectFit: "cover",
+                      }}
+                      
+                    />
+                    </div>
                   </div>
 
                   <div className="col-6 col-md-5">

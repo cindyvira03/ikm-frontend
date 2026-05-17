@@ -47,20 +47,21 @@ export default function ArtikelSection({
               
               <div className="card border-0 shadow-sm h-100 artikel-card w-100 d-flex flex-column">
 
-                <Image
-                  src={
-                    item.gambar
-                      ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.gambar}`
-                      : "/no-image.webp"
-                  }
-                  alt={item.judul}
-                  width={400}
-                  height={250}
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  className="card-img-top"
-                  style={{ objectFit: "cover", height: "220px" }}
-                  
-                />
+                <div style={{ position: "relative", aspectRatio: "8/5" }}>
+                  <Image
+                    src={
+                      item.gambar
+                        ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.gambar}`
+                        : "/no-image.webp"
+                    }
+                    alt={item.judul}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    className="card-img-top"
+                    style={{ objectFit: "cover"}}
+                    
+                  />
+                </div>
 
                 {/* ✅ FLEX biar button selalu di bawah */}
                 <div className="card-body d-flex flex-column">

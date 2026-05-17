@@ -99,7 +99,7 @@ export default function IkmSlider({ ikm }: any) {
                 {/* LOGO IKM */}
                 <div
                   className="bg-light rounded-circle overflow-hidden d-flex justify-content-center align-items-center"
-                  style={{ width: 60, height: 60, flexShrink: 0 }}
+                  style={{ width: 60, height: 60, flexShrink: 0, position: "relative" }}
                 >
                   <Image
                     src={
@@ -108,8 +108,7 @@ export default function IkmSlider({ ikm }: any) {
                         : "/no-image.webp"
                     }
                     alt={`Logo ${item.nama_usaha} - Batik Khas Probolinggo`} // ✅ SEO ALT
-                    width={60}
-                    height={60}
+                    fill
                     sizes="60px"
                     style={{
                       objectFit: "contain"

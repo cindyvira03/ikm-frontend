@@ -87,23 +87,23 @@ export default async function OutletIKMPage() {
 
                 <div className="card-body p-2">
                   {/* Gambar outlet */}
-                  <Image
-                  src={
-                    item.foto_lokasi_tampak_depan
-                      ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto_lokasi_tampak_depan}`
-                      : "/no-image.webp"
-                  }
-                  alt={item.profilIkm?.nama_usaha || "Outlet IKM"}
-                  width={400}
-                  height={240}
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  className="img-thumbnail mb-3 rounded-3 w-100"
-                  style={{
-                    height: "240px",
-                    objectFit: "cover",
-                  }}
-                  
-                />
+                  <div style={{ position: "relative", aspectRatio: "4/3" }}>
+                    <Image
+                    src={
+                      item.foto_lokasi_tampak_depan
+                        ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto_lokasi_tampak_depan}`
+                        : "/no-image.webp"
+                    }
+                    alt={item.profilIkm?.nama_usaha || "Outlet IKM"}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    className="img-thumbnail mb-3 rounded-3"
+                    style={{
+                      objectFit: "cover",
+                    }}
+                    
+                  />
+                </div>
 
                   <div className="px-2 pb-2">
                     <p className="fw-semibold mb-0">

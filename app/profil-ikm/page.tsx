@@ -107,24 +107,24 @@ export default async function ProfilIkmPage() {
                 </span>
 
                 <div className="card-body p-2">
-                  <Image
-                  src={
-                    item.gambar
-                      ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${item.gambar}`
-                      : "/no-image.webp"
-                  }
-                  alt={item.nama_usaha || "Profil IKM"}
-                  width={400}
-                  height={240}
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  className="img-thumbnail mb-3 rounded-3 w-100"
-                  style={{
-                    height: "240px",
-                    objectFit: "cover",
-                  }}
-                  />
+                  <div style={{ position: "relative", aspectRatio: "1/1" }}>
+                    <Image
+                    src={
+                      item.gambar
+                        ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${item.gambar}`
+                        : "/no-image.webp"
+                    }
+                    alt={item.nama_usaha || "Profil IKM"}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    className="img-thumbnail mb-3 rounded-3"
+                    style={{
+                      objectFit: "cover",
+                    }}
+                    />
+                  </div>
 
-                  <div className="px-2 pb-2">
+                  <div className="px-2 mt-2 pb-2">
                     <p className="fw-semibold mb-0">
                       {item.nama_usaha || "-"}
                     </p>

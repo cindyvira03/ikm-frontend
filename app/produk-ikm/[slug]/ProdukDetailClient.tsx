@@ -89,7 +89,7 @@ export default function ProdukDetailClient({ produk, list }: any) {
       <div className="row g-3 mt-2 mt-md-5">
 
         {/* Gambar */}
-        <div className="col-md-4">
+        <div className="col-md-4" style={{ position: "relative", aspectRatio: "1/1" }}>
           <Image
           src={
             produk.foto
@@ -97,12 +97,10 @@ export default function ProdukDetailClient({ produk, list }: any) {
               : "/no-image.webp"
           }
           alt={`Produk ${produk.nama_produk}`}
-          width={300}
-          height={300}
+          fill
           sizes="(max-width: 768px) 100vw, 500px"
-          className="img-thumbnail rounded-3 w-100"
+          className="img-thumbnail rounded-3"
           style={{
-            height: "300px",
             objectFit: "cover",
           }}
           
@@ -124,20 +122,24 @@ export default function ProdukDetailClient({ produk, list }: any) {
             <div className="d-flex align-items-center gap-2">
 
               {/* LOGO */}
-              <Image
-                src={
-                  produk.ikm?.gambar
-                    ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${produk.ikm.gambar}`
-                    : "/no-image.webp"
-                }
-                alt={produk.ikm?.nama_usaha}
-                width={40}
-                height={40}
-                className="rounded-circle"
-                style={{
-                  objectFit: "cover",
-                }}
-              />
+              <div
+                  style={{ width: 40, height: 40, position: "relative" }}
+                >
+                <Image
+                  src={
+                    produk.ikm?.gambar
+                      ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${produk.ikm.gambar}`
+                      : "/no-image.webp"
+                  }
+                  alt={produk.ikm?.nama_usaha}
+                  fill
+                  sizes="40px"
+                  className="rounded-circle"
+                  style={{
+                    objectFit: "contain",
+                  }}
+                />
+              </div>
 
               {/* NAMA */}
               <div>

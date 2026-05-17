@@ -59,26 +59,27 @@ export default function ArtikelClient({ artikel, list }: Props) {
               {artikel.sumber && ` • ${artikel.sumber}`}
             </div>
 
-            <Image
-              src={
-                artikel.gambar
-                  ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${artikel.gambar}`
-                  : "/no-image.webp"
-              }
-              alt={artikel.judul}
-              width={900}
-              height={500}
-              sizes="(max-width: 768px) 100vw, 900px"
-              className="rounded shadow-sm mb-4 w-100 h-auto"
-              style={{
-                objectFit: "cover",
-              }}
-              
-            />
+            <div style={{ position: "relative", aspectRatio: "9/5" }}>
+              <Image
+                src={
+                  artikel.gambar
+                    ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${artikel.gambar}`
+                    : "/no-image.webp"
+                }
+                alt={artikel.judul}
+                fill
+                sizes="(max-width: 768px) 100vw, 900px"
+                className="rounded shadow-sm mb-4"
+                style={{
+                  objectFit: "cover",
+                }}
+                
+              />
+            </div>
 
             {/* ISI */}
             <div
-              className="fs-6 text-dark lh-lg"
+              className="fs-6 text-dark lh-lg mt-3"
               style={{
                 maxWidth: "100%",
                 overflow: "hidden"
@@ -119,23 +120,21 @@ export default function ArtikelClient({ artikel, list }: Props) {
                         className="card border-0 shadow-sm overflow-hidden artikel-mini-card"
                         style={{ borderRadius: "10px" }}
                       >
-
-                        <Image
-                          src={
-                            item.gambar
-                              ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.gambar}`
-                              : "/no-image.jpg"
-                          }
-                          alt={item.judul}
-                          width={400}
-                          height={200}
-                          className="w-100"
-                          style={{
-                            height: "120px",
-                            objectFit: "cover"
-                          }}
-                          
-                        />
+                        <div style={{ position: "relative", aspectRatio: "4/2" }}>
+                          <Image
+                            src={
+                              item.gambar
+                                ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.gambar}`
+                                : "/no-image.jpg"
+                            }
+                            alt={item.judul}
+                            fill
+                            style={{
+                              objectFit: "cover"
+                            }}
+                            
+                          />
+                        </div>
 
                         <div className="p-2">
 

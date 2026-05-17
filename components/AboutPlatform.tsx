@@ -52,20 +52,23 @@ export default function AboutPlatform({
 
           {/* KIRI - GAMBAR */}
           <div className="col-md-6 d-flex justify-content-center align-items-center" style={{
-              overflow: "hidden", 
+              overflow: "hidden",  
             }}>
             <Image
               src="/platform.webp"
               alt="Platform IKM Probolinggo"
-              width={500}
-              height={500}
+              width={800}
+              height={480}
               sizes="(max-width: 768px) 100vw, 400px"
               style={{
-                objectFit: "cover",
+                 width: "100%",
+                height: "auto", // ✅ kunci anti distorsi
+                objectFit: "contain" // ✅ biar ga kepotong
           
               }}
             />
           </div>
+          
 
           {/* KANAN - KONTEN */}
           <div className="col-md-6">
@@ -81,9 +84,11 @@ export default function AboutPlatform({
                 }}
               >
                 <p className="mb-0 text-secondary small">
-                  <strong>Jelajah Probolinggo</strong> adalah platform digital berbasis 
-                  e-katalog dan e-commerce yang menampilkan berbagai produk dari 
-                  <strong> IKM (Industri Kecil dan Menengah)</strong> di Kota Probolinggo.
+                  <strong>Jelajah Probolinggo</strong> merupakan platform digital berbasis 
+                  e-katalog dan e-commerce yang dirancang untuk menampilkan berbagai produk dari 
+                  <strong> IKM (Industri Kecil dan Menengah)</strong> di Kota Probolinggo. 
+                  Platform ini menyediakan informasi lengkap mengenai profil usaha, produk unggulan, 
+                  serta mendukung digitalisasi IKM dalam memperluas jangkauan pasar secara online.
                 </p>
               </div>
 
@@ -98,7 +103,9 @@ export default function AboutPlatform({
                 <p className="mb-0 text-secondary small">
                   Temukan berbagai produk unggulan seperti 
                   <strong> batik khas Probolinggo</strong>, kerajinan tangan, hingga 
-                  produk kuliner lokal yang memiliki kualitas dan ciri khas daerah.
+                  produk kuliner lokal yang memiliki kualitas dan ciri khas daerah. 
+                  Setiap produk ditampilkan dengan informasi yang jelas agar membantu 
+                  pengguna dalam mengenal potensi ekonomi lokal secara lebih mendalam.
                 </p>
               </div>
 
@@ -111,9 +118,11 @@ export default function AboutPlatform({
                 }}
               >
                 <p className="mb-0 text-secondary small">
-                  Platform ini juga mendukung transaksi online untuk membantu pelaku 
+                   Platform ini juga mendukung transaksi online untuk membantu pelaku 
                   <strong> industri kecil dan menengah</strong> memperluas pasar dan 
-                  meningkatkan daya saing di era digital.
+                  meningkatkan daya saing di era digital. Selain itu, website ini 
+                  menjadi sarana promosi dan informasi yang menghubungkan pelaku usaha 
+                  dengan konsumen secara lebih efektif.
                 </p>
               </div>
 

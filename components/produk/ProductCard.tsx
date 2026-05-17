@@ -85,28 +85,29 @@ export default function ProductCard({ product }: { product: Product }) {
         <div className="card-body p-2 d-flex flex-column">
 
           {/* Gambar */}
-          <Image
-          src={
-            product.foto
-              ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${product.foto}`
-              : "/no-image.webp"
-          }
-          alt={`Produk ${product.nama_produk} dari ${product.ikm?.nama_usaha}`}
-          width={300}
-          height={300}
-          sizes="(max-width: 768px) 50vw, 220px"
-          className="rounded mb-2 w-100"
-          style={{
-            aspectRatio: "1/1",
-            objectFit: "cover",
-          }}
-        />
+          <div style={{ position: "relative", aspectRatio: "1/1" }}>
+            <Image
+              src={
+                product.foto
+                  ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${product.foto}`
+                  : "/no-image.webp"
+              }
+              alt={`Produk ${product.nama_produk} dari ${product.ikm?.nama_usaha}`}
+              fill
+              sizes="(max-width: 768px) 50vw, 220px"
+              className="rounded mb-2"
+              style={{
+                objectFit: "cover",
+              }}
+            />
+          </div>  
+
 
           {/* Info */}
           <div className="grow">
 
             {/* ✅ HEADING SEO */}
-            <h3 className="fw-semibold mb-1 text-truncate" style={{ fontSize: "16px" }}>
+            <h3 className="fw-semibold mt-3 mb-1 text-truncate" style={{ fontSize: "16px" }}>
               {product.nama_produk}
             </h3>
 

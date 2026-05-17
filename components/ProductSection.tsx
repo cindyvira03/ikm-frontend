@@ -27,7 +27,7 @@ export default function ProductSection({ limitedProducts }: any) {
                 >
                   <div className="home-product-card">
 
-                    <div className="home-product-image">
+                    <div className="home-product-image" style={{ position: "relative", aspectRatio: "3/2" }}>
                       <Image
                         src={
                           product.foto
@@ -35,8 +35,7 @@ export default function ProductSection({ limitedProducts }: any) {
                             : "/no-image.webp"
                         }
                         alt={product.nama_produk}
-                        width={300}
-                        height={200}
+                        fill
                         sizes="(max-width: 768px) 100vw, 300px"
                         style={{
                             objectFit: "cover",
