@@ -7,7 +7,8 @@ import {
   FaInfoCircle,
   FaEnvelope,
   FaShieldAlt,
-  FaFileContract
+  FaFileContract,
+  FaQuestionCircle
 } from "react-icons/fa";
 
 export default function Footer() {
@@ -85,6 +86,12 @@ export default function Footer() {
               <li>
                 <Link href="/syarat-ketentuan" className="footer-link">
                   <FaFileContract /> Syarat & Ketentuan
+                </Link>
+              </li>
+
+              <li>
+                <Link href="/faq" className="footer-link">
+                  <FaQuestionCircle /> FAQ
                 </Link>
               </li>
 

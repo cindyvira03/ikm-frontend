@@ -1,8 +1,4 @@
-import {
-  FaStore,
-  FaShoppingCart,
-  FaMoneyBillWave
-} from "react-icons/fa";
+import { FaCheckCircle } from "react-icons/fa";
 
 import { Metadata } from "next";
 
@@ -24,14 +20,17 @@ export default function TentangKamiPage() {
 
             {/* KIRI - DESKRIPSI */}
             <div className="col-md-6">
-                <h4 className="fw-bold mb-3 text-primary">
-                Tentang Kami
-                </h4>
+                <h1 className="fw-bold mb-3 text-primary">
+                Tentang Jelajah Probolinggo <br />
+                <span className="text-muted fs-3">
+                  Platform IKM Kota Probolinggo
+                </span> 
+                </h1>
 
                 <p className="text-secondary">
-                Jelajah Probolinggo merupakan platform digital yang dikembangkan
-                untuk mendukung digitalisasi Industri Kecil dan Menengah (IKM)
-                di Kota Probolinggo.
+                Jelajah Probolinggo adalah platform katalog digital dan e-commerce IKM di Kota Probolinggo 
+                yang bertujuan membantu pelaku IKM lokal memasarkan produk secara online dan 
+                menjangkau pasar yang lebih luas.
                 </p>
 
                 <p className="text-secondary">
@@ -44,6 +43,29 @@ export default function TentangKamiPage() {
                 Sistem yang digunakan menggabungkan katalog digital dengan fitur
                 pemesanan online sederhana, termasuk keranjang belanja dan
                 konfirmasi pembayaran melalui upload bukti transfer.
+                </p>
+
+                <h2 className="fw-semibold text-muted mt-4">
+                Manfaat Platform Jelajah Probolinggo
+                </h2>
+
+                <ul className="text-secondary list-unstyled">
+                <li className="d-flex align-items-start gap-2 mb-2">
+                    <FaCheckCircle className="text-primary mt-1" />
+                    <span>Membantu promosi produk UMKM lokal Probolinggo</span>
+                </li>
+                <li className="d-flex align-items-start gap-2 mb-2">
+                    <FaCheckCircle className="text-primary mt-1" />
+                    <span>Menyediakan katalog produk yang mudah diakses</span>
+                </li>
+                <li className="d-flex align-items-start gap-2">
+                    <FaCheckCircle className="text-primary mt-1" />
+                    <span>Mempermudah transaksi melalui sistem pemesanan online</span>
+                </li>
+                </ul>
+
+                <p className="mt-3">
+                Lihat juga <a href="/produk-ikm">produk IKM Probolinggo</a> yang tersedia di platform ini.
                 </p>
 
                 {/* highlight badge */}
@@ -96,7 +118,7 @@ export default function TentangKamiPage() {
 
                     <p className="small text-secondary">
                         💻 Platform ini dikembangkan melalui kolaborasi tim pengembang sebagai bagian dari
-                        program magang dan pengembangan sistem digital berbasis kebutuhan industri.
+                        pengembangan sistem digital berbasis kebutuhan industri dari PT Onlenkan Teknologi Indonesia.
                     </p>
 
                     </div>

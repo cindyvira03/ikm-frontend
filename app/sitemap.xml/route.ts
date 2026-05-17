@@ -67,6 +67,12 @@ export async function GET() {
         changeFrequency: "yearly",
         priority: 0.5,
     },
+    {
+        url: `${baseUrl}/faq`,
+        lastModified: new Date(),
+        changeFrequency: "yearly",
+        priority: 0.5,
+    },
   ];
 
   // 🔥 FETCH (optional dynamic)
