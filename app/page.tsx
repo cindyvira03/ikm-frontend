@@ -5,14 +5,14 @@ import { generateSeoMetadata } from "@/lib/seo"
 import { FaShoppingCart } from "react-icons/fa"
 import Image from "next/image"
 import HeroCTA from "@/components/HeroCTA"
-import dynamic from "next/dynamic"
+import dynamicImport from "next/dynamic"
 
-// 🔥 LAZY LOAD SEMUA
-const IkmSlider = dynamic(() => import("@/components/IkmSlider"))
-const Footer = dynamic(() => import("@/components/layout/Footer"))
-const ArtikelSection = dynamic(() => import("@/components/ArtikelSection"))
-const ProductSection = dynamic(() => import("@/components/ProductSection"))
-const AboutPlatform = dynamic(() => import("@/components/AboutPlatform"))
+const IkmSlider = dynamicImport(() => import("@/components/IkmSlider"))
+const ProductSection = dynamicImport(() => import("@/components/ProductSection"))
+const ArtikelSection = dynamicImport(() => import("@/components/ArtikelSection"))
+const AboutPlatform = dynamicImport(() => import("@/components/AboutPlatform"))
+const Footer = dynamicImport(() => import("@/components/layout/Footer"))
+
 
 export const dynamic = "force-dynamic"
 
