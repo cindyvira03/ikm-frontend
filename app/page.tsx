@@ -8,27 +8,11 @@ import HeroCTA from "@/components/HeroCTA"
 import dynamic from "next/dynamic"
 
 // 🔥 LAZY LOAD SEMUA
-const IkmSlider = dynamic(() => import("@/components/IkmSlider"), {
-  ssr: false,
-  loading: () => <p className="text-center py-4">Loading IKM...</p>,
-})
-
-const ProductSection = dynamic(() => import("@/components/ProductSection"), {
-  loading: () => <p className="text-center py-4">Loading Produk...</p>,
-})
-
-const ArtikelSection = dynamic(() => import("@/components/ArtikelSection"), {
-  loading: () => <p className="text-center py-4">Loading Artikel...</p>,
-})
-
-const AboutPlatform = dynamic(() => import("@/components/AboutPlatform"), {
-  loading: () => <p className="text-center py-4">Loading Info...</p>,
-})
-
-const Footer = dynamic(() => import("@/components/layout/Footer"), {
-  ssr: false,
-})
-
+const IkmSlider = dynamic(() => import("@/components/IkmSlider"))
+const Footer = dynamic(() => import("@/components/layout/Footer"))
+const ArtikelSection = dynamic(() => import("@/components/ArtikelSection"))
+const ProductSection = dynamic(() => import("@/components/ProductSection"))
+const AboutPlatform = dynamic(() => import("@/components/AboutPlatform"))
 
 export const revalidate = 60
 
