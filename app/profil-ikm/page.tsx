@@ -21,7 +21,31 @@ export default async function ProfilIkmPage() {
   const { ikm }: { ikm: ProfilIkm[] } = await getProfilIkm()
   const seo = await getSeo("profil_ikm")
 
+  const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Daftar Profil IKM Probolinggo",
+  description:
+    "Daftar profil usaha IKM di Kota Probolinggo yang menampilkan pelaku usaha lokal dan produk unggulan.",
+  url: "https://jelajah.ikmprobolinggo.com/profil-ikm",
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: ikm.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.nama_usaha,
+      url: `https://jelajah.ikmprobolinggo.com/profil-ikm/${item.slug}`
+    }))
+  }
+};
+
   return (
+    <>
+    {/* ✅ STRUCTURED DATA */}
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
     <div className="container py-4">
 
       {/* Breadcrumb */}
@@ -100,7 +124,7 @@ export default async function ProfilIkmPage() {
 
                 {/* Badge kategori */}
                 <span
-                  style={{ top: 20, right: 20 }}
+                  style={{ top: 15, right: 15, zIndex: 10 }}
                   className="position-absolute bg-primary text-white rounded-pill px-2 py-1 small"
                 >
                   {item.kategori?.nama_kategori || "-"}
@@ -146,5 +170,6 @@ export default async function ProfilIkmPage() {
         </div>
       )}
     </div>
+    </>
   )
 }

@@ -20,7 +20,31 @@ export default async function OutletIKMPage() {
   const { outlet }: { outlet: Outlet[] } = await getOutlet()
   const seo = await getSeo("outlet_ikm")
 
+  const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Daftar Outlet IKM Probolinggo",
+  description:
+    "Daftar lokasi outlet IKM di Kota Probolinggo yang menyediakan berbagai produk lokal.",
+  url: "https://jelajah.ikmprobolinggo.com/outlet-ikm",
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: outlet.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.profilIkm?.nama_usaha || "Outlet IKM",
+      url: item.lokasi_googlemap || `https://jelajah.ikmprobolinggo.com/outlet-ikm`
+    }))
+  }
+};
+
   return (
+     <>
+    {/* ✅ STRUCTURED DATA */}
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
     <div className="container py-4">
       {/* Breadcrumb */}
       <nav aria-label="breadcrumb">
@@ -79,7 +103,7 @@ export default async function OutletIKMPage() {
               <div className="card border position-relative h-100">
                 {/* Badge kategori */}
                 <span
-                  style={{ top: 20, right: 20 }}
+                  style={{ top: 15, right: 15, zIndex: 10 }}
                   className="position-absolute bg-primary text-white rounded-pill px-2 py-1 small"
                 >
                   {item.profilIkm?.kategori?.nama_kategori || "-"}
@@ -140,5 +164,6 @@ export default async function OutletIKMPage() {
         </div>
       )}
     </div>
+    </>
   )
 }

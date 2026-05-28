@@ -1,19 +1,36 @@
-import { getProducts } from "@/services/productService"
-import { getProfilIkm } from "@/services/profilIkmService"
+import { getHome } from "@/services/homeService"
 import { getSeo } from "@/services/seoService"
 import { generateSeoMetadata } from "@/lib/seo"
-import { getArtikel } from "@/services/artikelService"
 
-import IkmSlider from "@/components/IkmSlider"
 import { FaShoppingCart } from "react-icons/fa"
 import Image from "next/image"
-import ProductSection from "@/components/ProductSection"
-import ArtikelSection from "@/components/ArtikelSection"
-import AboutPlatform from "@/components/AboutPlatform"
 import HeroCTA from "@/components/HeroCTA"
-import Footer from "@/components/layout/Footer";
+import dynamic from "next/dynamic"
 
-export const dynamic = "force-dynamic"
+// 🔥 LAZY LOAD SEMUA
+const IkmSlider = dynamic(() => import("@/components/IkmSlider"), {
+  ssr: false,
+  loading: () => <p className="text-center py-4">Loading IKM...</p>,
+})
+
+const ProductSection = dynamic(() => import("@/components/ProductSection"), {
+  loading: () => <p className="text-center py-4">Loading Produk...</p>,
+})
+
+const ArtikelSection = dynamic(() => import("@/components/ArtikelSection"), {
+  loading: () => <p className="text-center py-4">Loading Artikel...</p>,
+})
+
+const AboutPlatform = dynamic(() => import("@/components/AboutPlatform"), {
+  loading: () => <p className="text-center py-4">Loading Info...</p>,
+})
+
+const Footer = dynamic(() => import("@/components/layout/Footer"), {
+  ssr: false,
+})
+
+
+export const revalidate = 60
 
 // ✅ SSR METADATA (SEO UTAMA)
 export async function generateMetadata() {
@@ -22,29 +39,54 @@ export async function generateMetadata() {
 
 
 export default async function Home() {
-  const productsRes = await getProducts()
-  const { ikm } = await getProfilIkm()
+  const data = await getHome()
 
+  const products = data.produk ?? []
+  const ikm = data.ikm ?? []
+  const artikel = data.artikel ?? []
   // ✅ ambil SEO untuk H1 & image alt
   const seo = await getSeo("home")
 
-  // ✅ AMANKAN PRODUK
-  const products = productsRes?.produk ?? []
-  const limitedProducts = products.slice(0, 4)
 
-  // ✅ AMANKAN ARTIKEL (INI KUNCI!)
-  let artikel: any[] = []
 
-  try {
-    const artikelRes = await getArtikel()
-    // ✅ hanya ambil 3 untuk homepage
-    artikel = artikelRes?.artikel?.slice(0, 3) ?? []
-  } catch (error) {
-    console.error("Artikel error:", error)
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Jelajah Probolinggo",
+    url: "https://jelajah.ikmprobolinggo.com",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://jelajah.ikmprobolinggo.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Jelajah Probolinggo",
+  url: "https://jelajah.ikmprobolinggo.com",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://jelajah.ikmprobolinggo.com/logo-beranda.png"
   }
+};
 
   return (
     <main className="home-page" style={{ background: "#f8fafc" }}>
+
+        {/* ✅ 1. WebSite */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
+      {/* ✅ 2. Organization */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+
 
       {/* HERO */}
       <section className="position-relative overflow-hidden">
@@ -111,6 +153,8 @@ export default async function Home() {
                   zIndex: 1
                 }}
                 priority
+                 quality={70}
+                placeholder="blur"
                 
               />
             </div>
@@ -213,7 +257,7 @@ export default async function Home() {
 
       {/* PRODUK */}
       <section className="py-4">
-        <ProductSection limitedProducts={limitedProducts} />
+        <ProductSection />
       </section>
 
       {artikel.length > 0 && (

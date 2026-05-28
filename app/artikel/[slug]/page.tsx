@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   const imageUrl = artikel.gambar
     ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${artikel.gambar}`
-    : "/no-image.jpg"
+    : "/no-image.webp"
 
   const url = `https://jelajah.ikmprobolinggo.com/artikel/${artikel.slug}`
 
@@ -91,9 +91,47 @@ export default async function Page({ params }: PageProps) {
     notFound()
   }
 
+  const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: artikel.judul,
+  description: artikel.meta_description || artikel.isi?.replace(/<[^>]*>/g, "").slice(0, 150),
+  image: artikel.gambar
+    ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${artikel.gambar}`
+    : "https://jelajah.ikmprobolinggo.com/no-image.webp",
+  author: {
+    "@type": "Person",
+    name: artikel.sumber || "Admin"
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Jelajah Probolinggo",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://jelajah.ikmprobolinggo.com/logo-beranda.png"
+    }
+  },
+  datePublished: artikel.created_at,
+  dateModified: artikel.updated_at,
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `https://jelajah.ikmprobolinggo.com/artikel/${artikel.slug}`
+  }
+};
+
   const all = await getArtikel()
   const list =
     all.artikel?.filter((a: any) => a.slug !== slug).slice(0, 5) || []
 
-  return <ArtikelClient artikel={artikel} list={list} />
+  return (
+    <>
+      {/* ✅ STRUCTURED DATA (WAJIB DI SINI) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+
+      <ArtikelClient artikel={artikel} list={list} />
+    </>
+  )
 }

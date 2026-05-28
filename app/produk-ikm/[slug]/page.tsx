@@ -70,9 +70,43 @@ export default async function Page({ params }: PageProps) {
     // notFound()
   }
 
+  const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": `https://jelajah.ikmprobolinggo.com/produk-ikm/${produk.slug}#product`,
+  name: produk.nama_produk,
+  description: produk.deskripsi?.replace(/<[^>]*>/g, "").slice(0, 200),
+  image: produk.foto
+    ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${produk.foto}`
+    : "https://jelajah.ikmprobolinggo.com/no-image.webp",
+
+  brand: {
+    "@type": "Brand",
+    name: produk.nama_ikm || "IKM Probolinggo"
+  },
+
+  offers: {
+    "@type": "Offer",
+    price: produk.harga || "0",
+    priceCurrency: "IDR",
+    availability: "https://schema.org/InStock",
+    url: `https://jelajah.ikmprobolinggo.com/produk-ikm/${produk.slug}`
+  }
+};
+
   const all = await getProducts()
   const list =
     all.produk?.filter((p: any) => p.slug !== slug).slice(0, 5) || []
 
-  return <ProdukDetailClient produk={produk} list={list} />
+  return (
+  <>
+    {/* ✅ STRUCTURED DATA */}
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+
+    <ProdukDetailClient produk={produk} list={list} />
+  </>
+)
 }

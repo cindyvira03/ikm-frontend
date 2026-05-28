@@ -15,10 +15,35 @@ export async function generateMetadata() {
 export default async function ProdukIKMPage() {
   const { kategori, produk } = await getProducts()
 
+  const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Daftar Produk IKM Probolinggo",
+  description:
+    "Kumpulan produk IKM Kota Probolinggo seperti batik, kerajinan, dan kuliner.",
+  url: "https://jelajah.ikmprobolinggo.com/produk-ikm",
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: produk.map((item: any, index: number) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.nama_produk,
+      url: `https://jelajah.ikmprobolinggo.com/produk-ikm/${item.slug}`
+    }))
+  }
+};
+
   // ✅ ambil SEO untuk heading
   const seo = await getSeo("produk_ikm")
 
   return (
+     <>
+    {/* ✅ STRUCTURED DATA */}
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+    
     <div className="container py-4">
 
       {/* BREADCRUMB */}
@@ -124,5 +149,6 @@ export default async function ProdukIKMPage() {
       </section>
 
     </div>
+  </>
   )
 }

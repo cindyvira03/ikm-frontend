@@ -62,5 +62,46 @@ export default async function Page({ params }: PageProps) {
     notFound()
   }
 
-  return <ProfilIkmClient ikm={ikm} />
+  const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `https://jelajah.ikmprobolinggo.com/profil-ikm/${ikm.slug}#business`,
+
+  name: ikm.nama_usaha,
+
+  description:
+    ikm.deskripsi_singkat ||
+    "Profil usaha IKM di Kota Probolinggo",
+
+  image: ikm.gambar
+    ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${ikm.gambar}`
+    : "https://jelajah.ikmprobolinggo.com/no-image.webp",
+
+  url: `https://jelajah.ikmprobolinggo.com/profil-ikm/${ikm.slug}`,
+
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Probolinggo",
+    addressCountry: "ID"
+  },
+
+  telephone: ikm.no_telp || "",
+
+  areaServed: {
+    "@type": "Place",
+    name: "Probolinggo"
+  }
+};
+
+ return (
+  <>
+    {/* ✅ STRUCTURED DATA */}
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+
+    <ProfilIkmClient ikm={ikm} />
+  </>
+)
 }

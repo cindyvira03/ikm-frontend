@@ -77,7 +77,7 @@ export default function ProductCard({ product }: { product: Product }) {
         {/* Badge */}
         <span
           className="position-absolute bg-primary text-white rounded-pill px-2 py-1 small"
-          style={{ top: 10, right: 10 }}
+          style={{ top: 15, right: 15, zIndex: 10 }}
         >
           {product.ikm?.kategori?.nama_kategori}
         </span>

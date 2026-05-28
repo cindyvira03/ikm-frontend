@@ -15,5 +15,33 @@ export async function generateMetadata() {
 
 export default async function Page() {
   const seo = await getSeo("sentra_batik")
-  return <SentraClient seo={seo} />
+
+  const schema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: "Rumah Sentra Batik Probolinggo",
+  description:
+    seo?.meta_description ||
+    "Pusat pengembangan dan produksi batik khas Probolinggo.",
+  url: "https://jelajah.ikmprobolinggo.com/rumah-batik",
+  image: seo?.hero_image
+    ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${seo.hero_image}`
+    : "https://jelajah.ikmprobolinggo.com/no-image.webp",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Probolinggo",
+    addressCountry: "ID"
+  }
+};
+  return (
+  <>
+    {/* ✅ STRUCTURED DATA */}
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+
+    <SentraClient seo={seo} />
+  </>
+)
 }

@@ -17,8 +17,31 @@ export default async function ArtikelPage() {
     // ✅ ambil SEO untuk heading
     const seo = await getSeo("artikel")
 
+    const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Artikel IKM Probolinggo",
+  description: "Daftar artikel dan informasi seputar IKM Kota Probolinggo",
+  url: "https://jelajah.ikmprobolinggo.com/artikel",
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: artikel.map((item: any, index: number) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.judul,
+      url: `https://jelajah.ikmprobolinggo.com/artikel/${item.slug}`
+    }))
+  }
+};
+
   return (
     <main>
+
+      {/* ✅ STRUCTURED DATA */}
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+  />
       
       {/* HERO / HEADER */}
       <section className="py-5 text-center border-bottom">

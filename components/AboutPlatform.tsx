@@ -61,7 +61,7 @@ export default function AboutPlatform({
               height={480}
               sizes="(max-width: 768px) 100vw, 400px"
               style={{
-                 width: "100%",
+                width: "100%",
                 height: "auto", // ✅ kunci anti distorsi
                 objectFit: "contain" // ✅ biar ga kepotong
           
