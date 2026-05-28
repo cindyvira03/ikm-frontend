@@ -42,7 +42,7 @@ export default function ArtikelSection({
 
         {/* ✅ CENTER kalau item sedikit */}
         <div className="row justify-content-center">
-          {artikel.map((item) => (
+          {artikel?.map((item) => (
             <div className="col-md-4 mb-4 d-flex" key={item.id}>
               
               <div className="card border-0 shadow-sm h-100 artikel-card w-100 d-flex flex-column">

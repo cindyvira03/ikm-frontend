@@ -14,7 +14,7 @@ export default function IkmSlider({ ikm }: any) {
   const [startIndex, setStartIndex] = useState(0)
 
   const itemsPerPage = 3
-  const total = ikm.length
+  const total = ikm?.length || 0
 
   const next = () => {
     if (startIndex + itemsPerPage < total) {

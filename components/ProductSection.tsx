@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { FaShoppingCart } from "react-icons/fa"
 
-export default function ProductSection({ limitedProducts }: any) {
+export default function ProductSection({ products = [] }: any) {
   return (
       <div className="container">
         <h2 className="text-center fw-semibold mb-4">
@@ -16,8 +16,8 @@ export default function ProductSection({ limitedProducts }: any) {
         </p>
 
         <div className="row g-4">
-          {limitedProducts.length > 0 ? (
-            limitedProducts.map((product: any) => (
+          {products?.length > 0 ? (
+          products.map((product: any) => (
               <div className="col-md-3" key={product.id}>
 
                 {/* ✅ TAMBAHAN LINK (TIDAK MENGUBAH STRUKTUR DALAM) */}

@@ -25,9 +25,9 @@ export async function generateMetadata() {
 export default async function Home() {
   const data = await getHome()
 
-  const products = data.produk ?? []
-  const ikm = data.ikm ?? []
-  const artikel = data.artikel ?? []
+  const products = data?.produk ?? []
+  const ikm = data?.ikm ?? []
+  const artikel = data?.artikel ?? []
   // ✅ ambil SEO untuk H1 & image alt
   const seo = await getSeo("home")
 
@@ -136,9 +136,6 @@ export default async function Home() {
                   position: "relative",
                   zIndex: 1
                 }}
-                priority
-                 quality={70}
-                placeholder="blur"
                 
               />
             </div>
@@ -241,7 +238,7 @@ export default async function Home() {
 
       {/* PRODUK */}
       <section className="py-4">
-        <ProductSection />
+        <ProductSection products={products} />
       </section>
 
       {artikel.length > 0 && (
