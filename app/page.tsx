@@ -14,7 +14,7 @@ const ArtikelSection = dynamic(() => import("@/components/ArtikelSection"))
 const ProductSection = dynamic(() => import("@/components/ProductSection"))
 const AboutPlatform = dynamic(() => import("@/components/AboutPlatform"))
 
-export const revalidate = 60
+export const dynamic = "force-dynamic"
 
 // ✅ SSR METADATA (SEO UTAMA)
 export async function generateMetadata() {
