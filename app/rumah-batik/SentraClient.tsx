@@ -18,6 +18,7 @@ export default function SentraClient({ seo }: any) {
         }
         alt={seo?.image_alt || "Rumah Sentra Batik Kota Probolinggo"}
         fill
+        quality={70}
         sizes="100vw"
         className="object-cover"
         priority

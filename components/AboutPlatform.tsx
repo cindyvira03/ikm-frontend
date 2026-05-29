@@ -59,6 +59,7 @@ export default function AboutPlatform({
               alt="Platform IKM Probolinggo"
               width={800}
               height={480}
+              quality={70}
               sizes="(max-width: 768px) 100vw, 400px"
               style={{
                 width: "100%",

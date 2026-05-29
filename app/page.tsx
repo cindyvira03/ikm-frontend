@@ -5,7 +5,6 @@ import { generateSeoMetadata } from "@/lib/seo"
 
 import Image from "next/image"
 import HeroCTA from "@/components/HeroCTA"
-import Script from "next/script"
 
 import IkmSlider from "@/components/IkmSlider" 
 import AboutPlatform from "@/components/AboutPlatform"
@@ -61,16 +60,14 @@ export default async function Home() {
 
         {/* ✅ 1. WebSite */}
 
-      <Script
+      <script
         type="application/ld+json"
-        strategy="lazyOnload"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
       {/* ✅ 2. Organization */}
-      <Script
+      <script
         type="application/ld+json"
-        strategy="lazyOnload"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
 
@@ -133,6 +130,7 @@ export default async function Home() {
                 height={320}
                 sizes="(max-width: 768px) 100vw, 400px"
                 className="img-fluid rounded shadow"
+                quality={70}
                 style={{
                   height: "auto", // ✅ FIX
                   objectFit: "cover",

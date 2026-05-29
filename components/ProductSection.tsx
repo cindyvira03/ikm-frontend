@@ -36,6 +36,7 @@ export default function ProductSection({ products = [] }: any) {
                         }
                         alt={product.nama_produk}
                         fill
+                        quality={70}
                         sizes="(max-width: 768px) 100vw, 300px"
                         style={{
                             objectFit: "cover",

@@ -11,11 +11,13 @@ export async function generateMetadata() {
 }
 
 export default async function ArtikelPage() {
-  const artikelRes = await getArtikel()
-  const artikel = artikelRes?.artikel ?? []
+   const [artikelRes, seoData] = await Promise.all([
+    getArtikel(),
+    getSeo("artikel")
+  ])
 
-    // ✅ ambil SEO untuk heading
-    const seo = await getSeo("artikel")
+  const artikel = artikelRes?.artikel ?? []
+  const seo = seoData
 
     const structuredData = {
   "@context": "https://schema.org",

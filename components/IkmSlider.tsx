@@ -48,6 +48,7 @@ export default function IkmSlider({ ikm = [] }: any) {
                       }
                       alt={`Logo ${item.nama_usaha} - Batik Khas Probolinggo`}
                       fill
+                      quality={70}
                       sizes="60px"
                       style={{ objectFit: "contain" }}
                     />

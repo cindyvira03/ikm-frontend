@@ -13,7 +13,14 @@ export async function generateMetadata() {
 
 
 export default async function ProdukIKMPage() {
-  const { kategori, produk } = await getProducts()
+    const [productsData, seoData] = await Promise.all([
+    getProducts(),
+    getSeo("produk_ikm")
+  ])
+
+  const kategori = productsData?.kategori || []
+  const produk = productsData?.produk || []
+  const seo = seoData
 
   const schema = {
   "@context": "https://schema.org",
@@ -32,9 +39,6 @@ export default async function ProdukIKMPage() {
     }))
   }
 };
-
-  // ✅ ambil SEO untuk heading
-  const seo = await getSeo("produk_ikm")
 
   return (
      <>
@@ -132,21 +136,27 @@ export default async function ProdukIKMPage() {
       <section>
         {produk.length > 0 ? (
           <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
-            {produk.map((item) => (
-              <article className="col" key={item.id}>
+            {produk.map((item: any) => (
+              <div 
+                className="col" 
+                key={item.id}
+                // 👇 TAMBAHKAN STYLE MODERN INI UNTUK MENGHEMAT MEMORI HP PENGUNJUNG 👇
+                style={{ 
+                  contentVisibility: "auto", 
+                  containIntrinsicSize: "0 380px" // Estimasi tinggi rata-rata kartu produk Anda
+                }}
+              >
                 <ProductCard product={item}/>
-              </article>
+              </div>
             ))}
           </div>
         ) : (
           <div className="text-center py-5">
             <h2 className="text-muted mb-0">Belum ada data produk</h2>
-            <p className="text-muted">
-              Belum ada produk yang ditambahkan.
-            </p>
           </div>
         )}
       </section>
+
 
     </div>
   </>
