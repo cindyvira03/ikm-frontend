@@ -62,9 +62,9 @@ export default async function ProfilIkmPage() {
         </ol>
       </nav>
 
-      <h2 className="text-dark fw-semibold mb-4 fs-1">
+      <h1 className="text-dark fw-semibold mb-4 fs-1">
         Daftar Profil IKM
-      </h2>
+      </h1>
 
       {/* SEO CONTENT PROFIL IKM */}
       <section className="mb-4">
@@ -140,6 +140,7 @@ export default async function ProfilIkmPage() {
                     }
                     alt={item.nama_usaha || "Profil IKM"}
                     fill
+                    quality={70}
                     sizes="(max-width: 768px) 100vw, 400px"
                     className="img-thumbnail mb-3 rounded-3"
                     style={{

@@ -119,6 +119,7 @@ export default async function OutletIKMPage() {
                         : "/no-image.webp"
                     }
                     alt={item.profilIkm?.nama_usaha || "Outlet IKM"}
+                    quality={70}
                     fill
                     sizes="(max-width: 768px) 100vw, 400px"
                     className="img-thumbnail mb-3 rounded-3"

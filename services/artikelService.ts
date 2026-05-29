@@ -1,6 +1,6 @@
 export async function getArtikel() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artikel`, {
-    next: { revalidate: 60 },
+    next: { revalidate: 3600 },
   })
 
   if (!res.ok) throw new Error("Gagal fetch artikel")
@@ -13,7 +13,7 @@ export async function getArtikelDetail(slug: string) {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/artikel/${slug}`,
       {
-        next: { revalidate: 60 }, // 🔥 penting untuk SSR dynamic
+        next: { revalidate: 3600 },  // 🔥 penting untuk SSR dynamic
       }
     )
 

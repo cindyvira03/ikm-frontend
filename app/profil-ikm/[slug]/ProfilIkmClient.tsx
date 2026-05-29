@@ -32,9 +32,9 @@ export default function ProfilIkmClient({
         </ol>
       </nav>
 
-      <h2 className="text-dark fw-semibold mb-4 fs-1">
+      <h1 className="text-dark fw-semibold mb-4 fs-1">
         {ikm.nama_usaha}
-      </h2>
+      </h1>
 
       {/* ===================== */}
       {/* INFORMASI IKM */}
@@ -58,6 +58,7 @@ export default function ProfilIkmClient({
                 }
                 alt={ikm.nama_usaha}
                 fill
+                quality={70}
                 sizes="(max-width: 768px) 100vw, 200px"
                 className="img-thumbnail"
                 style={{
@@ -147,6 +148,7 @@ export default function ProfilIkmClient({
                       }
                       alt={item.alamat}
                       fill
+                      quality={70}
                       sizes="(max-width: 768px) 100vw, 200px"
                       className="img-thumbnail rounded-3"
                       style={{
@@ -222,6 +224,7 @@ export default function ProfilIkmClient({
                       }
                       alt={`Produk ${item.nama_produk}`}
                       fill
+                      quality={70}
                       sizes="100px"
                       className="img-thumbnail rounded-3"
                       style={{

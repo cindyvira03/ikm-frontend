@@ -1,6 +1,49 @@
 import Link from "next/link"
 import { getProductsByCategory } from "@/services/productService"
 import ProductCard from "@/components/produk/ProductCard"
+import { Metadata } from "next"
+
+type Props = {
+  params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params // 👈 Ambil slug dari parameter URL Next.js secara langsung
+
+  try {
+    // ⚡ Cukup fetch 1 kali saja untuk menghemat performa server (TTFB turun)
+    const { currentKategori } = await getProductsByCategory(slug)
+    
+    // Gunakan fallback nama jika data dari DB belum selesai dimuat/kosong
+    const namaKategori = currentKategori?.nama_kategori || ""
+    const targetSlug = currentKategori?.slug || slug // 👈 Gunakan slug dari DB, atau fallback ke parameter URL
+
+    const title = `Daftar Produk IKM Kategori ${namaKategori} - Kota Probolinggo`
+    const description = `Jelajahi berbagai produk IKM unggulan Kota Probolinggo untuk kategori ${namaKategori}. Dukung produk lokal sekarang!`
+    const correctUrl = `https://jelajah.ikmprobolinggo.com/produk-ikm/kategori/${targetSlug}`
+
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: correctUrl,
+      },
+      openGraph: {
+        title,
+        description,
+        url: correctUrl,
+        type: "website",
+      },
+    }
+  } catch (error) {
+    console.error("Gagal memuat metadata kategori:", error)
+    return { 
+      title: "Daftar Produk IKM - Kota Probolinggo",
+      description: "Jelajahi berbagai produk IKM unggulan Kota Probolinggo."
+    }
+  }
+}
+
 
 export default async function ProdukKategoriPage({
   params,
@@ -23,9 +66,9 @@ export default async function ProdukKategoriPage({
         </ol>
       </nav>
 
-      <h2 className="text-dark fw-semibold mb-4 fs-1">
+      <h1 className="text-dark fw-semibold mb-4 fs-1">
         Daftar Produk IKM
-      </h2>
+      </h1>
 
       {/* SEO CONTENT */}
       <section className="mb-4">

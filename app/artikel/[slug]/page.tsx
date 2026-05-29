@@ -82,7 +82,11 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function Page({ params }: PageProps) {
   const { slug } = await params
 
-  const res = await getArtikelDetail(slug)
+   // ⚡ Jalankan kedua API secara paralel (menghemat waktu respon hingga 50%)
+  const [res, all] = await Promise.all([
+    getArtikelDetail(slug),
+    getArtikel()
+  ])
 
   const artikel = res?.artikel
 
@@ -119,7 +123,7 @@ export default async function Page({ params }: PageProps) {
   }
 };
 
-  const all = await getArtikel()
+  
   const list =
     all.artikel?.filter((a: any) => a.slug !== slug).slice(0, 5) || []
 

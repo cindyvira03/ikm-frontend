@@ -68,6 +68,7 @@ export default function ArtikelClient({ artikel, list }: Props) {
                 }
                 alt={artikel.judul}
                 fill
+                quality={70}
                 sizes="(max-width: 768px) 100vw, 900px"
                 className="rounded shadow-sm mb-4"
                 style={{
@@ -129,6 +130,7 @@ export default function ArtikelClient({ artikel, list }: Props) {
                             }
                             alt={item.judul}
                             fill
+                            quality={70}
                             style={{
                               objectFit: "cover"
                             }}

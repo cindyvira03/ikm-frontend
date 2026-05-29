@@ -94,6 +94,7 @@ export default function ProductCard({ product }: { product: Product }) {
               }
               alt={`Produk ${product.nama_produk} dari ${product.ikm?.nama_usaha}`}
               fill
+              quality={70} // 👈 Tambahkan ini untuk memaksa kompresi ke 70%
               sizes="(max-width: 768px) 50vw, 220px"
               className="rounded mb-2"
               style={{

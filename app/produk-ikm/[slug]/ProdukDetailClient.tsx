@@ -98,6 +98,7 @@ export default function ProdukDetailClient({ produk, list }: any) {
           }
           alt={`Produk ${produk.nama_produk}`}
           fill
+          quality={70}
           sizes="(max-width: 768px) 100vw, 500px"
           className="img-thumbnail rounded-3"
           style={{
@@ -167,9 +168,9 @@ export default function ProdukDetailClient({ produk, list }: any) {
             {produk.ikm?.kategori?.nama_kategori}
           </span> */}
 
-          <h2 className="fw-bold mt-3">
+          <h1 className="fw-bold mt-3 fs-5">
             {produk.nama_produk}
-          </h2>
+          </h1>
 
           <p className="text-primary fw-bold mb-0 fs-5">
             Rp. {produk.harga.toLocaleString()}

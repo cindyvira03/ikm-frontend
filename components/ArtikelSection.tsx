@@ -56,6 +56,7 @@ export default function ArtikelSection({
                     }
                     alt={item.judul}
                     fill
+                    quality={70}
                     sizes="(max-width: 768px) 100vw, 400px"
                     className="card-img-top"
                     style={{ objectFit: "cover"}}
