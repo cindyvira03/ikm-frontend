@@ -2,16 +2,16 @@ import { getHome } from "@/services/homeService"
 import { getSeo } from "@/services/seoService"
 import { generateSeoMetadata } from "@/lib/seo"
 
-import { FaShoppingCart } from "react-icons/fa"
+
 import Image from "next/image"
 import HeroCTA from "@/components/HeroCTA"
-import dynamicImport from "next/dynamic"
+import Script from "next/script"
 
-const IkmSlider = dynamicImport(() => import("@/components/IkmSlider"))
-const ProductSection = dynamicImport(() => import("@/components/ProductSection"))
-const ArtikelSection = dynamicImport(() => import("@/components/ArtikelSection"))
-const AboutPlatform = dynamicImport(() => import("@/components/AboutPlatform"))
-const Footer = dynamicImport(() => import("@/components/layout/Footer"))
+import IkmSlider from "@/components/IkmSlider" 
+import AboutPlatform from "@/components/AboutPlatform"
+import ProductSection from "@/components/ProductSection"
+import ArtikelSection from "@/components/ArtikelSection"
+import Footer from "@/components/layout/Footer"
 
 
 export const dynamic = "force-dynamic"
@@ -23,13 +23,13 @@ export async function generateMetadata() {
 
 
 export default async function Home() {
-  const data = await getHome()
-
+  const [data, seo] = await Promise.all([
+    getHome(),
+    getSeo("home")
+  ])
   const products = data?.produk ?? []
   const ikm = data?.ikm ?? []
   const artikel = data?.artikel ?? []
-  // ✅ ambil SEO untuk H1 & image alt
-  const seo = await getSeo("home")
 
 
 
@@ -60,14 +60,17 @@ export default async function Home() {
     <main className="home-page" style={{ background: "#f8fafc" }}>
 
         {/* ✅ 1. WebSite */}
-      <script
+
+      <Script
         type="application/ld+json"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
       {/* ✅ 2. Organization */}
-      <script
+      <Script
         type="application/ld+json"
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
 
@@ -136,6 +139,7 @@ export default async function Home() {
                   position: "relative",
                   zIndex: 1
                 }}
+                 priority={true}
                 
               />
             </div>
