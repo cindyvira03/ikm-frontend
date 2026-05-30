@@ -98,6 +98,7 @@ export default function ProdukDetailClient({ produk, list }: any) {
           }
           alt={`Produk ${produk.nama_produk}`}
           fill
+          priority
           quality={70}
           sizes="(max-width: 768px) 100vw, 500px"
           className="img-thumbnail rounded-3"

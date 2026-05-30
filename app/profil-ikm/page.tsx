@@ -4,6 +4,7 @@ import { ProfilIkm } from "@/types/profilIkm"
 import { generateSeoMetadata } from "@/lib/seo"
 import { getSeo } from "@/services/seoService"
 import Image from "next/image";
+import Pagination from "@/components/Pagination"
 
 export const dynamic = "force-dynamic"
 
@@ -17,8 +18,19 @@ export async function generateMetadata() {
 // =========================
 // HALAMAN
 // =========================
-export default async function ProfilIkmPage() {
-  const { ikm }: { ikm: ProfilIkm[] } = await getProfilIkm()
+interface PageProps {
+  searchParams: Promise<{ page?: string }>
+}
+
+export default async function ProfilIKMPage({ searchParams }: PageProps) { 
+  // PERBAIKAN: Wajib di-await agar kueri URL terbaca dengan benar saat pindah halaman
+  const resolvedSearchParams = await searchParams
+  const page = Number(resolvedSearchParams?.page) || 1 
+
+  const data = await getProfilIkm(page)
+
+  const list = data.ikm.data
+  const meta = data.ikm
   const seo = await getSeo("profil_ikm")
 
   const schema = {
@@ -30,7 +42,7 @@ export default async function ProfilIkmPage() {
   url: "https://jelajah.ikmprobolinggo.com/profil-ikm",
   mainEntity: {
     "@type": "ItemList",
-    itemListElement: ikm.map((item, index) => ({
+    itemListElement: list.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: item.nama_usaha,
@@ -113,9 +125,9 @@ export default async function ProfilIkmPage() {
         </div>
       </section>
 
-      {ikm.length > 0 ? (
+      {list.length > 0 ? (
         <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-3">
-          {ikm.map((item: ProfilIkm) => (
+          {list.map((item: ProfilIkm) => (
             <div className="col" key={item.id}>
               <Link
                 href={`/profil-ikm/${item.slug}`}
@@ -170,6 +182,11 @@ export default async function ProfilIkmPage() {
           </p>
         </div>
       )}
+
+      <Pagination
+        currentPage={meta.current_page}
+        lastPage={meta.last_page}
+      />
     </div>
     </>
   )

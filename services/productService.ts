@@ -6,19 +6,21 @@ export interface Kategori {
   slug: string
 }
 
+import { Pagination } from "@/types/pagination"
+
 export interface ProdukResponse {
   success: boolean
   kategori: Kategori[]
-  produk: Product[]
+  produk: Pagination<Product>
 }
 
 export interface ProdukKategoriResponse extends ProdukResponse {
   currentKategori: Kategori
 }
 
-export const getProducts = async (): Promise<ProdukResponse> => {
+export const getProducts = async (page = 1): Promise<ProdukResponse> => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm`,
+    `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm?page=${page}`,
     {
       next: { revalidate: 60 },
     }
@@ -31,13 +33,11 @@ export const getProducts = async (): Promise<ProdukResponse> => {
   return res.json()
 }
 
-export const getProductsByCategory = async (
-  slug: string
-): Promise<ProdukKategoriResponse> => {
+export const getProductsByCategory = async (slug: string, page = 1) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm/kategori/${slug}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm/kategori/${slug}?page=${page}`,
     {
-      next: { revalidate: 3600 },
+      next: { revalidate: 60 },
     }
   )
 

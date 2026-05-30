@@ -108,7 +108,7 @@ export default function ProductCard({ product }: { product: Product }) {
           <div className="grow">
 
             {/* ✅ HEADING SEO */}
-            <h3 className="fw-semibold mt-3 mb-1 text-truncate" style={{ fontSize: "16px" }}>
+            <h3 className="fw-semibold mt-3 mb-1 pb-3 text-truncate" style={{ fontSize: "16px" }}>
               {product.nama_produk}
             </h3>
 

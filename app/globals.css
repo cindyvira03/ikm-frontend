@@ -461,3 +461,13 @@ body {
   background: #0d6efd;
   color: white;
 }
+
+.pagination .page-link {
+  border-radius: 10px;
+  margin: 0 4px;
+}
+
+.pagination .active .page-link {
+  background: #2563eb;
+  border-color: #2563eb;
+}

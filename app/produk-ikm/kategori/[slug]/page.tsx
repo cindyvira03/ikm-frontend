@@ -2,6 +2,10 @@ import Link from "next/link"
 import { getProductsByCategory } from "@/services/productService"
 import ProductCard from "@/components/produk/ProductCard"
 import { Metadata } from "next"
+import Pagination from "@/components/Pagination"
+import { Product } from "@/types/product" 
+import { Kategori } from "@/types/kategori" 
+
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -45,13 +49,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 
+interface PageProps {
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ page?: string }>
+}
+
 export default async function ProdukKategoriPage({
   params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
-  const { slug } = await params; // ✅ unwrap params
-  const { kategori, produk, currentKategori } = await getProductsByCategory(slug);
+  searchParams
+}: PageProps) {
+
+  const { slug } = await params
+  const resolvedSearchParams = await searchParams
+  const page = Number(resolvedSearchParams?.page) || 1
+
+  const { kategori, produk, currentKategori } =
+    await getProductsByCategory(slug, page)
+
+  const list = produk?.data || []
+  const meta = produk
 
   return (
     <div className="container py-4">
@@ -120,8 +136,9 @@ export default async function ProdukKategoriPage({
         <Link href="/produk-ikm" className="btn btn-outline-primary border">
           Semua
         </Link>
-
-        {kategori.map((kat) => (
+        
+        {/* PERBAIKAN: Tambahkan tipe data : Kategori pada parameter kat */}
+        {kategori.map((kat: Kategori) => (
           <Link
             key={kat.id}
             href={`/produk-ikm/kategori/${kat.slug}`}
@@ -136,10 +153,12 @@ export default async function ProdukKategoriPage({
         ))}
       </div>
 
+
       {/* Produk */}
-      {produk.length > 0 ? (
+      {list.length > 0 ? (
         <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
-          {produk.map((item) => (
+          {/* PERBAIKAN: Tambahkan tipe data : Product pada parameter item */}
+          {list.map((item: Product) => (
             <div className="col" key={item.id}>
               <ProductCard product={item} />
             </div>
@@ -148,11 +167,14 @@ export default async function ProdukKategoriPage({
       ) : (
         <div className="text-center py-5">
           <h5 className="text-muted mb-0">Belum ada data produk</h5>
-          <p className="text-muted">
-            Belum ada produk untuk kategori ini.
-          </p>
+          <p className="text-muted">Belum ada produk untuk kategori ini.</p>
         </div>
       )}
+
+      <Pagination
+      currentPage={meta.current_page}
+      lastPage={meta.last_page}
+    />
     </div>
   )
 }

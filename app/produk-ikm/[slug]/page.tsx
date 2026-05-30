@@ -95,8 +95,8 @@ export default async function Page({ params }: PageProps) {
 };
 
   const all = await getProducts()
-  const list =
-    all.produk?.filter((p: any) => p.slug !== slug).slice(0, 5) || []
+ const list =
+  all.produk?.data?.filter((p: any) => p.slug !== slug).slice(0, 5) || []
 
   return (
   <>
