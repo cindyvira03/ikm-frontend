@@ -8,7 +8,7 @@ export interface Outlet {
   kecamatan: string
   foto_lokasi_tampak_depan: string | null
 
-  profilIkm?: {
+  profil_ikm?: {
     nama_usaha: string
     kategori: {
       nama_kategori: string

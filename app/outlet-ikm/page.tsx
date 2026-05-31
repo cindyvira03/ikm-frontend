@@ -32,7 +32,7 @@ export default async function OutletIKMPage() {
     itemListElement: outlet.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      name: item.profilIkm?.nama_usaha || "Outlet IKM",
+      name: item.profil_ikm?.nama_usaha || "Outlet IKM",
       url: item.lokasi_googlemap || `https://jelajah.ikmprobolinggo.com/outlet-ikm`
     }))
   }
@@ -106,7 +106,7 @@ export default async function OutletIKMPage() {
                   style={{ top: 15, right: 15, zIndex: 10 }}
                   className="position-absolute bg-primary text-white rounded-pill px-2 py-1 small"
                 >
-                  {item.profilIkm?.kategori?.nama_kategori || "-"}
+                  {item.profil_ikm?.kategori?.nama_kategori || "-"}
                 </span>
 
                 <div className="card-body p-2">
@@ -118,7 +118,7 @@ export default async function OutletIKMPage() {
                         ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${item.foto_lokasi_tampak_depan}`
                         : "/no-image.webp"
                     }
-                    alt={item.profilIkm?.nama_usaha || "Outlet IKM"}
+                    alt={item.profil_ikm?.nama_usaha || "Outlet IKM"}
                     quality={70}
                     fill
                     sizes="(max-width: 768px) 100vw, 400px"
@@ -135,7 +135,7 @@ export default async function OutletIKMPage() {
                       {item.alamat || "-"}
                     </p>
                     <p className="text-secondary small mb-0">
-                      {item.profilIkm?.nama_usaha || "-"}
+                      {item.profil_ikm?.nama_usaha || "-"}
                     </p>
 
                     {item.lokasi_googlemap && (
