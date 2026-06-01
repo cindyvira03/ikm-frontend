@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "FAQ - Jelajah Probolinggo",
+  title: "FAQ & Pusat Bantuan Pengguna",
   description:
-    "Pertanyaan yang sering diajukan seputar Jelajah Probolinggo, platform katalog dan e-commerce IKM Kota Probolinggo. Temukan informasi tentang pemesanan, pembayaran, dan penggunaan website.",
+    "Punya pertanyaan seputar Jelajah Probolinggo? Temukan jawaban lengkap tentang cara pemesanan batik, sistem pembayaran, dan panduan transaksi e-commerce IKM.",
 };
 
 export default function FAQPage() {

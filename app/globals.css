@@ -471,3 +471,23 @@ body {
   background: #2563eb;
   border-color: #2563eb;
 }
+
+/*  KODE BARU (Bisa jalan di SEMUA halaman tanpa terkecuali) */
+.footer-btn {
+  background: linear-gradient(90deg, #0d6efd, #00c6ff);
+  color: white !important;
+  padding: 8px 14px;
+  border-radius: 8px;
+  display: inline-flex;     /* 🔥 penting */
+  align-items: center;      /* 🔥 penting */
+  gap: 6px;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+}
+
+/* Tambahan efek hover biar makin interaktif dan humanis */
+.footer-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  color: white !important;
+}

@@ -3,6 +3,7 @@
 import { MapPin, Coffee, Palette, BookOpen } from "lucide-react"
 import Image from "next/image";
 import Link from "next/link"
+import Footer from "@/components/layout/Footer"
 
 export default function SentraClient({ seo }: any) {
   return (
@@ -32,9 +33,9 @@ export default function SentraClient({ seo }: any) {
             {seo?.heading_h1 || "Rumah Sentra Batik Kota Probolinggo"}
           </h1>
           <p className="max-w-2xl mx-auto text-lg text-gray-200">
-            Pusat batik Probolinggo untuk pengembangan IKM (Industri Kecil dan Menengah) 
-            yang menghadirkan beragam motif batik khas Probolinggo, tempat belajar membatik, 
-            berkarya, serta menikmati kekayaan budaya lokal.
+             Pusat pelestarian dan pengembangan karya kreativitas lokal yang menghadirkan 
+             ragam motif batik khas Probolinggo asli langsung dari pengrajin industri kecil menengah 
+             di Kota Probolinggo.
           </p>
         </div>
       </section>
@@ -43,16 +44,17 @@ export default function SentraClient({ seo }: any) {
       <section className="py-16 px-6 max-w-6xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-6">Tentang Rumah Sentra Batik</h2>
         <p className="text-gray-600 leading-relaxed">
-          Rumah Sentra Batik Kota Probolinggo merupakan pusat pengembangan 
-          batik Probolinggo yang menjadi wadah bagi pelaku IKM (Industri Kecil dan Menengah) 
-          dalam menghasilkan batik khas Probolinggo dengan beragam motif batik khas Probolinggo 
-          yang unik dan bernilai budaya. Diresmikan pada September 2025, tempat ini tidak hanya 
+          Rumah Sentra Batik Kota Probolinggo merupakan pusat ekosistem kreatif yang menjadi wadah resmi bagi 
+          para pelaku Industri Kecil dan Menengah (IKM). Tempat ini dirancang untuk menghasilkan 
+          <strong> mahakarya kain tulis dan cap</strong> dengan identitas lokal yang kuat. Diresmikan pada September 2025, tempat ini tidak hanya 
           berfungsi sebagai pusat produksi, tetapi juga sebagai sarana edukasi, promosi, dan 
           pelestarian warisan budaya batik lokal kepada masyarakat dan generasi muda.
         </p>
-         <p className="text-gray-600 mb-3">
-        Selain Rumah Sentra Batik sebagai pusat pengembangan produk IKM, setiap pelaku IKM juga memiliki outlet atau lokasi usaha masing-masing di Kota Probolinggo, sehingga masyarakat dapat melihat dan membeli produk secara langsung.
-      </p>
+        <p className="text-gray-600 mb-3">
+          Selain berfungsi sebagai pusat pengembangan bersama, setiap pengrajin juga memiliki galeri atau 
+          <strong> outlet resmi IKM</strong> yang tersebar di wilayah Kota Probolinggo, memudahkan masyarakat 
+          untuk meninjau produksi dan bertransaksi secara langsung di lokasi usaha mereka.
+        </p>
 
       {/* CTA LINK */}
       <div className="text-center">
@@ -138,15 +140,7 @@ export default function SentraClient({ seo }: any) {
       </section>
 
       {/* FOOTER */}
-      <footer className="mt-5 pb-3">
-        <div className="container">
-          <hr className="border-secondary-subtle mb-3" />
-
-          <p className="text-center small text-secondary mb-0">
-            © {new Date().getFullYear()} {process.env.NEXT_PUBLIC_APP_NAME || "IKM Kota Probolinggo"}. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
 
     </div>
   )

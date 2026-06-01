@@ -102,11 +102,9 @@ export default function AboutPlatform({
                 }}
               >
                 <p className="mb-0 text-secondary small">
-                  Temukan berbagai produk unggulan seperti 
-                  <strong> batik khas Probolinggo</strong>, kerajinan tangan, hingga 
-                  produk kuliner lokal yang memiliki kualitas dan ciri khas daerah. 
-                  Setiap produk ditampilkan dengan informasi yang jelas agar membantu 
-                  pengguna dalam mengenal potensi ekonomi lokal secara lebih mendalam.
+                  Temukan koleksi <strong>produk unggulan probolinggo</strong>, terutama 
+                  <strong> batik khas Probolinggo</strong> dengan motif ikonik seperti motif Manggur. Setiap mahakarya kain dan baju batik diproduksi langsung oleh 
+                  pengrajin lokal dengan jaminan kualitas autentik yang mencerminkan kekayaan budaya daerah.
                 </p>
               </div>
 
@@ -119,11 +117,10 @@ export default function AboutPlatform({
                 }}
               >
                 <p className="mb-0 text-secondary small">
-                   Platform ini juga mendukung transaksi online untuk membantu pelaku 
-                  <strong> industri kecil dan menengah</strong> memperluas pasar dan 
-                  meningkatkan daya saing di era digital. Selain itu, website ini 
-                  menjadi sarana promosi dan informasi yang menghubungkan pelaku usaha 
-                  dengan konsumen secara lebih efektif.
+                   Platform ini juga mendukung transaksi online untuk memfasilitasi pelaku IKM ataupun
+                   konsumen yang akan melakukan <strong>jual beli baju batik Probolinggo</strong> dengan mudah dan aman. 
+                  Langkah digitalisasi ini bertujuan meningkatkan daya saing global bagi industri kecil 
+                  dan menengah di era digital.
                 </p>
               </div>
 

@@ -4,6 +4,7 @@ import { Outlet } from "@/types/outlet"
 import { generateSeoMetadata } from "@/lib/seo"
 import { getSeo } from "@/services/seoService"
 import Image from "next/image";
+import Footer from "@/components/layout/Footer"
 
 export const dynamic = "force-dynamic"
 // =========================
@@ -75,26 +76,28 @@ export default async function OutletIKMPage() {
           {/* HEADER */}
           <div className="d-flex align-items-center gap-2 mb-2">
             <span style={{ fontSize: "18px" }}>📍</span>
-            <span className="fw-semibold text-dark">
-              Outlet IKM Probolinggo
+            <span className="fw-semibold text-dark fs-5">
+              Daftar Lokasi Outlet Resmi IKM Kota Probolinggo
             </span>
           </div>
 
           {/* CONTENT */}
           <p className="text-secondary mb-2">
-            Temukan berbagai outlet IKM (Industri Kecil dan Menengah) di Kota Probolinggo
-            yang menyediakan beragam produk lokal seperti batik khas Probolinggo,
-            kerajinan tangan, dan produk unggulan lainnya.
+            Temukan peta lokasi dan alamat lengkap berbagai 
+            galeri fisik Industri Kecil dan Menengah (IKM) yang tersebar di wilayah Kota Probolinggo. Halaman ini 
+            menyajikan panduan rute resmi untuk mempermudah Anda menemukan sentra kerajinan tangan, produk fashion, 
+            hingga <strong>batik khas Probolinggo</strong> autentik langsung dari rumah produksi.
           </p>
 
-          <p className="text-secondary mb-2">
-            Dengan mengunjungi langsung outlet IKM, Anda dapat melihat kualitas produk,
-            berinteraksi dengan pelaku usaha, serta mendukung perkembangan industri kecil
-            dan menengah di daerah.
+          <p className="text-secondary mb-0">
+            Dengan mengunjungi langsung rumah produksi atau <strong>outlet ikm probolinggo</strong>, Anda dapat melihat 
+            proses pembuatan kain tulis secara tradisional, berinteraksi langsung dengan para pelaku usaha lokal, 
+            serta mendapatkan jaminan harga terbaik tangan pertama yang mendukung penuh roda ekonomi industri kecil dan menengah daerah.
           </p>
 
         </div>
       </section>
+
 
       {outlet.length > 0 ? (
         <div className="row row-cols-1 row-cols-md-3 row-cols-lg-3 g-3">
@@ -164,6 +167,7 @@ export default async function OutletIKMPage() {
           </p>
         </div>
       )}
+    <Footer />
     </div>
     </>
   )

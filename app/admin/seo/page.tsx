@@ -23,7 +23,9 @@ export default function SeoSettingsPage() {
     keywords: "",
     page_title: "",
     meta_description: "",
-    meta_author: "",
+    og_title: "",
+    og_description: "",
+    og_type: "website",
     meta_robots: "index, follow",
     heading_h1: "",
     canonical_url: "",
@@ -35,6 +37,10 @@ export default function SeoSettingsPage() {
   const [heroImage, setHeroImage] = useState<File | null>(null)
   const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [deleteImage, setDeleteImage] = useState(false)
+
+  const [ogImage, setOgImage] = useState<File | null>(null)
+  const [ogPreview, setOgPreview] = useState<string | null>(null)
+  const [deleteOgImage, setDeleteOgImage] = useState(false)
 
   useEffect(() => {
     fetchData(page)
@@ -49,7 +55,9 @@ export default function SeoSettingsPage() {
         keywords: data?.keywords ?? "",
         page_title: data?.page_title ?? "",
         meta_description: data?.meta_description ?? "",
-        meta_author: data?.meta_author ?? "",
+        og_title: data?.og_title ?? "",
+        og_description: data?.og_description ?? "",
+        og_type: data?.og_type ?? "website",
         meta_robots: data?.meta_robots ?? "index, follow",
         heading_h1: data?.heading_h1 ?? "",
         canonical_url: data?.canonical_url ?? "",
@@ -62,6 +70,12 @@ export default function SeoSettingsPage() {
         setImagePreview(`${process.env.NEXT_PUBLIC_STORAGE_URL}/${data.hero_image}`)
       } else {
         setImagePreview(null)
+      }
+
+      if (data?.og_image) {
+        setOgPreview(`${process.env.NEXT_PUBLIC_STORAGE_URL}/${data.og_image}`)
+      } else {
+        setOgPreview(null)
       }
       // setHeroImage(null)
     } catch {
@@ -98,6 +112,26 @@ export default function SeoSettingsPage() {
     setDeleteImage(true)
   }
 
+  const handleOgImageChange = (e: any) => {
+  const file = e.target.files?.[0]
+  if (!file) return
+
+  setOgImage(file)
+  setDeleteOgImage(false)
+
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    setOgPreview(e.target?.result as string)
+  }
+  reader.readAsDataURL(file)
+}
+
+const removeOgImage = () => {
+  setOgImage(null)
+  setOgPreview(null)
+  setDeleteOgImage(true)
+}
+
   const handleSubmit = async (e: any) => {
   e.preventDefault()
   setSubmitLoading(true)
@@ -112,7 +146,9 @@ export default function SeoSettingsPage() {
     // optional
     formData.append("keywords", form.keywords || "")
     formData.append("meta_description", form.meta_description || "")
-    formData.append("meta_author", form.meta_author || "")
+    formData.append("og_title", form.og_title || "")
+    formData.append("og_description", form.og_description || "")
+    formData.append("og_type", form.og_type || "website")
     formData.append("meta_robots", form.meta_robots || "")
     formData.append("heading_h1", form.heading_h1 || "")
     formData.append("canonical_url", form.canonical_url || "")
@@ -127,6 +163,14 @@ export default function SeoSettingsPage() {
 
     if (deleteImage) {
       formData.append("delete_hero", "1")
+    }
+
+    if (ogImage) {
+      formData.append("og_image", ogImage)
+    }
+
+    if (deleteOgImage) {
+      formData.append("delete_og", "1")
     }
 
     // 🔥 DEBUG (optional)
@@ -290,19 +334,80 @@ export default function SeoSettingsPage() {
 
           </div>
 
+          
+
           {/* RIGHT */}
           <div className="col-md-4">
+
+            <div className="card mb-3">
+              <div className="card-header bg-white py-3">
+                <p className="mb-0 fw-semibold">Open Graph</p>
+              </div>
+              <div className="card-body">
+
+                <div className="mb-3">
+                  <label className="form-label">OG Title</label>
+                  <input name="og_title" className="form-control" value={form.og_title} onChange={handleChange} />
+                </div>
+
+                <div className="mb-3">
+                  <label className="form-label">OG Description</label>
+                  <textarea name="og_description" className="form-control" rows={2} value={form.og_description} onChange={handleChange} />
+                </div>
+
+                <div className="mb-3">
+                  <label className="form-label">OG Type</label>
+                  <select name="og_type" className="form-select" value={form.og_type} onChange={handleChange}>
+                    <option value="website">Website</option>
+                    <option value="article">Article</option>
+                  </select>
+                </div>
+
+                {/* OG IMAGE */}
+                <div className="text-center">
+                  {ogPreview ? (
+                    <>
+                      <img
+                        src={ogPreview}
+                        className="img-fluid rounded mb-2"
+                        style={{ maxHeight: 150 }}
+                      />
+
+                      <div className="d-flex justify-content-center gap-2">
+                        <button
+                          type="button"
+                          className="btn btn-sm btn-outline-danger"
+                          onClick={removeOgImage}
+                        >
+                          Remove
+                        </button>
+
+                        <label className="btn btn-sm btn-outline-secondary">
+                          Change
+                          <input type="file" hidden onChange={handleOgImageChange} />
+                        </label>
+                      </div>
+                    </>
+                  ) : (
+                    <label className="btn btn-light border w-100">
+                      Upload OG Image
+                      <input type="file" hidden onChange={handleOgImageChange} />
+                    </label>
+                  )}
+
+                  <small className="text-muted d-block mt-2">
+                    Preview share WhatsApp / Facebook
+                  </small>
+                </div>
+
+              </div>
+            </div>
 
             <div className="card mb-3">
               <div className="card-header bg-white py-3">
                 <p className="mb-0 fw-semibold">Meta Settings</p>
               </div>
               <div className="card-body">
-
-                <div className="mb-3">
-                  <label className="form-label">Author</label>
-                  <input name="meta_author" className="form-control" value={form.meta_author} onChange={handleChange} />
-                </div>
 
                 <div className="mb-3">
                   <label className="form-label">Robots</label>

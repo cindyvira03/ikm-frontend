@@ -7,9 +7,9 @@ import {
 } from "react-icons/fa";
 
 export const metadata: Metadata = {
-  title: "Kontak",
+  title: "Hubungi Kami & Layanan IKM",
   description:
-    "Hubungi Jelajah Probolinggo untuk informasi terkait produk IKM Kota Probolinggo, layanan platform, dan kerja sama.",
+    "Hubungi Jelajah Probolinggo untuk informasi produk IKM, bantuan transaksi e-commerce, atau kerja sama resmi dengan para pengrajin batik Kota Probolinggo.",
 };
 
 export default function KontakPage() {
@@ -33,7 +33,7 @@ export default function KontakPage() {
 
             {/* LEFT */}
             <div className="col-md-5">
-              <h4 className="fw-bold mb-3">Terhubung dengan Kami</h4>
+              <h2 className="fw-bold mb-3 fs-4">Terhubung dengan Kami</h2>
 
               <p className="text-secondary">
                 Jika Anda memiliki pertanyaan, saran, atau ingin mengetahui lebih

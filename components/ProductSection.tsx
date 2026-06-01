@@ -48,7 +48,7 @@ export default function ProductSection({ products = [] }: any) {
                     </div>
 
                     <div className="home-product-content">
-                      <h6>{product.nama_produk}</h6>
+                      <h3 style={{ fontSize: "16px" }}>{product.nama_produk}</h3>
                     </div>
 
                   </div>

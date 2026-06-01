@@ -4,6 +4,7 @@ import ProductCard from "@/components/produk/ProductCard"
 import { generateSeoMetadata } from "@/lib/seo"
 import { getSeo } from "@/services/seoService"
 import Pagination from "@/components/Pagination"
+import Footer from "@/components/layout/Footer"
 
 export const dynamic = "force-dynamic"
 
@@ -75,11 +76,11 @@ export default async function ProdukIKMPage({ searchParams }: PageProps) {
 
         {/* H1 */}
         <h1 className="text-dark fw-semibold mb-4 fs-1">
-          Daftar Produk IKM
+           Daftar Produk IKM
         </h1>
 
         {/* SEO CONTENT */}
-        <section className="mb-4">
+        <section className="mb-5">
           <div
             className="p-4 rounded-4"
             style={{
@@ -88,26 +89,27 @@ export default async function ProdukIKMPage({ searchParams }: PageProps) {
             }}
           >
             <div className="d-flex align-items-center gap-2 mb-2">
-              <span style={{ fontSize: "18px" }}>ℹ️</span>
-              <span className="fw-semibold text-dark">
-                Informasi Produk IKM Kota Probolinggo
+              <span style={{ fontSize: "18px" }}>🛒</span>
+              <span className="fw-semibold text-dark fs-5">
+                E-Katalog Resmi Industri Kecil Menengah Kota Probolinggo
               </span>
             </div>
 
             <p className="text-secondary mb-2">
-              Jelajahi berbagai produk IKM (Industri Kecil dan Menengah) di Kota Probolinggo,
-              mulai dari kerajinan tangan, kuliner, hingga batik khas Probolinggo.
+              Jelajahi pusat <strong>jual baju batik Probolinggo</strong>, produk fashion, kerajinan tangan, hingga 
+              ragam kuliner khas dari para pelaku industri lokal binaan Disperinaker Kota Probolinggo. Saat ini, platform kami berfokus 
+              penuh pada digitalisasi koleksi <strong>batik Probolinggo</strong> dengan 
+              <strong> motif khas Probolinggo</strong> yang autentik seperti corak Manggur.
             </p>
 
             <p className="text-secondary mb-0">
-              Salah satu produk unggulan adalah <strong>batik Probolinggo </strong>
-              dengan berbagai <strong>motif khas Probolinggo</strong> yang bernilai budaya.
+              Gunakan fitur filter kategori untuk menemukan produk fashion batik premium siap beli. Nikmati kemudahan 
+              belanja online terpercaya langsung dari tangan pertama.
             </p>
 
-            <p
-              className="mt-3 d-inline-flex align-items-center gap-2 fw-semibold"
+            <div
+              className="mt-3 d-inline-flex align-items-center gap-2 fw-semibold text-primary"
               style={{
-                color: "#2563eb",
                 background: "#eff6ff",
                 padding: "8px 14px",
                 borderRadius: "999px",
@@ -115,8 +117,8 @@ export default async function ProdukIKMPage({ searchParams }: PageProps) {
                 width: "fit-content",
               }}
             >
-              🚀 Dukung produk lokal sekarang
-            </p>
+              ✨ Mendukung Ekonomi Lokal Melalui Digitalisasi IKM
+            </div>
           </div>
         </section>
 
@@ -169,6 +171,8 @@ export default async function ProdukIKMPage({ searchParams }: PageProps) {
           currentPage={meta.current_page}
           lastPage={meta.last_page}
         />
+
+        <Footer />
       </div>
     </>
   )

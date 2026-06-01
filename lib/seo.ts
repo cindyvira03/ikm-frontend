@@ -18,11 +18,14 @@ export async function generateSeoMetadata(page: string) {
         canonical: seo.canonical_url || "",
       },
 
-      openGraph: {
-        title: seo.page_title,
-        description: seo.meta_description,
-        url: seo.canonical_url,
-        type: "website",
+       openGraph: {
+        title: seo.og_title || seo.page_title,
+        description: seo.og_description || seo.meta_description || "",
+        url: seo.canonical_url || "",
+        type: seo.og_type || "website",
+        images: seo.og_image
+          ? [`${process.env.NEXT_PUBLIC_STORAGE_URL}/${seo.og_image}`]
+          : [],
       },
 
       other: {

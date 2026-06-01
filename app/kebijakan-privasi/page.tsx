@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Kebijakan Privasi",
+  title: "Kebijakan Privasi & Perlindungan Data",
   description:
-    "Kebijakan privasi Jelajah Probolinggo yang menjelaskan bagaimana data pengguna dikumpulkan, digunakan, dan dilindungi dalam platform e-katalog dan e-commerce IKM Kota Probolinggo.",
+    "Kebijakan privasi Jelajah Probolinggo. Pelajari bagaimana data Anda dikumpulkan, digunakan, dan dilindungi dengan aman dalam sistem e-commerce IKM kami.",
 };
 
 export default function PrivacyPolicyPage() {
@@ -25,35 +25,35 @@ export default function PrivacyPolicyPage() {
         <div className="container">
           <div className="policy-card">
 
-            <h6>1. Informasi yang Dikumpulkan</h6>
+            <h2 className="text-primary fs-4">1. Informasi yang Dikumpulkan</h2>
             <p>
               Kami dapat mengumpulkan informasi seperti nama, email, serta data
               yang diberikan saat melakukan pemesanan, termasuk bukti pembayaran.
             </p>
 
-            <h6>2. Penggunaan Informasi</h6>
+            <h2 className="text-primary fs-4">2. Penggunaan Informasi</h2>
             <p>
               Informasi digunakan untuk memproses pesanan, mengelola transaksi,
               dan meningkatkan layanan platform.
             </p>
 
-            <h6>3. Keamanan Data</h6>
+            <h2 className="text-primary fs-4">3. Keamanan Data</h2>
             <p>
               Kami berupaya menjaga keamanan data pengguna dan tidak
               menyalahgunakan informasi yang diberikan.
             </p>
 
-            <h6>4. Cookies</h6>
+            <h2 className="text-primary fs-4">4. Cookies</h2>
             <p>
               Website ini dapat menggunakan cookies untuk meningkatkan pengalaman pengguna.
             </p>
 
-            <h6>5. Perubahan Kebijakan</h6>
+            <h2 className="text-primary fs-4">5. Perubahan Kebijakan</h2>
             <p>
               Kebijakan ini dapat diperbarui sewaktu-waktu sesuai pengembangan sistem.
             </p>
 
-            <h6>6. Kontak</h6>
+            <h2 className="text-primary fs-4">6. Kontak</h2>
             <p>
               Untuk pertanyaan, silakan hubungi melalui halaman kontak yang tersedia.
             </p>

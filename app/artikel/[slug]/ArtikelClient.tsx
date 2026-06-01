@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import Footer from "@/components/layout/Footer"
 
 // 👉 type sederhana (boleh pakai dari types kamu juga)
 type Artikel = {
@@ -172,6 +173,7 @@ export default function ArtikelClient({ artikel, list }: Props) {
 
         </div>
       </div>
+      <Footer />
     </main>
   )
 }

@@ -79,18 +79,24 @@ export default async function Home() {
 
             <div className="col-md-6 px-5 py-5">
               {/* ✅ H1 dari SEO */}
-              <h1 className="fw-bold display-6">
-                Selamat Datang di <br />
-                Jelajah Probolinggo <br />
-                <span className="text-primary fs-3">
-                  {seo?.heading_h1 || "Batik Probolinggo & Produk IKM Unggulan"}
-                </span>
-              </h1>
+              <div>
+                {/* Teks Sapaan dipisah menggunakan tag <p> atau <span> biasa */}
+                <p className="fw-bold fs-3 text-dark">
+                  Selamat Datang di Jelajah Probolinggo
+                </p>
+                
+                {/* Tag <h1> murni hanya berisi kata kunci utama yang kaya SEO */}
+                <h1 className="text-primary fs-3">
+                  {seo?.heading_h1 || "Batik Khas Probolinggo & E-Katalog IKM"}
+                </h1>
+              </div>
+
 
               <p className="mt-3 text-muted">
-                Platform e-katalog Industri Kecil dan Menengah (IKM) Kota Probolinggo berbasis e-commerce untuk mempromosikan dan menjual berbagai produk unggulan dari 
-                Industri Kecil dan Menengah (IKM) Kota Probolinggo, khususnya batik khas Probolinggo dengan 
-                beragam motif unik yang dapat dibeli secara online dengan mudah dan terpercaya.
+                Platform e-katalog berbasis e-commerce yang didukung oleh Disperinaker Kota Probolinggo
+                untuk para pelaku Industri Kecil Menengah (IKM) guna mempromosikan produk unggulannya,
+                terutama batik khas Probolinggo. Temukan produk dari para pengrajin lokal ini dan
+                nikmati pengalaman bertransaksi yang mudah, aman, dan terpercaya.
               </p>
 
               <HeroCTA />
@@ -190,10 +196,10 @@ export default async function Home() {
                 <div className="col-md-4 mb-3">
                   <div className="mini-card">
                     <div className="fs-3">📈</div>
-                    <h6 className="fw-semibold mt-2">Pengembangan Usaha</h6>
+                    <h3 className="fs-5 fw-semibold mt-2">Pengembangan Usaha</h3>
                     <p className="text-muted small">
-                      Program pembinaan, pelatihan, dan legalitas usaha bagi IKM industri kecil 
-                      dan menengah untuk meningkatkan kualitas dan profesionalitas bisnis.
+                      Program pembinaan, pelatihan, dan legalitas usaha bagi para pelaku industri 
+                      lokal untuk meningkatkan kualitas dan profesionalitas bisnis.
                     </p>
                   </div>
                 </div>
@@ -201,7 +207,7 @@ export default async function Home() {
                 <div className="col-md-4 mb-3">
                   <div className="mini-card">
                     <div className="fs-3">🎨</div>
-                    <h6 className="fw-semibold mt-2">Batik Probolinggo</h6>
+                    <h3 className="fs-5 fw-semibold mt-2">Batik Khas Probolinggo</h3>
                     <p className="text-muted small">
                       Beragam motif batik khas Probolinggo dengan nilai budaya tinggi yang menjadi 
                       produk unggulan IKM dan identitas daerah.
@@ -212,9 +218,9 @@ export default async function Home() {
                 <div className="col-md-4 mb-3">
                   <div className="mini-card">
                     <div className="fs-3">🚀</div>
-                    <h6 className="fw-semibold mt-2">Daya Saing Produk</h6>
+                    <h3 className="fs-5 fw-semibold mt-2">Daya Saing Produk</h3>
                     <p className="text-muted small">
-                      Produk IKM Kota Probolinggo terus dikembangkan agar mampu bersaing di pasar 
+                      Produk unggulan Probolinggo terus dikembangkan agar mampu bersaing di pasar 
                       nasional melalui inovasi, kualitas, dan dukungan pemerintah.
                     </p>
                   </div>

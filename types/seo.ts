@@ -3,7 +3,10 @@ export interface SeoSetting {
   keywords: string | null
   page_title: string
   meta_description: string | null
-  meta_author: string | null
+  og_title: string | null
+  og_description: string | null
+  og_image?: string | File | null
+  og_type: string | null
   meta_robots: string
   heading_h1: string | null
   canonical_url: string | null

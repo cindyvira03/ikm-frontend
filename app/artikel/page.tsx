@@ -2,6 +2,7 @@ import { getArtikel } from "@/services/artikelService"
 import ArtikelSection from "@/components/ArtikelSection"
 import { generateSeoMetadata } from "@/lib/seo"
 import { getSeo } from "@/services/seoService"
+import Footer from "@/components/layout/Footer"
 
 export const dynamic = "force-dynamic"
 
@@ -17,7 +18,7 @@ export default async function ArtikelPage() {
   ])
 
   const artikel = artikelRes?.artikel ?? []
-  const seo = seoData
+  const seo = seoData?.data ?? seoData;
 
     const structuredData = {
   "@context": "https://schema.org",
@@ -46,26 +47,31 @@ export default async function ArtikelPage() {
   />
       
       {/* HERO / HEADER */}
-      <section className="py-5 text-center border-bottom">
+      <section className="py-5 text-center border-bottom bg-light">
         <div className="container">
-          <h1 className="fw-bold">Artikel & Informasi Seputar IKM (Industri Kecil dan Menengah Kota Probolinggo</h1>
-          <p className="text-muted mt-3">
-            Temukan berbagai artikel, berita, dan informasi terbaru seputar 
-            <strong> IKM (Industri Kecil dan Menengah) Kota Probolinggo</strong>, 
-            mulai dari pengembangan usaha, inovasi produk, hingga potensi 
-            <strong> produk unggulan daerah seperti batik khas Probolinggo</strong>.
+          {/* Mengunci keyword utama dengan durasi karakter yang pas */}
+          <h1 className="fw-bold display-6 text-dark mb-3">
+            {seo?.heading_h1 || "Kabar & Cerita Menarik Seputar IKM Probolinggo"}
+          </h1>
+          
+          <p className="text-secondary max-w-2xl mx-auto mb-2">
+            Yuk, intip berbagai cerita seru, info terbaru, dan perkembangan dunia 
+            <strong> Industri Kecil dan Menengah (IKM) di Kota Probolinggo</strong>. 
+            Di sini, kita bakal bahas banyak hal mulai dari tips mengembangkan usaha lokal, inovasi produk yang kreatif, 
+            sampai keunikan warisan budaya seperti <strong>batik khas Probolinggo</strong>.
           </p>
-
-          <p className="text-muted mb-0">
+          
+          <p className="text-secondary max-w-2xl mx-auto mb-0">
             Dapatkan insight menarik mengenai dunia industri lokal yang terus berkembang 
             serta peran IKM dalam meningkatkan perekonomian daerah.
           </p>
         </div>
       </section>
 
+
       {/* LIST ARTIKEL */}
       <ArtikelSection artikel={artikel} showHeader={false} />
-
+      <Footer />
     </main>
   )
 }

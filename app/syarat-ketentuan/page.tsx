@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Syarat & Ketentuan",
   description:
-    "Syarat dan ketentuan penggunaan platform Jelajah Probolinggo, termasuk aturan transaksi, penggunaan website, dan tanggung jawab pengguna dalam sistem e-commerce IKM.",
+    "Pahami syarat dan ketentuan resmi Jelajah Probolinggo. Aturan transaksi belanja e-commerce yang aman, penggunaan website, dan tanggung jawab pengguna IKM.",
 };
 
 export default function TermsPage() {
@@ -25,34 +25,34 @@ export default function TermsPage() {
         <div className="container">
           <div className="policy-card">
 
-            <h6>1. Penggunaan Website</h6>
+            <h2 className="text-primary fs-4">1. Penggunaan Website</h2>
             <p>
               Website ini digunakan sebagai media katalog dan pemesanan produk IKM.
             </p>
 
-            <h6>2. Transaksi</h6>
+            <h2 className="text-primary fs-4">2. Transaksi</h2>
             <p>
               Pengguna dapat melakukan pemesanan melalui sistem keranjang dan
               melakukan pembayaran melalui transfer dengan upload bukti pembayaran.
             </p>
 
-            <h6>3. Tanggung Jawab Pengguna</h6>
+            <h2 className="text-primary fs-4">3. Tanggung Jawab Pengguna</h2>
             <p>
               Pengguna bertanggung jawab atas data yang diberikan saat melakukan pemesanan.
             </p>
 
-            <h6>4. Ketersediaan Produk</h6>
+            <h2 className="text-primary fs-4">4. Ketersediaan Produk</h2>
             <p>
               Produk dapat berubah sewaktu-waktu sesuai kondisi pelaku usaha.
             </p>
 
-            <h6>5. Batasan Tanggung Jawab</h6>
+            <h2 className="text-primary fs-4">5. Batasan Tanggung Jawab</h2>
             <p>
               Platform berfungsi sebagai perantara dan tidak bertanggung jawab
               atas kendala di luar sistem.
             </p>
 
-            <h6>6. Perubahan Ketentuan</h6>
+            <h2 className="text-primary fs-4">6. Perubahan Ketentuan</h2>
             <p>
               Ketentuan dapat diperbarui sesuai kebutuhan sistem.
             </p>

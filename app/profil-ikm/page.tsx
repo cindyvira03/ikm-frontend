@@ -5,6 +5,7 @@ import { generateSeoMetadata } from "@/lib/seo"
 import { getSeo } from "@/services/seoService"
 import Image from "next/image";
 import Pagination from "@/components/Pagination"
+import Footer from "@/components/layout/Footer"
 
 export const dynamic = "force-dynamic"
 
@@ -90,7 +91,7 @@ export default async function ProfilIKMPage({ searchParams }: PageProps) {
           {/* HEADER */}
           <div className="d-flex align-items-center gap-2 mb-2">
             <span style={{ fontSize: "18px" }}>🏪</span>
-            <span className="fw-semibold text-dark">
+            <span className="fw-semibold text-dark fs-5">
               Profil IKM Kota Probolinggo
             </span>
           </div>
@@ -187,6 +188,8 @@ export default async function ProfilIKMPage({ searchParams }: PageProps) {
         currentPage={meta.current_page}
         lastPage={meta.last_page}
       />
+      {/* FOOTER */}
+      <Footer />
     </div>
     </>
   )

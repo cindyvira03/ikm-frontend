@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { ProfilIkm } from "@/types/profilIkm"
 import Image from "next/image";
+import Footer from "@/components/layout/Footer"
 
 export default function ProfilIkmClient({
   ikm,
@@ -267,7 +268,7 @@ export default function ProfilIkmClient({
           )}
         </div>
       </div>
-
+      <Footer />
     </div>
   )
 }

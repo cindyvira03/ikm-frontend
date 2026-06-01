@@ -7,6 +7,7 @@ import { addToKeranjang } from "@/services/pembeliService"
 import { useCartStore } from "@/stores/cartStore"
 import { toast } from "react-toastify"
 import Image from "next/image";
+import Footer from "@/components/layout/Footer"
 
 export default function ProdukDetailClient({ produk, list }: any) {
   const router = useRouter()
@@ -245,6 +246,7 @@ export default function ProdukDetailClient({ produk, list }: any) {
 
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

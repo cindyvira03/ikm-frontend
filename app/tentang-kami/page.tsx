@@ -5,7 +5,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Tentang Kami",
   description:
-    "Jelajah Probolinggo adalah platform e-katalog dan e-commerce sederhana untuk produk IKM Kota Probolinggo. Menampilkan produk lokal, fitur keranjang, serta sistem transaksi dengan konfirmasi pembayaran.",
+    "Mengenal Jelajah Probolinggo, platform e-katalog e-commerce resmi produk IKM. Temukan koleksi batik khas, fitur keranjang belanja, dan transaksi online aman.",
 };
 
 export default function TentangKamiPage() {
@@ -86,9 +86,9 @@ export default function TentangKamiPage() {
             <div className="col-md-6">
                 <div className="info-card p-4">
 
-                <h6 className="fw-semibold mb-3">
+                <h2 className="fw-semibold mb-3 fs-5">
                 Didukung oleh Program Disperinaker Kota Probolinggo
-                </h6>
+                </h2>
 
                 <p className="small text-secondary">
                     Dikembangkan sebagai bagian dari program digitalisasi IKM (Industri Kecil Menengah) oleh
@@ -98,7 +98,7 @@ export default function TentangKamiPage() {
 
                 <hr />
 
-                <h6 className="fw-semibold mt-3">Kontak</h6>
+                <h2 className="fw-semibold mt-3 fs-6">Kontak</h2>
 
                 <p className="small mb-1">
                     📧 disperinnaker@probolinggokota.go.id
@@ -112,9 +112,9 @@ export default function TentangKamiPage() {
 
                 <div className="info-card p-4 mt-4">
 
-                    <h6 className="fw-semibold mb-3">
+                    <h2 className="fw-semibold mb-3 fs-6">
                         Tim Pengembang Sistem
-                    </h6>
+                    </h2>
 
                     <p className="small text-secondary">
                         💻 Platform ini dikembangkan melalui kolaborasi tim pengembang sebagai bagian dari

@@ -67,9 +67,9 @@ export default function ArtikelSection({
                 {/* ✅ FLEX biar button selalu di bawah */}
                 <div className="card-body d-flex flex-column">
                   
-                  <h6 className="fw-semibold text-dark">
+                  <h3 className="fw-semibold text-dark" style={{ fontSize: "16px" }}>
                     {item.judul}
-                  </h6>
+                  </h3>
 
                   <p className="text-muted small mt-2">
                     {getPreview(item.isi, 100)}

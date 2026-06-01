@@ -5,7 +5,7 @@ import { Metadata } from "next"
 import Pagination from "@/components/Pagination"
 import { Product } from "@/types/product" 
 import { Kategori } from "@/types/kategori" 
-
+import Footer from "@/components/layout/Footer"
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -22,8 +22,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const namaKategori = currentKategori?.nama_kategori || ""
     const targetSlug = currentKategori?.slug || slug // 👈 Gunakan slug dari DB, atau fallback ke parameter URL
 
-    const title = `Daftar Produk IKM Kategori ${namaKategori} - Kota Probolinggo`
-    const description = `Jelajahi berbagai produk IKM unggulan Kota Probolinggo untuk kategori ${namaKategori}. Dukung produk lokal sekarang!`
+    const title = `Daftar Produk IKM Kategori ${namaKategori}`
+    const description = `Mau beli produk IKM kategori ${namaKategori} asli Probolinggo? Yuk, belanja online dengan mudah, aman, dan terpercaya langsung dari para pengrajin lokal.`
     const correctUrl = `https://jelajah.ikmprobolinggo.com/produk-ikm/kategori/${targetSlug}`
 
     return {
@@ -87,49 +87,47 @@ export default async function ProdukKategoriPage({
       </h1>
 
       {/* SEO CONTENT */}
-      <section className="mb-4">
-        <div
-          className="p-4 rounded-4"
-          style={{
-            background: "linear-gradient(135deg, #f8f9ff, #eef3ff)",
-            border: "1px solid #e0e7ff",
-          }}
-        >
-          {/* HEADER INFO */}
-          <div className="d-flex align-items-center gap-2 mb-2">
-            <span style={{ fontSize: "18px" }}>ℹ️</span>
-            <span className="fw-semibold text-dark">
-              Informasi Produk IKM Kota Probolinggo
-            </span>
-          </div>
-
-          {/* CONTENT */}
-          <p className="text-secondary mb-2">
-            Jelajahi berbagai produk IKM (Industri Kecil dan Menengah) di Kota Probolinggo,
-            mulai dari kerajinan tangan, kuliner, hingga batik khas Probolinggo.
-          </p>
-
-          <p className="text-secondary mb-0">
-            Salah satu produk unggulan adalah <strong>batik Probolinggo </strong>
-            dengan berbagai <strong>motif khas Probolinggo</strong> yang bernilai budaya.
-          </p>
-          <p
-            className="mt-3 d-inline-flex align-items-center gap-2 fw-semibold"
+      <section className="mb-5">
+          <div
+            className="p-4 rounded-4"
             style={{
-              color: "#2563eb",
-              background: "#eff6ff",
-              padding: "8px 14px",
-              borderRadius: "999px",
-              fontSize: "14px",
-              width: "fit-content",
+              background: "linear-gradient(135deg, #f8f9ff, #eef3ff)",
+              border: "1px solid #e0e7ff",
             }}
           >
-            🚀 Dukung produk lokal sekarang
-          </p>
-          
-        </div>
-      </section>
+            <div className="d-flex align-items-center gap-2 mb-2">
+              <span style={{ fontSize: "18px" }}>🛒</span>
+              <span className="fw-semibold text-dark fs-5">
+                E-Katalog Resmi Industri Kecil Menengah Kota Probolinggo
+              </span>
+            </div>
 
+            <p className="text-secondary mb-2">
+              Jelajahi pusat <strong>jual baju batik Probolinggo</strong>, produk fashion, kerajinan tangan, hingga 
+              ragam kuliner khas dari para pelaku industri lokal binaan Disperinaker Kota Probolinggo. Saat ini, platform kami berfokus 
+              penuh pada digitalisasi koleksi <strong>batik Probolinggo</strong> dengan 
+              <strong> motif khas Probolinggo</strong> yang autentik seperti corak Manggur.
+            </p>
+
+            <p className="text-secondary mb-0">
+              Gunakan fitur filter kategori untuk menemukan produk fashion batik premium siap beli. Nikmati kemudahan 
+              belanja online terpercaya langsung dari tangan pertama.
+            </p>
+
+            <div
+              className="mt-3 d-inline-flex align-items-center gap-2 fw-semibold text-primary"
+              style={{
+                background: "#eff6ff",
+                padding: "8px 14px",
+                borderRadius: "999px",
+                fontSize: "14px",
+                width: "fit-content",
+              }}
+            >
+              ✨ Mendukung Ekonomi Lokal Melalui Digitalisasi IKM
+            </div>
+          </div>
+        </section>
 
       {/* Kategori */}
       <div className="d-flex flex-wrap gap-2 mb-4">
@@ -175,6 +173,7 @@ export default async function ProdukKategoriPage({
       currentPage={meta.current_page}
       lastPage={meta.last_page}
     />
+    <Footer />
     </div>
   )
 }
