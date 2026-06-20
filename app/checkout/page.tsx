@@ -387,22 +387,41 @@ const closeModal = () => {
             </div>
           ) : (
           <>
-            {data?.outlets?.map((o: any) => (
-              <div key={o.id} className="border rounded p-2 mb-2">
-                <p className="mb-2">{o.alamat}, Kecamatan {o.kecamatan}, {o.provinsi}, {o.kota_kab}</p>
-                
+            <>
+              {!data?.outlets || data.outlets.length === 0 ? (
+                <div className="text-center py-3">
+                  <p className="text-muted mb-2">
+                    Alamat outlet belum ditambahkan oleh pemilik usaha
+                  </p>
 
-                {o.lokasi_googlemap && (
                   <a
-                    href={o.lokasi_googlemap}
+                    href={`https://wa.me/${data?.no_telp || ""}`}
                     target="_blank"
-                    className="btn btn-outline-primary btn-sm"
+                    className="btn btn-success btn-sm"
                   >
-                    📍 Lihat di Google Maps
+                    Hubungi via WhatsApp
                   </a>
-                )}
-              </div>
-            ))}
+                </div>
+              ) : (
+                data.outlets.map((o: any) => (
+                  <div key={o.id} className="border rounded p-2 mb-2">
+                    <p className="mb-2">
+                      {o.alamat}, Kecamatan {o.kecamatan}, {o.provinsi}, {o.kota_kab}
+                    </p>
+
+                    {o.lokasi_googlemap && (
+                      <a
+                        href={o.lokasi_googlemap}
+                        target="_blank"
+                        className="btn btn-outline-primary btn-sm"
+                      >
+                        📍 Lihat di Google Maps
+                      </a>
+                    )}
+                  </div>
+                ))
+              )}
+            </>
           </>
 )}
         </div>

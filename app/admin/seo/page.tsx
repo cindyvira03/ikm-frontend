@@ -227,219 +227,168 @@ const removeOgImage = () => {
       <form onSubmit={handleSubmit}>
         <div className="row">
 
-          {/* LEFT */}
+          {/* LEFT - META DATA */}
           <div className="col-md-8">
-
             <div className="card mb-4">
               <div className="card-header bg-white py-3">
-                <p className="mb-0 fw-semibold">General SEO</p>
+                <p className="mb-0 fw-semibold">Meta Data</p>
               </div>
               <div className="card-body">
 
                 <div className="mb-3">
                   <label className="form-label">Page Title</label>
-                  <input name="page_title" className="form-control" value={form.page_title} onChange={handleChange} required />
+                  <input
+                    name="page_title"
+                    className="form-control"
+                    value={form.page_title}
+                    onChange={handleChange}
+                    required
+                  />
+                  <small className="text-muted fst-italic">
+                    Judul halaman yang muncul di tab browser dan hasil pencarian Google.
+                  </small>
                 </div>
 
                 <div className="mb-3">
                   <label className="form-label">Meta Description</label>
-                  <textarea name="meta_description" className="form-control" rows={3} value={form.meta_description} onChange={handleChange} />
+                  <textarea
+                    name="meta_description"
+                    className="form-control"
+                    rows={3}
+                    value={form.meta_description}
+                    onChange={handleChange}
+                  />
+                  <small className="text-muted fst-italic">
+                    Deskripsi singkat halaman yang ditampilkan di hasil pencarian Google.
+                  </small>
                 </div>
-
-                <div className="mb-3">
-                  <label className="form-label">Keywords</label>
-                  <textarea name="keywords" className="form-control" rows={3} value={form.keywords} onChange={handleChange} />
-                </div>
-
-              </div>
-            </div>
-
-            <div className="card mb-4">
-              <div className="card-header bg-white py-3">
-                <p className="mb-0 fw-semibold">Struktur Konten</p>
-              </div>
-              <div className="card-body">
 
                 <div className="mb-3">
                   <label className="form-label">Heading H1</label>
-                  <input name="heading_h1" className="form-control" value={form.heading_h1} onChange={handleChange} />
+                  <input
+                    name="heading_h1"
+                    className="form-control"
+                    value={form.heading_h1}
+                    onChange={handleChange}
+                  />
+                  <small className="text-muted fst-italic">
+                    Judul utama yang muncul di halaman (penting untuk SEO dan struktur konten).
+                  </small>
                 </div>
 
-                <div className="mb-3">
-                  <label className="form-label">Canonical URL</label>
-                  <input name="canonical_url" className="form-control" value={form.canonical_url} onChange={handleChange} />
-                </div>
-
-                {/* ✅ Upload hanya untuk home & sentra */}
+                {/* HERO IMAGE KHUSUS */}
                 {(page === "home" || page === "sentra_batik") && (
-                <div className="card border mb-3">
-                  <div className="card-header bg-white py-3">
-                    <p className="mb-0 fw-semibold">Hero Image</p>
-                  </div>
+                  <div className="card border mb-3">
+                    <div className="card-header bg-white py-3">
+                      <p className="mb-0 fw-semibold">Hero Image</p>
+                    </div>
 
-                  <div className="card-body text-center">
-                    {imagePreview ? (
-                      <>
-                        <img
-                          src={imagePreview}
-                          className="img-fluid rounded mb-3"
-                          style={{ maxHeight: 200 }}
-                        />
+                    <div className="card-body text-center">
+                      {imagePreview ? (
+                        <>
+                          <img
+                            src={imagePreview}
+                            className="img-fluid rounded mb-3"
+                            style={{ maxHeight: 200 }}
+                          />
 
-                        <div className="d-flex justify-content-center gap-2">
-                          <button
-                            type="button"
-                            className="btn btn-sm btn-outline-danger"
-                            onClick={removeImage}
-                          >
-                            Remove
-                          </button>
+                          <div className="d-flex justify-content-center gap-2">
+                            <button
+                              type="button"
+                              className="btn btn-sm btn-outline-danger"
+                              onClick={removeImage}
+                            >
+                              Remove
+                            </button>
 
-                          <label className="btn btn-sm btn-outline-secondary">
-                            Change
+                            <label className="btn btn-sm btn-outline-secondary">
+                              Change
+                              <input type="file" hidden onChange={handleImageChange} />
+                            </label>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-secondary">
+                            Gambar ini akan ditampilkan di bagian hero halaman
+                          </p>
+
+                          <label className="btn btn-light border">
+                            Upload Image
                             <input type="file" hidden onChange={handleImageChange} />
                           </label>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <p className="text-secondary">
-                          Gambar ini akan ditampilkan di hero section halaman
-                        </p>
+                        </>
+                      )}
 
-                        <label className="btn btn-light border">
-                          Upload Image
-                          <input type="file" hidden onChange={handleImageChange} />
-                        </label>
-                      </>
-                    )}
-
-                    <small className="text-muted d-block mt-2">
-                      Maks 2MB (jpg,jpeg,png,webp)
-                    </small>
+                      <small className="text-muted d-block mt-2 fst-italic">
+                        Gunakan gambar berkualitas tinggi untuk tampilan awal halaman.
+                      </small>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
-                {/* ✅ Image Alt hanya untuk home & sentra */}
                 {(page === "home" || page === "sentra_batik") && (
                   <div className="mb-3">
                     <label className="form-label">Image Alt</label>
-                    <input name="image_alt" className="form-control" value={form.image_alt} onChange={handleChange} />
+                    <input
+                      name="image_alt"
+                      className="form-control"
+                      value={form.image_alt}
+                      onChange={handleChange}
+                    />
+                    <small className="text-muted fst-italic">
+                      Deskripsi gambar untuk membantu mesin pencari memahami isi gambar.
+                    </small>
                   </div>
                 )}
 
               </div>
             </div>
-
           </div>
 
-          
 
-          {/* RIGHT */}
+          {/* RIGHT - TECHNICAL SETTINGS */}
           <div className="col-md-4">
-
-            <div className="card mb-3">
+            <div className="card mb-4">
               <div className="card-header bg-white py-3">
-                <p className="mb-0 fw-semibold">Open Graph</p>
+                <p className="mb-0 fw-semibold">Technical Settings</p>
               </div>
               <div className="card-body">
 
                 <div className="mb-3">
-                  <label className="form-label">OG Title</label>
-                  <input name="og_title" className="form-control" value={form.og_title} onChange={handleChange} />
+                  <label className="form-label">Canonical URL</label>
+                  <input
+                    name="canonical_url"
+                    className="form-control"
+                    value={form.canonical_url}
+                    onChange={handleChange}
+                  />
+                  <small className="text-muted fst-italic">
+                    URL utama halaman untuk menghindari duplikat konten di mesin pencari.
+                  </small>
                 </div>
 
                 <div className="mb-3">
-                  <label className="form-label">OG Description</label>
-                  <textarea name="og_description" className="form-control" rows={2} value={form.og_description} onChange={handleChange} />
-                </div>
-
-                <div className="mb-3">
-                  <label className="form-label">OG Type</label>
-                  <select name="og_type" className="form-select" value={form.og_type} onChange={handleChange}>
-                    <option value="website">Website</option>
-                    <option value="article">Article</option>
+                  <label className="form-label">Meta Robots</label>
+                  <select
+                    name="meta_robots"
+                    className="form-select"
+                    value={form.meta_robots}
+                    onChange={handleChange}
+                  >
+                    <option value="index, follow">Index, Follow</option>
+                    <option value="noindex, follow">No Index, Follow</option>
+                    <option value="noindex, nofollow">No Index, No Follow</option>
                   </select>
-                </div>
-
-                {/* OG IMAGE */}
-                <div className="text-center">
-                  {ogPreview ? (
-                    <>
-                      <img
-                        src={ogPreview}
-                        className="img-fluid rounded mb-2"
-                        style={{ maxHeight: 150 }}
-                      />
-
-                      <div className="d-flex justify-content-center gap-2">
-                        <button
-                          type="button"
-                          className="btn btn-sm btn-outline-danger"
-                          onClick={removeOgImage}
-                        >
-                          Remove
-                        </button>
-
-                        <label className="btn btn-sm btn-outline-secondary">
-                          Change
-                          <input type="file" hidden onChange={handleOgImageChange} />
-                        </label>
-                      </div>
-                    </>
-                  ) : (
-                    <label className="btn btn-light border w-100">
-                      Upload OG Image
-                      <input type="file" hidden onChange={handleOgImageChange} />
-                    </label>
-                  )}
-
-                  <small className="text-muted d-block mt-2">
-                    Preview share WhatsApp / Facebook
+                  <small className="text-muted fst-italic">
+                    Mengatur apakah halaman boleh diindeks dan diikuti oleh mesin pencari.
                   </small>
                 </div>
 
               </div>
             </div>
 
-            <div className="card mb-3">
-              <div className="card-header bg-white py-3">
-                <p className="mb-0 fw-semibold">Meta Settings</p>
-              </div>
-              <div className="card-body">
-
-                <div className="mb-3">
-                  <label className="form-label">Robots</label>
-                  <select name="meta_robots" className="form-select" value={form.meta_robots} onChange={handleChange}>
-                    <option value="index, follow">Index, Follow</option>
-                    <option value="noindex, follow">No Index, Follow</option>
-                    <option value="noindex, nofollow">No Index, No Follow</option>
-                  </select>
-                </div>
-
-              </div>
-            </div>
-
-            <div className="card mb-3">
-              <div className="card-header bg-white py-3">
-                <p className="mb-0 fw-semibold">System SEO</p>
-              </div>
-              <div className="card-body">
-
-                <div className="form-check mb-2">
-                  <input type="checkbox" name="enable_sitemap" className="form-check-input" checked={form.enable_sitemap} onChange={handleChange} />
-                  <label className="form-check-label">Aktifkan Sitemap</label>
-                </div>
-
-                <div className="form-check mb-2">
-                  <input type="checkbox" name="enable_robots" className="form-check-input" checked={form.enable_robots} onChange={handleChange} />
-                  <label className="form-check-label">Aktifkan Robots.txt</label>
-                </div>
-
-              </div>
-            </div>
-
+            {/* BUTTON */}
             <div className="card">
               <div className="card-body">
                 <button type="submit" className="btn btn-primary w-100" disabled={submitLoading}>

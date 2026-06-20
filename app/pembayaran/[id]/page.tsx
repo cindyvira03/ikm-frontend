@@ -16,6 +16,7 @@ export default function PembayaranPage() {
     nama_rekening: string
     no_rekening: string
     jenis_rekening: string
+    no_telp: string
   } | null>(null)
 
   // =========================
@@ -93,19 +94,27 @@ export default function PembayaranPage() {
       <div className="card p-4 mb-4 rounded-4 shadow-sm border-0">
         <h6 className="fw-bold mb-3">Informasi Rekening IKM</h6>
 
-        {ikmRekening &&
-        ikmRekening.nama_rekening &&
-        ikmRekening.no_rekening ? (
+        {ikmRekening && ikmRekening.no_rekening ? (
           <>
             <p><strong>Nama Rekening:</strong> {ikmRekening.nama_rekening}</p>
             <p><strong>No. Rekening:</strong> {ikmRekening.no_rekening}</p>
             <p><strong>Jenis Rekening:</strong> {ikmRekening.jenis_rekening}</p>
           </>
-        ) : (
-          <div className="text-center text-muted">
-            Data rekening belum tersedia, silakan hubungi penjual
+        ) : ikmRekening?.no_telp ? (
+          <div className="text-center">
+            <p className="text-muted mb-2">
+              Rekening belum tersedia, silakan hubungi penjual
+            </p>
+
+            <a
+              href={`https://wa.me/${ikmRekening.no_telp}`}
+              target="_blank"
+              className="btn btn-success btn-sm"
+            >
+              Hubungi via WhatsApp
+            </a>
           </div>
-        )}
+        ) : null}
       </div>
 
       {/* CARD UPLOAD */}

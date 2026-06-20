@@ -181,14 +181,25 @@ export const checkoutPage = async (payload: any) => {
     body: JSON.stringify(payload),
   })
 
- const data = await res.json()
+  // 🔥 GANTI INI
+  const text = await res.text()
 
-  // 🔥 HANDLE ERROR BACKEND
-  if (!res.ok) {
-  throw new Error(data.message || "Gagal memuat CO page")
-}
+  console.log("STATUS:", res.status)
+  console.log("RAW RESPONSE:", text)
 
-  return data
+  // coba parse JSON manual
+  try {
+    const data = JSON.parse(text)
+
+    if (!res.ok) {
+      throw new Error(data.message || "Gagal memuat CO page")
+    }
+
+    return data
+  } catch (e) {
+    console.error("INI BUKAN JSON, ERROR BACKEND!")
+    throw new Error("Backend error, cek console")
+  }
 }
 
 export const checkout = async (payload: any) => {
@@ -258,6 +269,25 @@ export const selesaiPesanan = async (id: number) => {
   } catch (error: any) {
     throw new Error(error.message || "Gagal menyelesaikan pesanan")
   }
+}
+
+export const batalkanPesanan = async (id: number) => {
+  const token = localStorage.getItem("token")
+
+  const res = await fetch(`${API_URL}/pembeli/pesanan/${id}/batal`, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+
+  const data = await res.json()
+
+  if (!data.success) {
+    throw new Error(data.message)
+  }
+
+  return data
 }
 
 export const getDetailPembayaran = async (pesananId: number) => {

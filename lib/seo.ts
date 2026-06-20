@@ -9,8 +9,6 @@ export async function generateSeoMetadata(page: string) {
     return {
       title: seo.page_title,
       description: seo.meta_description,
-      keywords: seo.keywords,
-      authors: seo.meta_author ? [{ name: seo.meta_author }] : [],
 
       robots: seo.meta_robots || "index, follow",
 
@@ -18,19 +16,6 @@ export async function generateSeoMetadata(page: string) {
         canonical: seo.canonical_url || "",
       },
 
-       openGraph: {
-        title: seo.og_title || seo.page_title,
-        description: seo.og_description || seo.meta_description || "",
-        url: seo.canonical_url || "",
-        type: seo.og_type || "website",
-        images: seo.og_image
-          ? [`${process.env.NEXT_PUBLIC_STORAGE_URL}/${seo.og_image}`]
-          : [],
-      },
-
-      other: {
-        "image:alt": seo.image_alt || "",
-      },
     }
   } catch (error) {
     console.error("SEO error:", error)

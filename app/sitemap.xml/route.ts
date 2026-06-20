@@ -4,7 +4,7 @@ export const revalidate = 3600;
 export async function GET() {
   const baseUrl = "https://jelajah.ikmprobolinggo.com";
 
-  // ✅ STATIC (format object seperti punyamu)
+  // ✅ STATIC
   const staticPages = [
     {
       url: `${baseUrl}`,

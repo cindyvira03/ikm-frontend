@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { getPesananPembeli, selesaiPesanan } from "@/services/pembeliService"
+import { getPesananPembeli, selesaiPesanan, batalkanPesanan } from "@/services/pembeliService"
 import { Pesanan } from "@/types/pesanan"
 
 export default function PesananPage() {
@@ -201,17 +201,39 @@ export default function PesananPage() {
                       </span>
                     </td>
                     <td>
-                      {!item.status_pembayaran ? (
-                        <button
-                          className="btn btn-sm btn-primary"
-                          onClick={() => router.push(`/pembayaran/${item.id}`)}
-                        >
-                          Bayar
-                        </button>
-                      ) : (
+                      {item.status_pesanan === "pending" && !item.pembayaran ? (
+                        <div className="d-flex gap-2">
+                          <button
+                            className="btn btn-sm btn-primary"
+                            onClick={() => router.push(`/pembayaran/${item.id}`)}
+                          >
+                            Bayar
+                          </button>
+
+                          <button
+                            className="btn btn-sm btn-outline-danger"
+                            onClick={async () => {
+                              const confirm = window.confirm("Batalkan pesanan ini?")
+                              if (!confirm) return
+
+                              try {
+                                await batalkanPesanan(item.id)
+                                alert("Pesanan dibatalkan ❌")
+                                fetchData()
+                              } catch (err: any) {
+                                alert(err.message)
+                              }
+                            }}
+                          >
+                            Batalkan
+                          </button>
+                        </div>
+                      ) : item.pembayaran ? (
                         <span className={`badge bg-${badgeBayar(item.status_pembayaran)}`}>
                           {item.status_pembayaran}
                         </span>
+                      ) : (
+                        <span className="badge bg-danger">batal</span>
                       )}
                     </td>
                     <td>
