@@ -22,7 +22,7 @@ export const getProducts = async (page = 1): Promise<ProdukResponse> => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm?page=${page}`,
     {
-      next: { revalidate: 60 },
+      cache: "no-store",
     }
   )
 
@@ -37,7 +37,7 @@ export const getProductsByCategory = async (slug: string, page = 1) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm/kategori/${slug}?page=${page}`,
     {
-      next: { revalidate: 60 },
+      cache: "no-store",
     }
   )
 
@@ -58,7 +58,7 @@ export const getProductBySlug = async (slug: string) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/produk-ikm/${slug}`,
       {
-        next: { revalidate: 60 },
+        cache: "no-store",
       }
     )
 
