@@ -4,8 +4,7 @@ export const revalidate = 3600;
 export async function GET() {
   const baseUrl = "https://jelajah.ikmprobolinggo.com";
 
-  // ✅ STATIC
-  const staticPages = [
+  const pages = [
     {
       url: `${baseUrl}`,
       lastModified: new Date(),
@@ -42,74 +41,11 @@ export async function GET() {
       changeFrequency: "weekly",
       priority: 0.9,
     },
-    // 🔥 TAMBAHAN BARU (SEO PENTING)
-    {
-        url: `${baseUrl}/tentang-kami`,
-        lastModified: new Date(),
-        changeFrequency: "monthly",
-        priority: 0.7,
-    },
-    {
-        url: `${baseUrl}/kontak`,
-        lastModified: new Date(),
-        changeFrequency: "monthly",
-        priority: 0.7,
-    },
-    {
-        url: `${baseUrl}/kebijakan-privasi`,
-        lastModified: new Date(),
-        changeFrequency: "yearly",
-        priority: 0.5,
-    },
-    {
-        url: `${baseUrl}/syarat-ketentuan`,
-        lastModified: new Date(),
-        changeFrequency: "yearly",
-        priority: 0.5,
-    },
-    {
-        url: `${baseUrl}/faq`,
-        lastModified: new Date(),
-        changeFrequency: "yearly",
-        priority: 0.5,
-    },
   ];
 
-  // 🔥 FETCH (optional dynamic)
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sitemap/all`);
-  const data = await res.json();
-
-  const artikel = data.artikel || [];
-  const produk = data.produk || [];
-  const profil = data.profil || [];
-
-  const dynamicPages = [
-    ...artikel.map((item: any) => ({
-      url: `${baseUrl}/artikel/${item.slug}`,
-      lastModified: item.updated_at || new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    })),
-    ...produk.map((item: any) => ({
-      url: `${baseUrl}/produk-ikm/${item.slug}`,
-      lastModified: item.updated_at || new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    })),
-    ...profil.map((item: any) => ({
-      url: `${baseUrl}/profil-ikm/${item.slug}`,
-      lastModified: item.updated_at || new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    })),
-  ];
-
-  const allPages = [...staticPages, ...dynamicPages];
-
-  // ✅ convert ke XML
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    ${allPages
+    ${pages
       .map(
         (page) => `
       <url>

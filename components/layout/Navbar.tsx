@@ -157,7 +157,7 @@ export default function Navbar() {
                     {user.name}
                   </button>
                   <div className="dropdown-menu dropdown-menu-end">
-                    <Link className="dropdown-item" href="/profile">Profil Saya</Link>
+              
                     <button className="dropdown-item text-danger" onClick={handleLogout}>
                       Logout
                     </button>
@@ -232,7 +232,6 @@ export default function Navbar() {
           {user ? (
             <>
               <div className="fw-semibold">{user.name}</div>
-              <Link href="/profile" className="nav-link" onClick={() => setIsOpen(false)}>Profil Saya</Link>
               <button className="btn btn-danger mt-2" onClick={handleLogout}>Logout</button>
             </>
           ) : (

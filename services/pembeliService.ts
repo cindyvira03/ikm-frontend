@@ -321,29 +321,6 @@ export async function getProfilePembeli() {
   return json
 }
 
-/* =========================
-   UPDATE PROFILE
-========================= */
-export async function updateProfilePembeli(payload: {
-  nama_lengkap: string
-  jenis_kelamin: string
-  no_hp: string
-  name: string
-  email: string
-}) {
-  const res = await fetch(`${API_URL}/pembeli/profile`, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  })
-
-  const json = await res.json()
-  return json
-}
 
 import { AlamatPembeli } from "@/types/alamat"
 

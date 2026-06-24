@@ -44,31 +44,13 @@ export default async function Home() {
     }
   };
 
-  const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Jelajah Probolinggo",
-  url: "https://jelajah.ikmprobolinggo.com",
-  logo: {
-    "@type": "ImageObject",
-    url: "https://jelajah.ikmprobolinggo.com/logo-beranda.png"
-  }
-};
-
   return (
     <main className="home-page" style={{ background: "#f8fafc" }}>
 
-        {/* ✅ 1. WebSite */}
 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-
-      {/* ✅ 2. Organization */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
 
 
