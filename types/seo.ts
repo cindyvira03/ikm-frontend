@@ -1,6 +1,6 @@
 export interface SeoSetting {
   id: number
-  keywords: string | null
+  meta_keywords: string | null
   page_title: string
   meta_description: string | null
   og_title: string | null

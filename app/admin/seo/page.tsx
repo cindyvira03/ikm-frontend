@@ -30,9 +30,10 @@ export default function SeoSettingsPage() {
     heading_h1: "",
     canonical_url: "",
     image_alt: "",
-    enable_sitemap: true,
-    enable_robots: true,
   })
+
+  // ✅ TAMBAHAN: state global keywords (terpisah dari form karena berlaku semua halaman)
+  const [globalKeywords, setGlobalKeywords] = useState("")
 
   const [heroImage, setHeroImage] = useState<File | null>(null)
   const [imagePreview, setImagePreview] = useState<string | null>(null)
@@ -52,7 +53,7 @@ export default function SeoSettingsPage() {
       const data = await getSeo(selectedPage)
 
       setForm({
-        keywords: data?.keywords ?? "",
+        keywords: data?.meta_keywords ?? "",
         page_title: data?.page_title ?? "",
         meta_description: data?.meta_description ?? "",
         og_title: data?.og_title ?? "",
@@ -62,9 +63,10 @@ export default function SeoSettingsPage() {
         heading_h1: data?.heading_h1 ?? "",
         canonical_url: data?.canonical_url ?? "",
         image_alt: data?.image_alt ?? "",
-        enable_sitemap: data?.enable_sitemap ?? true,
-        enable_robots: data?.enable_robots ?? true,
       })
+
+      // ✅ TAMBAHAN: load global keywords
+      setGlobalKeywords(data?.meta_keywords ?? "")
 
       if (data?.hero_image) {
         setImagePreview(`${process.env.NEXT_PUBLIC_STORAGE_URL}/${data.hero_image}`)
@@ -77,7 +79,6 @@ export default function SeoSettingsPage() {
       } else {
         setOgPreview(null)
       }
-      // setHeroImage(null)
     } catch {
       toast.error("Gagal memuat data SEO")
     }
@@ -113,80 +114,73 @@ export default function SeoSettingsPage() {
   }
 
   const handleOgImageChange = (e: any) => {
-  const file = e.target.files?.[0]
-  if (!file) return
+    const file = e.target.files?.[0]
+    if (!file) return
 
-  setOgImage(file)
-  setDeleteOgImage(false)
+    setOgImage(file)
+    setDeleteOgImage(false)
 
-  const reader = new FileReader()
-  reader.onload = (e) => {
-    setOgPreview(e.target?.result as string)
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      setOgPreview(e.target?.result as string)
+    }
+    reader.readAsDataURL(file)
   }
-  reader.readAsDataURL(file)
-}
 
-const removeOgImage = () => {
-  setOgImage(null)
-  setOgPreview(null)
-  setDeleteOgImage(true)
-}
+  const removeOgImage = () => {
+    setOgImage(null)
+    setOgPreview(null)
+    setDeleteOgImage(true)
+  }
 
   const handleSubmit = async (e: any) => {
-  e.preventDefault()
-  setSubmitLoading(true)
+    e.preventDefault()
+    setSubmitLoading(true)
 
-  try {
-    const formData = new FormData()
+    try {
+      const formData = new FormData()
 
-    // ✅ WAJIB
-    formData.append("page", page)
-    formData.append("page_title", form.page_title)
+      // ✅ WAJIB
+      formData.append("page", page)
+      formData.append("page_title", form.page_title)
 
-    // optional
-    formData.append("keywords", form.keywords || "")
-    formData.append("meta_description", form.meta_description || "")
-    formData.append("og_title", form.og_title || "")
-    formData.append("og_description", form.og_description || "")
-    formData.append("og_type", form.og_type || "website")
-    formData.append("meta_robots", form.meta_robots || "")
-    formData.append("heading_h1", form.heading_h1 || "")
-    formData.append("canonical_url", form.canonical_url || "")
-    formData.append("image_alt", form.image_alt || "")
-    formData.append("enable_sitemap", form.enable_sitemap ? "1" : "0")
-    formData.append("enable_robots", form.enable_robots ? "1" : "0")
+      // optional
+      formData.append("meta_keywords", globalKeywords || "") // ✅ TAMBAHAN: kirim global keywords
+      formData.append("meta_description", form.meta_description || "")
+      formData.append("og_title", form.og_title || "")
+      formData.append("og_description", form.og_description || "")
+      formData.append("og_type", form.og_type || "website")
+      formData.append("meta_robots", form.meta_robots || "")
+      formData.append("heading_h1", form.heading_h1 || "")
+      formData.append("canonical_url", form.canonical_url || "")
+      formData.append("image_alt", form.image_alt || "")
 
-    // ✅ FILE (PENTING)
-    if (heroImage) {
-      formData.append("hero_image", heroImage)
+      // ✅ FILE (PENTING)
+      if (heroImage) {
+        formData.append("hero_image", heroImage)
+      }
+
+      if (deleteImage) {
+        formData.append("delete_hero", "1")
+      }
+
+      if (ogImage) {
+        formData.append("og_image", ogImage)
+      }
+
+      if (deleteOgImage) {
+        formData.append("delete_og", "1")
+      }
+
+      await updateSeo(formData)
+
+      toast.success("SEO berhasil diperbarui")
+    } catch (err: any) {
+      toast.error(err.message || "Gagal update SEO")
     }
 
-    if (deleteImage) {
-      formData.append("delete_hero", "1")
-    }
-
-    if (ogImage) {
-      formData.append("og_image", ogImage)
-    }
-
-    if (deleteOgImage) {
-      formData.append("delete_og", "1")
-    }
-
-    // 🔥 DEBUG (optional)
-    // for (let pair of formData.entries()) {
-    //   console.log("FORMDATA:", pair[0], pair[1])
-    // }
-
-    await updateSeo(formData)
-
-    toast.success("SEO berhasil diperbarui")
-  } catch (err: any) {
-    toast.error(err.message || "Gagal update SEO")
+    setSubmitLoading(false)
   }
-
-  setSubmitLoading(false)
-}
 
   if (loading) return (
     <div className="d-flex justify-content-center align-items-center" style={{ height: "60vh" }}>
@@ -204,6 +198,28 @@ const removeOgImage = () => {
         <p className="text-secondary">
           Kelola pengaturan SEO website agar mudah ditemukan di mesin pencari seperti Google.
         </p>
+
+        {/* ✅ TAMBAHAN: Meta Keywords Global — di atas tab, berlaku semua halaman */}
+        <div className="card mb-4">
+          <div className="card-header bg-white py-3">
+            <p className="mb-0 fw-semibold">Meta Keywords</p>
+          </div>
+          <div className="card-body">
+            <div className="mb-0">
+              <label className="form-label">Keywords</label>
+              <input
+                className="form-control"
+                value={globalKeywords}
+                onChange={(e) => setGlobalKeywords(e.target.value)}
+                placeholder="batik probolinggo, ikm probolinggo, produk lokal probolinggo"
+              />
+              <small className="text-muted fst-italic">
+                Keywords ini berlaku untuk seluruh halaman website. Pisahkan setiap kata kunci dengan koma.
+              </small>
+            </div>
+          </div>
+        </div>
+        {/* ✅ AKHIR TAMBAHAN Meta Keywords */}
 
         <div className="alert alert-info mt-3">
           Setiap tab mewakili halaman berbeda. Silakan isi SEO sesuai dengan konten halaman tersebut agar lebih optimal di pencarian Google.
@@ -347,8 +363,105 @@ const removeOgImage = () => {
           </div>
 
 
-          {/* RIGHT - TECHNICAL SETTINGS */}
+          {/* RIGHT */}
           <div className="col-md-4">
+
+            {/* ✅ TAMBAHAN: Social Media / Open Graph */}
+            <div className="card mb-4">
+              <div className="card-header bg-white py-3">
+                <p className="mb-0 fw-semibold">Berbagi Media Sosial</p>
+              </div>
+              <div className="card-body">
+
+                <div className="mb-3">
+                  <label className="form-label">Judul Berbagi</label>
+                  <input
+                    name="og_title"
+                    className="form-control"
+                    value={form.og_title}
+                    onChange={handleChange}
+                    placeholder="Judul saat dibagikan ke media sosial"
+                  />
+                  <small className="text-muted fst-italic">
+                    Judul yang muncul saat halaman dibagikan ke Facebook, WhatsApp, dll. Kosongkan untuk menggunakan Page Title.
+                  </small>
+                </div>
+
+                <div className="mb-3">
+                  <label className="form-label">Deskripsi Berbagi</label>
+                  <textarea
+                    name="og_description"
+                    className="form-control"
+                    rows={2}
+                    value={form.og_description}
+                    onChange={handleChange}
+                    placeholder="Deskripsi saat dibagikan ke media sosial"
+                  />
+                  <small className="text-muted fst-italic">
+                    Deskripsi yang muncul saat halaman dibagikan. Kosongkan untuk menggunakan Meta Description.
+                  </small>
+                </div>
+
+                <div className="mb-3">
+                  <label className="form-label">Tipe Konten</label>
+                  <select name="og_type" className="form-select" value={form.og_type} onChange={handleChange}>
+                    <option value="website">website</option>
+                    <option value="article">article</option>
+                  </select>
+                  <small className="text-muted fst-italic">
+                    Gunakan "article" untuk halaman artikel/blog.
+                  </small>
+                </div>
+
+                {/* OG Image */}
+                <div className="card border mb-0">
+                  <div className="card-header bg-white py-2">
+                    <p className="mb-0 fw-semibold" style={{ fontSize: "0.9rem" }}>Gambar Thumbnail</p>
+                  </div>
+                  <div className="card-body text-center py-3">
+                    {ogPreview ? (
+                      <>
+                        <img
+                          src={ogPreview}
+                          className="img-fluid rounded mb-3"
+                          style={{ maxHeight: 140 }}
+                        />
+                        <div className="d-flex justify-content-center gap-2">
+                          <button
+                            type="button"
+                            className="btn btn-sm btn-outline-danger"
+                            onClick={removeOgImage}
+                          >
+                            Remove
+                          </button>
+                          <label className="btn btn-sm btn-outline-secondary">
+                            Change
+                            <input type="file" hidden accept="image/*" onChange={handleOgImageChange} />
+                          </label>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <p className="text-secondary" style={{ fontSize: "0.875rem" }}>
+                          Gambar thumbnail saat dibagikan ke media sosial
+                        </p>
+                        <label className="btn btn-light border btn-sm">
+                          Upload Gambar
+                          <input type="file" hidden accept="image/*" onChange={handleOgImageChange} />
+                        </label>
+                      </>
+                    )}
+                    <small className="text-muted d-block mt-2 fst-italic">
+                      Rekomendasi ukuran: 1200×630 px.
+                    </small>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            {/* ✅ AKHIR TAMBAHAN Social Media */}
+
+            {/* TECHNICAL SETTINGS */}
             <div className="card mb-4">
               <div className="card-header bg-white py-3">
                 <p className="mb-0 fw-semibold">Technical Settings</p>
