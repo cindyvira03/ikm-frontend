@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "ikmprobolinggo.com",
+        hostname: "api.ikmprobolinggo.com",
         pathname: "/storage/**",
       },
     ],

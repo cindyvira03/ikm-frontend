@@ -23,10 +23,10 @@ export default async function Page() {
   description:
     seo?.meta_description ||
     "Pusat pengembangan dan produksi batik khas Probolinggo.",
-  url: "https://jelajah.ikmprobolinggo.com/rumah-batik",
+  url: "https://ikmprobolinggo.com/rumah-batik",
   image: seo?.hero_image
     ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${seo.hero_image}`
-    : "https://jelajah.ikmprobolinggo.com/no-image.webp",
+    : "https://ikmprobolinggo.com/no-image.webp",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Probolinggo",

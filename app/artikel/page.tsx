@@ -25,14 +25,14 @@ export default async function ArtikelPage() {
   "@type": "CollectionPage",
   name: "Artikel IKM Probolinggo",
   description: "Daftar artikel dan informasi seputar IKM Kota Probolinggo",
-  url: "https://jelajah.ikmprobolinggo.com/artikel",
+  url: "https://ikmprobolinggo.com/artikel",
   mainEntity: {
     "@type": "ItemList",
     itemListElement: artikel.map((item: any, index: number) => ({
       "@type": "ListItem",
       position: index + 1,
       name: item.judul,
-      url: `https://jelajah.ikmprobolinggo.com/artikel/${item.slug}`
+      url: `https://ikmprobolinggo.com/artikel/${item.slug}`
     }))
   }
 };

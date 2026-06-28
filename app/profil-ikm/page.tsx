@@ -40,14 +40,14 @@ export default async function ProfilIKMPage({ searchParams }: PageProps) {
   name: "Daftar Profil IKM Probolinggo",
   description:
     "Daftar profil usaha IKM di Kota Probolinggo yang menampilkan pelaku usaha lokal dan produk unggulan.",
-  url: "https://jelajah.ikmprobolinggo.com/profil-ikm",
+  url: "https://ikmprobolinggo.com/profil-ikm",
   mainEntity: {
     "@type": "ItemList",
     itemListElement: list.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: item.nama_usaha,
-      url: `https://jelajah.ikmprobolinggo.com/profil-ikm/${item.slug}`
+      url: `https://ikmprobolinggo.com/profil-ikm/${item.slug}`
     }))
   }
 };

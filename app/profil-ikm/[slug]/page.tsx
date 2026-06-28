@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps) {
     ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${ikm.gambar}`
     : "/no-image.webp"
 
-  const url = `https://jelajah.ikmprobolinggo.com/profil-ikm/${slug}`
+  const url = `https://ikmprobolinggo.com/profil-ikm/${slug}`
 
   return {
     title: ikm.nama_usaha,
@@ -65,7 +65,7 @@ export default async function Page({ params }: PageProps) {
   const schema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": `https://jelajah.ikmprobolinggo.com/profil-ikm/${ikm.slug}#business`,
+  "@id": `https://ikmprobolinggo.com/profil-ikm/${ikm.slug}#business`,
 
   name: ikm.nama_usaha,
 
@@ -75,9 +75,9 @@ export default async function Page({ params }: PageProps) {
 
   image: ikm.gambar
     ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/ikm/${ikm.gambar}`
-    : "https://jelajah.ikmprobolinggo.com/no-image.webp",
+    : "https://ikmprobolinggo.com/no-image.webp",
 
-  url: `https://jelajah.ikmprobolinggo.com/profil-ikm/${ikm.slug}`,
+  url: `https://ikmprobolinggo.com/profil-ikm/${ikm.slug}`,
 
   address: {
     "@type": "PostalAddress",

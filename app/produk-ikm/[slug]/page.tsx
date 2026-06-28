@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps) {
     ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${produk.foto}`
     : "/no-image.webp"
 
-  const url = `https://jelajah.ikmprobolinggo.com/produk-ikm/${produk.slug}`
+  const url = `https://ikmprobolinggo.com/produk-ikm/${produk.slug}`
 
   return {
     title: produk.nama_produk,
@@ -73,12 +73,12 @@ export default async function Page({ params }: PageProps) {
   const schema = {
   "@context": "https://schema.org",
   "@type": "Product",
-  "@id": `https://jelajah.ikmprobolinggo.com/produk-ikm/${produk.slug}#product`,
+  "@id": `https://ikmprobolinggo.com/produk-ikm/${produk.slug}#product`,
   name: produk.nama_produk,
   description: produk.deskripsi?.replace(/<[^>]*>/g, "").slice(0, 200),
   image: produk.foto
     ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${produk.foto}`
-    : "https://jelajah.ikmprobolinggo.com/no-image.webp",
+    : "https://ikmprobolinggo.com/no-image.webp",
 
   brand: {
     "@type": "Brand",
@@ -90,7 +90,7 @@ export default async function Page({ params }: PageProps) {
     price: produk.harga || "0",
     priceCurrency: "IDR",
     availability: "https://schema.org/InStock",
-    url: `https://jelajah.ikmprobolinggo.com/produk-ikm/${produk.slug}`
+    url: `https://ikmprobolinggo.com/produk-ikm/${produk.slug}`
   }
 };
 

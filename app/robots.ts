@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: "https://jelajah.ikmprobolinggo.com/sitemap.xml",
+    sitemap: "https://ikmprobolinggo.com/sitemap.xml",
   }
 }

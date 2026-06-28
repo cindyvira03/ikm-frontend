@@ -27,14 +27,14 @@ export default async function OutletIKMPage() {
   name: "Daftar Outlet IKM Probolinggo",
   description:
     "Daftar lokasi outlet IKM di Kota Probolinggo yang menyediakan berbagai produk lokal.",
-  url: "https://jelajah.ikmprobolinggo.com/outlet-ikm",
+  url: "https://ikmprobolinggo.com/outlet-ikm",
   mainEntity: {
     "@type": "ItemList",
     itemListElement: outlet.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: item.profil_ikm?.nama_usaha || "Outlet IKM",
-      url: item.lokasi_googlemap || `https://jelajah.ikmprobolinggo.com/outlet-ikm`
+      url: item.lokasi_googlemap || `https://ikmprobolinggo.com/outlet-ikm`
     }))
   }
 };

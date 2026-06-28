@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps) {
     ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${artikel.gambar}`
     : "/no-image.webp"
 
-  const url = `https://jelajah.ikmprobolinggo.com/artikel/${artikel.slug}`
+  const url = `https://ikmprobolinggo.com/artikel/${artikel.slug}`
 
   return {
     title: artikel.meta_title || artikel.judul,
@@ -102,7 +102,7 @@ export default async function Page({ params }: PageProps) {
   description: artikel.meta_description || artikel.isi?.replace(/<[^>]*>/g, "").slice(0, 150),
   image: artikel.gambar
     ? `${process.env.NEXT_PUBLIC_STORAGE_URL}/${artikel.gambar}`
-    : "https://jelajah.ikmprobolinggo.com/no-image.webp",
+    : "https://ikmprobolinggo.com/no-image.webp",
   author: {
     "@type": "Person",
     name: artikel.sumber || "Admin"
@@ -112,14 +112,14 @@ export default async function Page({ params }: PageProps) {
     name: "Jelajah Probolinggo",
     logo: {
       "@type": "ImageObject",
-      url: "https://jelajah.ikmprobolinggo.com/logo-beranda.png"
+      url: "https://ikmprobolinggo.com/logo-beranda.png"
     }
   },
   datePublished: artikel.created_at,
   dateModified: artikel.updated_at,
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": `https://jelajah.ikmprobolinggo.com/artikel/${artikel.slug}`
+    "@id": `https://ikmprobolinggo.com/artikel/${artikel.slug}`
   }
 };
 

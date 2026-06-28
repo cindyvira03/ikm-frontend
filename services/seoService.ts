@@ -1,5 +1,5 @@
 export async function getSeo(page: String) {
-  const API_URL = "https://ikmprobolinggo.com/api" // 🔥 sementara hardcode dulu
+  const API_URL = "https://api.ikmprobolinggo.com/api" // 🔥 sementara hardcode dulu
 
   const res = await fetch(
     `${API_URL}/seo?page=${page}`,

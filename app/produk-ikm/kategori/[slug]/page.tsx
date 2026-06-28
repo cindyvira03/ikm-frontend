@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const title = `Daftar Produk IKM Kategori ${namaKategori}`
     const description = `Mau beli produk IKM kategori ${namaKategori} asli Probolinggo? Yuk, belanja online dengan mudah, aman, dan terpercaya langsung dari para pengrajin lokal.`
-    const correctUrl = `https://jelajah.ikmprobolinggo.com/produk-ikm/kategori/${targetSlug}`
+    const correctUrl = `https://ikmprobolinggo.com/produk-ikm/kategori/${targetSlug}`
 
     return {
       title,

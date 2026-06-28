@@ -40,14 +40,14 @@ export default async function ProdukIKMPage({ searchParams }: PageProps) {
     name: "Daftar Produk IKM Probolinggo",
     description:
       "Kumpulan produk IKM Kota Probolinggo seperti batik, kerajinan, dan kuliner.",
-    url: "https://jelajah.ikmprobolinggo.com/produk-ikm",
+    url: "https://ikmprobolinggo.com/produk-ikm",
     mainEntity: {
       "@type": "ItemList",
       itemListElement: produk.map((item: any, index: number) => ({
         "@type": "ListItem",
         position: index + 1,
         name: item.nama_produk,
-        url: `https://jelajah.ikmprobolinggo.com/produk-ikm/${item.slug}`
+        url: `https://ikmprobolinggo.com/produk-ikm/${item.slug}`
       }))
     }
   };

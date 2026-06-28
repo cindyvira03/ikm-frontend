@@ -36,10 +36,10 @@ export default async function Home() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Jelajah Probolinggo",
-    url: "https://jelajah.ikmprobolinggo.com",
+    url: "https://ikmprobolinggo.com",
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://jelajah.ikmprobolinggo.com/search?q={search_term_string}",
+      target: "https://ikmprobolinggo.com/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
