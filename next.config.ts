@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "api.ikmprobolinggo.com",
-        pathname: "/storage/**",
+        pathname: "/**",
       },
     ],
   }
