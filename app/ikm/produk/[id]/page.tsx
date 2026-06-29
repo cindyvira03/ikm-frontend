@@ -39,6 +39,7 @@ export default function ProdukDetailPage() {
   }
 
   if (error || !produk) {
+    console.log(produk)
     return (
       <div className="text-center py-5 text-danger">
         <h5>{error || "Produk tidak ditemukan"}</h5>
@@ -111,6 +112,41 @@ export default function ProdukDetailPage() {
                   <tr>
                     <th>Ukuran</th>
                     <td>: {produk.ukuran ?? "-"}</td>
+                  </tr>
+                  <tr>
+                    <th>URL Shopee</th>
+                    <td>
+                      :{" "}
+                      {produk.url_shopee ? (
+                        <a
+                          href={produk.url_shopee}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {produk.url_shopee}
+                        </a>
+                      ) : (
+                        "-"
+                      )}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>URL Tokopedia</th>
+                    <td>
+                      :{" "}
+                      {produk.url_tokopedia ? (
+                        <a
+                          href={produk.url_tokopedia}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {produk.url_tokopedia}
+                        </a>
+                      ) : (
+                        "-"
+                      )}
+                    </td>
                   </tr>
                   <tr>
                     <th>IKM</th>

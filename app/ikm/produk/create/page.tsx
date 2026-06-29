@@ -17,6 +17,8 @@ export default function TambahProdukPage() {
     berat: "",
     deskripsi: "",
     stok: "",
+    url_shopee: "",
+    url_tokopedia: "",
   })
   const [fotoFile, setFotoFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
@@ -86,6 +88,8 @@ export default function TambahProdukPage() {
     formData.append("ukuran", form.ukuran)
     formData.append("berat", form.berat)
     formData.append("deskripsi", form.deskripsi)
+    formData.append("url_shopee", form.url_shopee)
+    formData.append("url_tokopedia", form.url_tokopedia)
     if (form.stok) formData.append("stok", form.stok)
     if (fotoFile) formData.append("foto", fotoFile)
 
@@ -263,6 +267,38 @@ export default function TambahProdukPage() {
                 </div>
               </div>
             </div>
+
+            <div className="card border mb-3">
+            <div className="card-header bg-white py-3">
+              <p className="mb-0 fw-semibold">Marketplace (Opsional)</p>
+            </div>
+
+            <div className="card-body">
+              <div className="mb-3">
+                <label className="form-label">URL Shopee</label>
+                <input
+                  type="url"
+                  className="form-control"
+                  name="url_shopee"
+                  value={form.url_shopee}
+                  onChange={handleChange}
+                  placeholder="https://shopee.co.id/..."
+                />
+              </div>
+
+              <div>
+                <label className="form-label">URL Tokopedia</label>
+                <input
+                  type="url"
+                  className="form-control"
+                  name="url_tokopedia"
+                  value={form.url_tokopedia}
+                  onChange={handleChange}
+                  placeholder="https://tokopedia.com/..."
+                />
+              </div>
+            </div>
+          </div>
 
             <div className="card border">
               <div className="card-body">

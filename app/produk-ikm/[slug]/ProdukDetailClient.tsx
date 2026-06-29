@@ -175,7 +175,7 @@ export default function ProdukDetailClient({ produk, list }: any) {
           </h1>
 
           <p className="text-primary fw-bold mb-0 fs-5">
-            Rp. {produk.harga.toLocaleString()}
+            Rp {produk.harga.toLocaleString("id-ID")}
           </p>
 
 
@@ -242,6 +242,51 @@ export default function ProdukDetailClient({ produk, list }: any) {
               )}
             </button>
 
+          </div>
+
+          {/* Marketplace */}
+          <div className="mt-4">
+            <hr className="my-3" />
+
+            <p className="text-muted small fw-semibold mb-2">
+              Tersedia juga di Marketplace
+            </p>
+
+            <div className="d-flex gap-4 align-items-center">
+
+              {/* Shopee */}
+              <a
+                href={produk.url_shopee || "#"}
+                target={produk.url_shopee ? "_blank" : "_self"}
+                rel="noopener noreferrer"
+                className="text-decoration-none d-flex align-items-center text-dark"
+              >
+                <Image
+                  src="/shopee.png"
+                  alt="Shopee"
+                  width={22}
+                  height={22}
+                />
+                <span className="ms-2">Shopee</span>
+              </a>
+
+              {/* Tokopedia */}
+              <a
+                href={produk.url_tokopedia || "#"}
+                target={produk.url_tokopedia ? "_blank" : "_self"}
+                rel="noopener noreferrer"
+                className="text-decoration-none d-flex align-items-center text-dark"
+              >
+                <Image
+                  src="/tokopedia.png"
+                  alt="Tokopedia"
+                  width={22}
+                  height={22}
+                />
+                <span className="ms-2">Tokopedia</span>
+              </a>
+
+            </div>
           </div>
 
         </div>

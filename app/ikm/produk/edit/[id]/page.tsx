@@ -31,6 +31,8 @@ export default function EditProdukPage() {
     ukuran: "",
     deskripsi: "",
     stok: "",
+    url_shopee: "",
+    url_tokopedia: "",
   })
 
   useEffect(() => {
@@ -64,6 +66,8 @@ export default function EditProdukPage() {
         ukuran: data.ukuran ?? "",
         deskripsi: data.deskripsi,
         stok: String(data.stok ?? 0),
+        url_shopee: data.url_shopee ?? "",
+        url_tokopedia: data.url_tokopedia ?? "",
       })
 
       setHargaDisplay(formatNumber(data.harga))
@@ -323,6 +327,42 @@ export default function EditProdukPage() {
                 <small className="text-muted">
                   Maks 2MB
                 </small>
+
+              </div>
+
+            </div>
+
+            <div className="card mb-3">
+
+              <div className="card-header bg-white">
+                <b>Marketplace (Opsional)</b>
+              </div>
+
+              <div className="card-body">
+
+                <div className="mb-3">
+                  <label>URL Shopee</label>
+                  <input
+                    type="url"
+                    name="url_shopee"
+                    className="form-control"
+                    value={form.url_shopee}
+                    onChange={handleChange}
+                    placeholder="https://shopee.co.id/..."
+                  />
+                </div>
+
+                <div>
+                  <label>URL Tokopedia</label>
+                  <input
+                    type="url"
+                    name="url_tokopedia"
+                    className="form-control"
+                    value={form.url_tokopedia}
+                    onChange={handleChange}
+                    placeholder="https://tokopedia.com/..."
+                  />
+                </div>
 
               </div>
 

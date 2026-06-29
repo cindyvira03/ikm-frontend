@@ -17,6 +17,8 @@ export interface Product {
   harga: number
   stok: number
   foto: string
+  url_shopee: string
+  url_tokopedia: string
   ikm: IKM
   jenis_produk: string
   varian: string

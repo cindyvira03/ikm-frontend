@@ -82,7 +82,7 @@ export default async function Page({ params }: PageProps) {
 
   brand: {
     "@type": "Brand",
-    name: produk.nama_ikm || "IKM Probolinggo"
+    name: produk.nama_usaha || "IKM Probolinggo"
   },
 
   offers: {
