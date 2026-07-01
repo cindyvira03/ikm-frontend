@@ -275,27 +275,33 @@ export default function TambahProdukPage() {
 
             <div className="card-body">
               <div className="mb-3">
-                <label className="form-label">URL Shopee</label>
+                <label className="form-label">URL Produk Shopee</label>
                 <input
                   type="url"
                   className="form-control"
                   name="url_shopee"
                   value={form.url_shopee}
                   onChange={handleChange}
-                  placeholder="https://shopee.co.id/..."
+                  placeholder="https://shopee.co.id/produk-anda"
                 />
+                <small className="text-muted">
+                  Masukkan tautan langsung ke halaman produk di Shopee.
+                </small>
               </div>
 
               <div>
-                <label className="form-label">URL Tokopedia</label>
+                <label className="form-label">URL Produk Tokopedia</label>
                 <input
                   type="url"
                   className="form-control"
                   name="url_tokopedia"
                   value={form.url_tokopedia}
                   onChange={handleChange}
-                  placeholder="https://tokopedia.com/..."
+                  placeholder="https://tokopedia.com/toko/produk"
                 />
+                <small className="text-muted">
+                  Masukkan tautan langsung ke halaman produk di Tokopedia.
+                </small>
               </div>
             </div>
           </div>
